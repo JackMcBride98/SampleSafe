@@ -13,7 +13,7 @@ public class LoginPanel extends JPanel {
 
     public LoginPanel(SampleSafe ss){
         this.ss = ss;
-        nameLabel = new JLabel("Username");
+        nameLabel = new JLabel("Username!");
         passwordLabel = new JLabel("Password");
         nameField = new JTextField();
         passwordField = new JPasswordField();
