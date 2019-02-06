@@ -18,6 +18,7 @@ public class SampleListItem extends JPanel {
     public SampleListItem(Sample sample){
         this.sample = sample;
         setLayout(new BorderLayout());
+        setBackground(Color.WHITE);
 
         /** Assigning sample name to the text of title label **/
         title = new JLabel(sample.getTitle());
@@ -49,5 +50,21 @@ public class SampleListItem extends JPanel {
         /** Add panels to this **/
         add(topPanel, BorderLayout.PAGE_START);
         add(belPanel);
+
+        /** Hover & Exit Colors **/
+        Color defColor = UIManager.getColor("Panel.background");
+        this.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt){
+                setBackground(Color.GRAY);
+                topPanel.setBackground(Color.GRAY);
+                belPanel.setBackground(Color.GRAY);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt){
+                setBackground(Color.WHITE);
+                topPanel.setBackground(defColor);
+                belPanel.setBackground(defColor);
+            }
+        });
     }
 }
