@@ -28,6 +28,8 @@ public class ResultPanel extends JPanel {
     public ResultPanel(SampleSafe ss){
         this.ss = ss;
 
+        setBackground(Color.red);
+
         resultView = new JPanel();
         resultView.setLayout(new BoxLayout(resultView, BoxLayout.Y_AXIS));
         resultView.setBackground(Color.GRAY);

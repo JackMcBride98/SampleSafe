@@ -5,20 +5,24 @@ public class SampleSafe extends JFrame {
 
     private LoginPanel  loginPanel;
     private ResultPanel resultPanel;
+    private InfoPanel infoPanel;
 
     public SampleSafe(){
 
         JTextField field = new JTextField(15);
         setVisible(true);
         setTitle("SampleSafe");
-        setSize(500, 500);
+        setSize(600, 500);
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loginPanel = new LoginPanel(this);
         add(loginPanel, BorderLayout.PAGE_START);
 
         resultPanel = new ResultPanel(this);
-        add(resultPanel);
+        infoPanel = new InfoPanel(this);
+
+        add(infoPanel, BorderLayout.CENTER);
+        add(resultPanel, BorderLayout.LINE_START);
 
         revalidate();
     }

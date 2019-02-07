@@ -5,27 +5,23 @@ public class InfoPanel extends JPanel {
 
     private SampleSafe ss;
 
-    private JLabel authorLabel;
-    private JLabel dateLabel;
-    private JLabel etcLabel;
-    private JLabel descLabel;
-
-    private JTextField authorField;
-    private JTextField dateField;
-
+    private JLabel nameLabel, authorLabel, dateLabel, etcLabel, descLabel;
+    private JTextField nameField, authorField, dateField;
     private JTextArea textArea;
-
-    private JButton saveButton;
-    private JButton cancelButton;
+    private JButton saveButton, cancelButton;
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
 
+        setBackground(Color.blue);
+
+        nameLabel = new JLabel("Name: ");
         authorLabel = new JLabel("Author: ");
         dateLabel = new JLabel("Date: ");
         etcLabel = new JLabel("etc .... ");
         descLabel = new JLabel("Description: ");
 
+        nameField = new JTextField(15);
         authorField = new JTextField(15);
         dateField = new JTextField(15);
 
@@ -45,48 +41,56 @@ public class InfoPanel extends JPanel {
         GridBagConstraints gc = new GridBagConstraints();
 
         gc.anchor = GridBagConstraints.LINE_START;
-        gc.weightx = 0.5;
-        gc.weighty = 0.5;
+        gc.weightx = 0;
+        gc.weighty = 0;
 
         //// first column (labels)
         // first row
         gc.gridx = 0;
         gc.gridy = 0;
-        add(authorLabel, gc);
+        add(nameLabel, gc);
         // second row
         gc.gridx = 0;
         gc.gridy = 1;
-        add(dateLabel, gc);
+        add(authorLabel, gc);
         // third row
         gc.gridx = 0;
         gc.gridy = 2;
+        add(dateLabel, gc);
+        // forth row
+        gc.gridx = 0;
+        gc.gridy = 3;
         add(etcLabel, gc);
 
         ////second column (fields)
         gc.gridx = 1;
         gc.gridy = 0;
-        add(authorField, gc);
+        add(nameField, gc);
         // second row
         gc.gridx = 1;
         gc.gridy = 1;
+        add(authorField, gc);
+        // third
+        gc.gridx = 1;
+        gc.gridy = 2;
         add(dateField, gc);
 
         //description box
         gc.gridx = 0;
-        gc.gridy = 3;
+        gc.gridy = 4;
         add(descLabel, gc);
         gc.gridx = 0;
-        gc.gridy = 4;
+        gc.gridy = 5;
         gc.gridwidth = 2;
         add(scrollPane, gc);
 
 
         //buttons
         gc.gridx = 0;
-        gc.gridy = 5;
+        gc.gridy = 6;
         add(saveButton, gc);
         gc.gridx = 1;
-        gc.gridy = 5;
+        gc.gridy = 6;
         add(cancelButton, gc);
     }
 }
