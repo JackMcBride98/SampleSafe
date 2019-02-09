@@ -5,10 +5,11 @@ public class InfoPanel extends JPanel {
 
     private SampleSafe ss;
 
-    private JLabel nameLabel, authorLabel, dateLabel, etcLabel, descLabel;
+    private JLabel nameLabel, authorLabel, dateLabel, etcLabel, descLabel, tagLabel;
     private JTextField nameField, authorField, dateField;
     private JTextArea textArea;
     private JButton saveButton, cancelButton;
+    private JComboBox tagComBox;
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
@@ -20,6 +21,7 @@ public class InfoPanel extends JPanel {
         dateLabel = new JLabel("Date: ");
         etcLabel = new JLabel("etc .... ");
         descLabel = new JLabel("Description: ");
+        tagLabel= new JLabel("Tags: ");
 
         nameField = new JTextField(15);
         authorField = new JTextField(15);
@@ -29,8 +31,16 @@ public class InfoPanel extends JPanel {
         textArea = new JTextArea();
         textArea.setVisible(true);
         JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(275, 75));
 
-        scrollPane.setPreferredSize(new Dimension(250, 75));
+        String[] tags = {"kick", "whip", "epic"};
+        tagComBox = new JComboBox(tags);
+        tagComBox.setEditable(true);
+        tagComBox.setSize(30, 10);
+
+
+
+
 
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
@@ -44,6 +54,7 @@ public class InfoPanel extends JPanel {
         gc.weightx = 0;
         gc.weighty = 0;
 
+        gc.insets = new Insets(5, 20, 0, 10);
         //// first column (labels)
         // first row
         gc.gridx = 0;
@@ -85,12 +96,21 @@ public class InfoPanel extends JPanel {
         add(scrollPane, gc);
 
 
-        //buttons
+        //tags
         gc.gridx = 0;
         gc.gridy = 6;
-        add(saveButton, gc);
+        add(tagLabel, gc);
         gc.gridx = 1;
         gc.gridy = 6;
+        add(tagComBox, gc);
+
+
+        //buttons
+        gc.gridx = 0;
+        gc.gridy = 8;
+        add(saveButton, gc);
+        gc.gridx = 1;
+        gc.gridy = 8;
         add(cancelButton, gc);
     }
 }
