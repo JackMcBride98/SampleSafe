@@ -21,8 +21,8 @@ public class SampleSafe extends JFrame {
         resultPanel = new ResultPanel(this);
         infoPanel = new InfoPanel(this);
 
-        add(infoPanel, BorderLayout.CENTER);
-        add(resultPanel, BorderLayout.LINE_START);
+        add(infoPanel, BorderLayout.LINE_END);
+        add(resultPanel, BorderLayout.CENTER);
 
         revalidate();
     }
