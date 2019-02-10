@@ -18,10 +18,12 @@ class Sample{
      * sets all variables to null!
      */
     public Sample(){
-        title  = "Unknown"; stars = 0;
-        tags = null; author = "Unknown";
+        title  = "Unknown";
+        stars  = 0;
+        tags   = null;
+        author = "Unknown";
         creationDate = null;
-        description = "None";
+        description  = "None";
         url = "Unknown";
     }
 
@@ -33,9 +35,9 @@ class Sample{
         this.stars  = stars;
         this.tags   = tags;
         this.author = author;
+        this.url    = url;
         this.creationDate   = creationDate;
         this.description    = description;
-        this.url            = url;
     }
 
     /** Setters **/
@@ -46,19 +48,19 @@ class Sample{
         else
             this.stars = stars;
     }
-    public void setTags(String[] tags){ this.tags = tags;}
-    public void setAuthor(String author) { this.author = author; }
-    public void setUrl(String url) { this.url = url;}
-    public void setDate(Date creationDate) { this.creationDate = creationDate;}
-    public void setDescription(String description) {this.description = description;}
+    public void setTags     (String[] tags)     { this.tags = tags;}
+    public void setAuthor   (String author)     { this.author = author; }
+    public void setUrl      (String url)        { this.url = url;}
+    public void setDate     (Date creationDate) { this.creationDate = creationDate;}
+    public void setDescription(String description) { this.description = description;}
 
     /** Getters **/
-    public String   getTitle()  { return title;}
-    public int      getStars()  { return stars;}
-    public String[] getTags()   { return tags;}
-    public String   getUrl()    { return url;}
-    public String   getAuthor() { return author;}
-    public String   getDescription() { return  description;}
-    public Date     getCreationDate(){ return creationDate;}
+    public String   getTitle()          { return title;}
+    public int      getStars()          { return stars;}
+    public String[] getTags()           { return tags;}
+    public String   getUrl()            { return url;}
+    public String   getAuthor()         { return author;}
+    public String   getDescription()    { return  description;}
+    public Date     getCreationDate()   { return creationDate;}
 
 }

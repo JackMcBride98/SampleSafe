@@ -7,7 +7,7 @@ import java.util.Date;
 public class ResultPanel extends JPanel {
     private SampleSafe ss;
 
-    /** Demo samples **/
+    /* Demo samples */
     private Sample samples[] = {
             new Sample("SNARE(10).wav",     3, new String[]{"Snare", "Clap", "etc"}, "Jack", new Date(), "Just a demo", "Nowhere"),
             new Sample("SMD_Snare_10.wav",  4, new String[]{"Sexy", "Drum"}, "Ross",new Date(), "Just a demo", "Nowhere"),
@@ -47,7 +47,7 @@ public class ResultPanel extends JPanel {
    }
 
     /**
-     * Method for displaying samples
+     * Method for displaying samples, Use this
      * @param result what samples to display
      */
    public void displayResult(Sample[] result)
