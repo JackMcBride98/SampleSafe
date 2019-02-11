@@ -10,7 +10,8 @@ public class InfoPanel extends JPanel {
     private JTextArea descTextArea;
     private JButton saveButton, cancelButton;
     private JComboBox tagComBox;
-    private TagPanel    tagPanel;
+    private JPanel dataPanel, communityPanel;
+    private TagPanel tagPanel;
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
@@ -38,8 +39,8 @@ public class InfoPanel extends JPanel {
         tagComBox = new JComboBox(tags);
         tagComBox.setEditable(true);
         tagComBox.setSize(30, 10);
-
         tagPanel = new TagPanel(ss);
+        tagPanel.setBackground(new Color(60,160, 255));
 
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
