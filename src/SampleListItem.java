@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 
 public class SampleListItem extends JPanel {
     private final int sCount = 5;
-    private SampleSafe ss;
+    private SampleSafe  ss;
+    private ResultPanel rp;
 
     private Sample sample;
     private JLabel title;
@@ -20,9 +21,14 @@ public class SampleListItem extends JPanel {
     private TagPanel    tagPanel;
     private JButton     btnStars[];
 
-    public SampleListItem(Sample sample, SampleSafe ss){
-        this.sample      = sample;
+    private boolean     isSelected;
+
+    public SampleListItem(Sample sample, SampleSafe ss, ResultPanel rp){
+        this.sample = sample;
         this.ss = ss;
+        this.rp = rp;
+
+        isSelected = false;
         setLayout(new BorderLayout());
         LineBorder line = new LineBorder(Color.blue, 2, true);
         setBorder(line);
@@ -59,22 +65,27 @@ public class SampleListItem extends JPanel {
         add(tagPanel, BorderLayout.PAGE_END);
 
         /* Hover & Exit Colors **/
-        Color defColor = UIManager.getColor("Panel.background");
         this.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt){
-                setBackground(Color.lightGray);
-                topPanel.setBackground(Color.lightGray);
-                tagPanel.setBackground(Color.lightGray);
+                Color c;
+                if(isSelected)
+                    c = new Color(0xff, 0x00, 0x00);
+                else
+                    c = Color.pink;
+
+                setBackground(c);
+                topPanel.setBackground(c);
+                tagPanel.setBackground(c);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt){
-                setBackground(defColor);
-                topPanel.setBackground(defColor);
-                tagPanel.setBackground(defColor);
+                changeSelectionStatus(isSelected);
             }
 
             public void mousePressed(java.awt.event.MouseEvent evt){
                 ss.displaySample(sample);
+                isSelected = true;
+                changeSelectionStatus(true);
             }
         });
     }
@@ -124,6 +135,31 @@ public class SampleListItem extends JPanel {
            changeRating(c);
        }
     }
+
+    public void changeSelectionStatus(boolean s){
+        isSelected = s;
+        if(s) {
+            rp.changeSelectionStatus(this);
+            selected();
+        }else
+            unselect();
+    }
+
+    public void selected(){
+        Color b = new Color(65, 185, 255);
+        this.setBackground( b);
+        topPanel.setBackground( b);
+        tagPanel.setBackground( b);
+    }
+
+    public void unselect(){
+        Color defColor = UIManager.getColor("Panel.background");
+        setBackground(defColor);
+        topPanel.setBackground(defColor);
+        tagPanel.setBackground(defColor);
+    }
+
+
 }
 
 

@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class ResultPanel extends JPanel {
     private SampleSafe ss;
+    private SampleListItem preItem;
 
     /* Demo samples */
     private Sample samples[] = {
@@ -54,10 +55,11 @@ public class ResultPanel extends JPanel {
    {
        // Remove all components
        resultView.removeAll();
+       preItem = null;
        // Instantiate new sample list item components
        for(int i = 0; i < result.length; i++){
            // Pass display sample
-           sli = new SampleListItem(result[i], ss);
+           sli = new SampleListItem(result[i], ss, this);
            //sli.setPreferredSize(new Dimension(220, 100));
            sli.setBorder(new EmptyBorder(10, 10, 10, 10));
            // Add to view
@@ -66,11 +68,11 @@ public class ResultPanel extends JPanel {
        revalidate();
    }
 
-   protected void displayInfo(Sample sample){
-       // ss.displayInfo(sample);
-       //JOptionPane.showMessageDialog(null, "Trying to display: " + sample.getTitle());
-       ss.displaySample(sample);
-       // waiting for rely method in SampleSafe.java
+   public void changeSelectionStatus(SampleListItem sli){
+        if(preItem!= null && !preItem.equals(sli)){
+            preItem.changeSelectionStatus(false);
+        }
+        preItem = sli;
    }
 
 }
