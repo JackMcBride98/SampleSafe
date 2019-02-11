@@ -5,9 +5,9 @@ public class InfoPanel extends JPanel {
 
     private SampleSafe ss;
 
-    private JLabel nameLabel, authorLabel, dateLabel, etcLabel, descLabel, tagLabel;
-    private JTextField nameField, authorField, dateField;
-    private JTextArea textArea;
+    private JLabel titleLabel, authorLabel, dateLabel, etcLabel, descLabel, tagLabel;
+    private JTextField titleField, authorField, dateField;
+    private JTextArea descTextArea;
     private JButton saveButton, cancelButton;
     private JComboBox tagComBox;
 
@@ -16,31 +16,27 @@ public class InfoPanel extends JPanel {
 
         setBackground(Color.blue);
 
-        nameLabel = new JLabel("Name: ");
+        titleLabel = new JLabel("Name: ");
         authorLabel = new JLabel("Author: ");
         dateLabel = new JLabel("Date: ");
         etcLabel = new JLabel("etc .... ");
         descLabel = new JLabel("Description: ");
         tagLabel= new JLabel("Tags: ");
 
-        nameField = new JTextField(15);
+        titleField = new JTextField(15);
         authorField = new JTextField(15);
         dateField = new JTextField(15);
 
         //area that displays text
-        textArea = new JTextArea();
-        textArea.setVisible(true);
-        JScrollPane scrollPane = new JScrollPane(textArea);
+        descTextArea = new JTextArea();
+        descTextArea.setVisible(true);
+        JScrollPane scrollPane = new JScrollPane(descTextArea);
         scrollPane.setPreferredSize(new Dimension(275, 75));
 
         String[] tags = {"kick", "whip", "epic"};
         tagComBox = new JComboBox(tags);
         tagComBox.setEditable(true);
         tagComBox.setSize(30, 10);
-
-
-
-
 
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
@@ -59,7 +55,7 @@ public class InfoPanel extends JPanel {
         // first row
         gc.gridx = 0;
         gc.gridy = 0;
-        add(nameLabel, gc);
+        add(titleLabel, gc);
         // second row
         gc.gridx = 0;
         gc.gridy = 1;
@@ -76,7 +72,7 @@ public class InfoPanel extends JPanel {
         ////second column (fields)
         gc.gridx = 1;
         gc.gridy = 0;
-        add(nameField, gc);
+        add(titleField, gc);
         // second row
         gc.gridx = 1;
         gc.gridy = 1;
@@ -95,7 +91,6 @@ public class InfoPanel extends JPanel {
         gc.gridwidth = 2;
         add(scrollPane, gc);
 
-
         //tags
         gc.gridx = 0;
         gc.gridy = 6;
@@ -104,7 +99,6 @@ public class InfoPanel extends JPanel {
         gc.gridy = 6;
         add(tagComBox, gc);
 
-
         //buttons
         gc.gridx = 0;
         gc.gridy = 8;
@@ -112,5 +106,16 @@ public class InfoPanel extends JPanel {
         gc.gridx = 1;
         gc.gridy = 8;
         add(cancelButton, gc);
+    }
+
+    //display sample data in text fields
+    public void displaySample(Sample sample){
+        titleField.setText(sample.getTitle());
+        authorField.setText(sample.getAuthor());
+        dateField.setText((sample.getCreationDate().toString()));
+        descTextArea.setText(sample.getDescription());
+
+        //tag...
+        //url...
     }
 }

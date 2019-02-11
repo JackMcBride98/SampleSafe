@@ -45,6 +45,6 @@ public class SampleSafe extends JFrame {
     }
 
     public void displaySample(Sample sample){
-        //infoPanel.displaySample(sample);
+        infoPanel.displaySample(sample);
     }
 }
