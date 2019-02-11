@@ -11,18 +11,18 @@ import java.awt.event.ActionListener;
 
 public class SampleListItem extends JPanel {
     private final int sCount = 5;
-    private ResultPanel resultPanel;
+    private SampleSafe ss;
 
     private Sample sample;
     private JLabel title;
 
-    private JPanel  topPanel;
-    private JPanel  btnPanel;
-    private JButton btnStars[];
+    private JPanel      topPanel;
+    private TagPanel    tagPanel;
+    private JButton     btnStars[];
 
-    public SampleListItem(Sample sample, ResultPanel resultPanel){
+    public SampleListItem(Sample sample, SampleSafe ss){
         this.sample      = sample;
-        this.resultPanel = resultPanel;
+        this.ss = ss;
         setLayout(new BorderLayout());
         LineBorder line = new LineBorder(Color.blue, 2, true);
         setBorder(line);
@@ -51,18 +51,12 @@ public class SampleListItem extends JPanel {
         highlightStars(sample.getStars());
 
         /** Create tags & add to belPanel **/
-        btnPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        btnPanel.setBorder(new EmptyBorder(0x00, 0x0A, 0x00, 0x00));
-
-        String[] tags = sample.getTags();
-        for (String tag : tags) {
-            btnPanel.add(new JButton(tag));
-        }
+        tagPanel = new TagPanel(ss , sample.getTags());
 
         /* Add panels to this **/
         add(title, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.LINE_START);
-        add(btnPanel, BorderLayout.PAGE_END);
+        add(tagPanel, BorderLayout.PAGE_END);
 
         /* Hover & Exit Colors **/
         Color defColor = UIManager.getColor("Panel.background");
@@ -70,17 +64,17 @@ public class SampleListItem extends JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 setBackground(Color.lightGray);
                 topPanel.setBackground(Color.lightGray);
-                btnPanel.setBackground(Color.lightGray);
+                tagPanel.setBackground(Color.lightGray);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt){
                 setBackground(defColor);
                 topPanel.setBackground(defColor);
-                btnPanel.setBackground(defColor);
+                tagPanel.setBackground(defColor);
             }
 
             public void mousePressed(java.awt.event.MouseEvent evt){
-                resultPanel.displayInfo(sample);
+                ss.displaySample(sample);
             }
         });
     }

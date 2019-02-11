@@ -57,7 +57,7 @@ public class ResultPanel extends JPanel {
        // Instantiate new sample list item components
        for(int i = 0; i < result.length; i++){
            // Pass display sample
-           sli = new SampleListItem(result[i], this);
+           sli = new SampleListItem(result[i], ss);
            //sli.setPreferredSize(new Dimension(220, 100));
            sli.setBorder(new EmptyBorder(10, 10, 10, 10));
            // Add to view
