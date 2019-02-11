@@ -18,6 +18,8 @@ public class TagPanel extends JPanel {
 
         this.setLayout( new FlowLayout(FlowLayout.LEFT));
         this.setBorder(new EmptyBorder(0x00, 0x0A, 0x00, 0x00));
+
+        loadTags(tags);
     }
 
     public void loadTags(String[] tags){
