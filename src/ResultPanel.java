@@ -68,6 +68,7 @@ public class ResultPanel extends JPanel {
    protected void displayInfo(Sample sample){
        // ss.displayInfo(sample);
        JOptionPane.showMessageDialog(null, "Trying to display: " + sample.getTitle());
+       ss.displaySample(sample);
        // waiting for rely method in SampleSafe.java
    }
 
