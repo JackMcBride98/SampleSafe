@@ -69,9 +69,9 @@ public class SampleListItem extends JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 Color c;
                 if(isSelected)
-                    c = new Color(0xff, 0x00, 0x00);
+                    c = new Color(255, 100, 180);
                 else
-                    c = Color.pink;
+                    c = new Color(255, 150, 180);
 
                 setBackground(c);
                 topPanel.setBackground(c);
