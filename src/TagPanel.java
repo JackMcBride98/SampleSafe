@@ -9,7 +9,6 @@ public class TagPanel extends JPanel {
     public TagPanel(SampleSafe ss){
         this.ss     = ss;
         this.setLayout( new FlowLayout(FlowLayout.LEFT));
-        this.setBorder(new EmptyBorder(0x00, 0x0A, 0x00, 0x00));
     }
 
     public TagPanel(SampleSafe ss, String[] tags){

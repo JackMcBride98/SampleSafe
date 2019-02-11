@@ -63,6 +63,7 @@ public class ResultPanel extends JPanel {
            // Add to view
            resultView.add(sli);
        }
+       revalidate();
    }
 
    protected void displayInfo(Sample sample){
