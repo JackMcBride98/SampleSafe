@@ -10,11 +10,12 @@ public class InfoPanel extends JPanel {
     private JTextArea descTextArea;
     private JButton saveButton, cancelButton;
     private JComboBox tagComBox;
+    private TagPanel    tagPanel;
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
 
-        setBackground(Color.blue);
+        setBackground(new Color(65,185, 255));
 
         titleLabel = new JLabel("Name: ");
         authorLabel = new JLabel("Author: ");
@@ -37,6 +38,8 @@ public class InfoPanel extends JPanel {
         tagComBox = new JComboBox(tags);
         tagComBox.setEditable(true);
         tagComBox.setSize(30, 10);
+
+        tagPanel = new TagPanel(ss);
 
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
@@ -99,12 +102,16 @@ public class InfoPanel extends JPanel {
         gc.gridy = 6;
         add(tagComBox, gc);
 
+        gc.gridx = 0;
+        gc.gridy = 7;
+        add(tagPanel, gc);
+
         //buttons
         gc.gridx = 0;
-        gc.gridy = 8;
+        gc.gridy = 10;
         add(saveButton, gc);
         gc.gridx = 1;
-        gc.gridy = 8;
+        gc.gridy = 10;
         add(cancelButton, gc);
     }
 
@@ -115,7 +122,8 @@ public class InfoPanel extends JPanel {
         dateField.setText((sample.getCreationDate().toString()));
         descTextArea.setText(sample.getDescription());
 
-        //tag...
+        tagPanel.loadTags(sample.getTags());
+        revalidate();
         //url...
     }
 }
