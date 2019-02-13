@@ -8,11 +8,12 @@ public class InfoPanel extends JPanel {
     private JLabel titleLabel, authorLabel, dateLabel, etcLabel, descLabel, tagLabel;
     private JTextField titleField, authorField, dateField;
     private JTextArea descTextArea;
-    private JButton saveButton, cancelButton;
+    private JButton addButton, saveButton, cancelButton;
     private JComboBox tagComBox;
     private JPanel dataPanel, communityPanel;
     private TagPanel tagPanel;
     private Checkbox sharePublic, shareFriend, shareGroup;
+    private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound"};
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
@@ -20,12 +21,12 @@ public class InfoPanel extends JPanel {
         setBackground(new Color(65,185, 255));
 
         //names that appear next to fields etc
-        titleLabel = new JLabel("Name: ");
-        authorLabel = new JLabel("Author: ");
-        dateLabel = new JLabel("Date: ");
-        etcLabel = new JLabel("etc .... ");
-        descLabel = new JLabel("Description: ");
-        tagLabel= new JLabel("Tags: ");
+        titleLabel = new JLabel("Name:");
+        authorLabel = new JLabel("Author:");
+        dateLabel = new JLabel("Date:");
+        etcLabel = new JLabel("etc ....");
+        descLabel = new JLabel("Description:");
+        tagLabel= new JLabel("Tags:");
         //text fields
         titleField = new JTextField(15);
         authorField = new JTextField(15);
@@ -37,11 +38,10 @@ public class InfoPanel extends JPanel {
         JScrollPane scrollPane = new JScrollPane(descTextArea);
         scrollPane.setPreferredSize(new Dimension(275, 75));
 
-        //combobox
-        String[] tags = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound"};
+        //combo box
         tagComBox = new JComboBox(tags);
         tagComBox.setEditable(true);
-        tagComBox.setSize(30, 10);
+        tagComBox.setSize(80, 10);
         tagPanel = new TagPanel(ss);
         tagPanel.setBackground(new Color(60,160, 255));
 
@@ -51,6 +51,7 @@ public class InfoPanel extends JPanel {
         shareGroup = new Checkbox("Share with groups");
 
         //buttons
+        addButton = new JButton("Add");
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
 
@@ -60,8 +61,8 @@ public class InfoPanel extends JPanel {
         gc.anchor = GridBagConstraints.LINE_START;
         gc.weightx = 0;
         gc.weighty = 0;
-
         gc.insets = new Insets(5, 20, 0, 10);
+
 
         //metadata
         setPosition(0, 0, titleLabel, gc);
@@ -78,15 +79,16 @@ public class InfoPanel extends JPanel {
         //tag combo box
         setPosition(0, 6, tagLabel, gc);
         setPosition(1, 6, tagComBox, gc);
+        setPosition(1, 7, addButton, gc);
         //tag panel
-        setPosition(0, 7, tagPanel, gc);
+        setPosition(0, 8, tagPanel, gc);
         //checkbox
-        setPosition(0, 8, sharePublic, gc);
-        setPosition(0, 9, shareFriend, gc);
-        setPosition(0, 10, shareGroup, gc);
+        setPosition(0, 9, sharePublic, gc);
+        setPosition(0, 10, shareFriend, gc);
+        setPosition(0, 11, shareGroup, gc);
         //buttons
-        setPosition(0, 11, saveButton, gc);
-        setPosition(1, 11, cancelButton, gc);
+        setPosition(0, 12, saveButton, gc);
+        setPosition(1, 12, cancelButton, gc);
     }
 
     //adds component to certain position to panel
