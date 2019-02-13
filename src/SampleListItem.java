@@ -86,6 +86,7 @@ public class SampleListItem extends JPanel {
                 ss.displaySample(sample);
                 isSelected = true;
                 changeSelectionStatus(true);
+                mouseEntered(evt);
             }
         });
     }
