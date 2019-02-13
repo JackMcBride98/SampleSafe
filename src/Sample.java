@@ -12,6 +12,7 @@ class Sample{
     private Date        creationDate;
     private String      description;
     private String      url;
+    private Boolean     sharePublic, shareFriends, shareGroup;
 
     /**
      * Default constructor
@@ -25,12 +26,18 @@ class Sample{
         creationDate = null;
         description  = "None";
         url = "Unknown";
+        sharePublic = false;
+        shareFriends = false;
+        shareGroup = false;
+
     }
 
     /** Another Constructor **/
     public Sample(String title, int stars, String[] tags,
                   String author, Date creationDate,
-                  String description, String url){
+                  String description, String url,
+                  Boolean sharePublic, Boolean shareFriends,
+                  Boolean shareGroup){
         this.title  = title;
         this.stars  = stars;
         this.tags   = tags;
@@ -38,21 +45,27 @@ class Sample{
         this.url    = url;
         this.creationDate   = creationDate;
         this.description    = description;
+        this.sharePublic = sharePublic;
+        this.shareFriends = shareFriends;
+        this.shareGroup = shareGroup;
     }
 
     /** Setters **/
     public void setTitle(String title) { this.title = title;}
     public void setStars(int    stars) {
-        if(stars > 5 || stars < 0)
-            stars = 0;
-        else
-            this.stars = stars;
+        if(stars > 5 || stars < 0) stars = 0;
+        else this.stars = stars;
     }
-    public void setTags     (String[] tags)     { this.tags = tags;}
-    public void setAuthor   (String author)     { this.author = author; }
-    public void setUrl      (String url)        { this.url = url;}
-    public void setDate     (Date creationDate) { this.creationDate = creationDate;}
-    public void setDescription(String description) { this.description = description;}
+    public void setTags        (String[] tags)        { this.tags = tags;}
+    public void setAuthor      (String author)        { this.author = author; }
+    public void setUrl         (String url)           { this.url = url;}
+    public void setDate        (Date creationDate)    { this.creationDate = creationDate;}
+    public void setDescription (String description)   { this.description = description;}
+    public void setSharePublic (Boolean sharePublic)  { this.sharePublic = sharePublic;}
+    public void setShareFriends(Boolean shareFriends) { this.shareFriends = shareFriends;}
+    public void setShareGroup  (Boolean shareGroup)   { this.shareGroup = shareGroup;}
+
+
 
     /** Getters **/
     public String   getTitle()          { return title;}
@@ -62,5 +75,7 @@ class Sample{
     public String   getAuthor()         { return author;}
     public String   getDescription()    { return  description;}
     public Date     getCreationDate()   { return creationDate;}
-
+    public Boolean  getSharePublic()    {return sharePublic;}
+    public Boolean  getShareFriends()   {return  shareFriends;}
+    public Boolean  getShareGroup()     {return shareGroup;}
 }

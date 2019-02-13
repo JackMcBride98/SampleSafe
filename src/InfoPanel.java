@@ -12,6 +12,7 @@ public class InfoPanel extends JPanel {
     private JComboBox tagComBox;
     private JPanel dataPanel, communityPanel;
     private TagPanel tagPanel;
+    private Checkbox sharePublic, shareFriend, shareGroup;
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
@@ -41,6 +42,10 @@ public class InfoPanel extends JPanel {
         tagComBox.setSize(30, 10);
         tagPanel = new TagPanel(ss);
         tagPanel.setBackground(new Color(60,160, 255));
+
+        sharePublic = new Checkbox("Make public");
+        shareFriend = new Checkbox("Share with friends");
+        shareGroup = new Checkbox("Share with groups");
 
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
@@ -102,10 +107,20 @@ public class InfoPanel extends JPanel {
         gc.gridx = 1;
         gc.gridy = 6;
         add(tagComBox, gc);
-
         gc.gridx = 0;
         gc.gridy = 7;
         add(tagPanel, gc);
+
+        //check boxes
+        gc.gridx = 0;
+        gc.gridy = 10;
+        add(sharePublic, gc);
+        gc.gridx = 0;
+        gc.gridy = 11;
+        add(shareFriend, gc);
+        gc.gridx = 0;
+        gc.gridy = 12;
+        add(shareGroup, gc);
 
         //buttons
         gc.gridx = 0;
@@ -114,16 +129,6 @@ public class InfoPanel extends JPanel {
         gc.gridx = 1;
         gc.gridy = 13;
         add(cancelButton, gc);
-
-        gc.gridx = 0;
-        gc.gridy = 10;
-        add(new Checkbox("Make public"), gc);
-        gc.gridx = 0;
-        gc.gridy = 11;
-        add(new Checkbox("Share with friends"), gc);
-        gc.gridx = 0;
-        gc.gridy = 12;
-        add(new Checkbox("Share with a group"), gc);
     }
 
 
@@ -134,8 +139,10 @@ public class InfoPanel extends JPanel {
         authorField.setText(sample.getAuthor());
         dateField.setText((sample.getCreationDate().toString()));
         descTextArea.setText(sample.getDescription());
-
         tagPanel.loadTags(sample.getTags());
+        sharePublic.setState(sample.getSharePublic());
+        shareFriend.setState(sample.getShareFriends());
+        shareGroup.setState(sample.getShareGroup());
         revalidate();
         //url...
     }
