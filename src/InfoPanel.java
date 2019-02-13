@@ -38,7 +38,7 @@ public class InfoPanel extends JPanel {
         scrollPane.setPreferredSize(new Dimension(275, 75));
 
         //combobox
-        String[] tags = {"kick", "whip", "epic"};
+        String[] tags = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound"};
         tagComBox = new JComboBox(tags);
         tagComBox.setEditable(true);
         tagComBox.setSize(30, 10);
@@ -81,14 +81,15 @@ public class InfoPanel extends JPanel {
         //tag panel
         setPosition(0, 7, tagPanel, gc);
         //checkbox
-        setPosition(0, 10, sharePublic, gc);
-        setPosition(0, 11, shareFriend, gc);
-        setPosition(0, 12, shareGroup, gc);
+        setPosition(0, 8, sharePublic, gc);
+        setPosition(0, 9, shareFriend, gc);
+        setPosition(0, 10, shareGroup, gc);
         //buttons
-        setPosition(0, 13, saveButton, gc);
-        setPosition(1, 13, cancelButton, gc);
+        setPosition(0, 11, saveButton, gc);
+        setPosition(1, 11, cancelButton, gc);
     }
 
+    //adds component to certain position to panel
     private void setPosition(int x, int y, Object o, GridBagConstraints gc){
         gc.gridx = x;
         gc.gridy = y;
