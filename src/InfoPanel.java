@@ -19,13 +19,14 @@ public class InfoPanel extends JPanel {
 
         setBackground(new Color(65,185, 255));
 
+        //names that appear next to fields etc
         titleLabel = new JLabel("Name: ");
         authorLabel = new JLabel("Author: ");
         dateLabel = new JLabel("Date: ");
         etcLabel = new JLabel("etc .... ");
         descLabel = new JLabel("Description: ");
         tagLabel= new JLabel("Tags: ");
-
+        //text fields
         titleField = new JTextField(15);
         authorField = new JTextField(15);
         dateField = new JTextField(15);
@@ -36,6 +37,7 @@ public class InfoPanel extends JPanel {
         JScrollPane scrollPane = new JScrollPane(descTextArea);
         scrollPane.setPreferredSize(new Dimension(275, 75));
 
+        //combobox
         String[] tags = {"kick", "whip", "epic"};
         tagComBox = new JComboBox(tags);
         tagComBox.setEditable(true);
@@ -43,95 +45,55 @@ public class InfoPanel extends JPanel {
         tagPanel = new TagPanel(ss);
         tagPanel.setBackground(new Color(60,160, 255));
 
+        //check boxes
         sharePublic = new Checkbox("Make public");
         shareFriend = new Checkbox("Share with friends");
         shareGroup = new Checkbox("Share with groups");
 
+        //buttons
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
 
         //creates grid layout
         setLayout(new GridBagLayout());
-
         GridBagConstraints gc = new GridBagConstraints();
-
         gc.anchor = GridBagConstraints.LINE_START;
         gc.weightx = 0;
         gc.weighty = 0;
 
         gc.insets = new Insets(5, 20, 0, 10);
-        //// first column (labels)
-        // first row
-        gc.gridx = 0;
-        gc.gridy = 0;
-        add(titleLabel, gc);
-        // second row
-        gc.gridx = 0;
-        gc.gridy = 1;
-        add(authorLabel, gc);
-        // third row
-        gc.gridx = 0;
-        gc.gridy = 2;
-        add(dateLabel, gc);
-        // forth row
-        gc.gridx = 0;
-        gc.gridy = 3;
-        add(etcLabel, gc);
 
-        ////second column (fields)
-        gc.gridx = 1;
-        gc.gridy = 0;
-        add(titleField, gc);
-        // second row
-        gc.gridx = 1;
-        gc.gridy = 1;
-        add(authorField, gc);
-        // third
-        gc.gridx = 1;
-        gc.gridy = 2;
-        add(dateField, gc);
-
+        //metadata
+        setPosition(0, 0, titleLabel, gc);
+        setPosition(1, 0, titleField, gc);
+        setPosition(0, 1, authorLabel, gc);
+        setPosition(1, 1, authorField, gc);
+        setPosition(0, 2, dateLabel, gc);
+        setPosition(1, 2, dateField, gc);
+        setPosition(0, 3, etcLabel, gc);
         //description box
-        gc.gridx = 0;
-        gc.gridy = 4;
-        add(descLabel, gc);
-        gc.gridx = 0;
-        gc.gridy = 5;
+        setPosition(0, 4, descLabel, gc);
         gc.gridwidth = 2;
-        add(scrollPane, gc);
-
-        //tags
-        gc.gridx = 0;
-        gc.gridy = 6;
-        add(tagLabel, gc);
-        gc.gridx = 1;
-        gc.gridy = 6;
-        add(tagComBox, gc);
-        gc.gridx = 0;
-        gc.gridy = 7;
-        add(tagPanel, gc);
-
-        //check boxes
-        gc.gridx = 0;
-        gc.gridy = 10;
-        add(sharePublic, gc);
-        gc.gridx = 0;
-        gc.gridy = 11;
-        add(shareFriend, gc);
-        gc.gridx = 0;
-        gc.gridy = 12;
-        add(shareGroup, gc);
-
+        setPosition(0, 5, scrollPane, gc);
+        //tag combo box
+        setPosition(0, 6, tagLabel, gc);
+        setPosition(1, 6, tagComBox, gc);
+        //tag panel
+        setPosition(0, 7, tagPanel, gc);
+        //checkbox
+        setPosition(0, 10, sharePublic, gc);
+        setPosition(0, 11, shareFriend, gc);
+        setPosition(0, 12, shareGroup, gc);
         //buttons
-        gc.gridx = 0;
-        gc.gridy = 13;
-        add(saveButton, gc);
-        gc.gridx = 1;
-        gc.gridy = 13;
-        add(cancelButton, gc);
+        setPosition(0, 13, saveButton, gc);
+        setPosition(1, 13, cancelButton, gc);
     }
 
-
+    private void setPosition(int x, int y, Object o, GridBagConstraints gc){
+        gc.gridx = x;
+        gc.gridy = y;
+        add((Component) o, gc);
+    }
 
     //display sample data in text fields
     public void displaySample(Sample sample){
