@@ -109,12 +109,24 @@ public class InfoPanel extends JPanel {
 
         //buttons
         gc.gridx = 0;
-        gc.gridy = 10;
+        gc.gridy = 13;
         add(saveButton, gc);
         gc.gridx = 1;
-        gc.gridy = 10;
+        gc.gridy = 13;
         add(cancelButton, gc);
+
+        gc.gridx = 0;
+        gc.gridy = 10;
+        add(new Checkbox("Make public"), gc);
+        gc.gridx = 0;
+        gc.gridy = 11;
+        add(new Checkbox("Share with friends"), gc);
+        gc.gridx = 0;
+        gc.gridy = 12;
+        add(new Checkbox("Share with a group"), gc);
     }
+
+
 
     //display sample data in text fields
     public void displaySample(Sample sample){
