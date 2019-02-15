@@ -72,6 +72,7 @@ public class InfoPanel extends JPanel {
         gc.weightx = 0;
         gc.weighty = 0;
         gc.insets = new Insets(5, 10, 5, 10);
+        gc.fill =GridBagConstraints.HORIZONTAL;
 
         //panel positions
         setPosition(0, 0, dataPanel, gc,this);
