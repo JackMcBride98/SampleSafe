@@ -13,7 +13,7 @@ public class InfoPanel extends JPanel {
     private JPanel dataPanel, tagPanel, commPanel, buttPanel;
     private TagPanel tagListPanel;
     private Checkbox sharePublic, shareFriend, shareGroup;
-    private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound"};
+    private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"};
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
@@ -24,6 +24,7 @@ public class InfoPanel extends JPanel {
         buttPanel = new JPanel();
 
         setBackground(new Color(65,185, 255));
+
 
         //names that appear next to fields etc
         titleLabel = new JLabel("Name:");
@@ -62,12 +63,12 @@ public class InfoPanel extends JPanel {
 
         //creates grid layout
         setLayout(new GridBagLayout());
-        GridBagConstraints gc = new GridBagConstraints();
         dataPanel.setLayout(new GridBagLayout());
         tagPanel.setLayout(new GridBagLayout());
         commPanel.setLayout(new GridBagLayout());
         buttPanel.setLayout(new GridBagLayout());
 
+        GridBagConstraints gc = new GridBagConstraints();
         gc.anchor = GridBagConstraints.LINE_START;
         gc.weightx = 0;
         gc.weighty = 0;
@@ -93,17 +94,21 @@ public class InfoPanel extends JPanel {
         gc.gridwidth = 2;
         setPosition(0, 5, scrollPane, gc, dataPanel);
         gc.gridwidth = 1;
+
         //tag combo box
         setPosition(0, 0, tagLabel, gc, tagPanel);
         setPosition(1, 0, tagComBox, gc, tagPanel);
         setPosition(2, 0, addButton, gc, tagPanel);
-
         //tag panel
+        gc.gridwidth = 3;
         setPosition(0, 1, tagListPanel, gc,tagPanel);
+        gc.gridwidth = 1;
+
         //checkbox
         setPosition(0, 0, sharePublic, gc, commPanel);
         setPosition(0, 1, shareFriend, gc, commPanel);
         setPosition(0, 2, shareGroup, gc, commPanel);
+
         //buttons
         setPosition(0, 0, saveButton, gc, buttPanel);
         setPosition(1, 0, cancelButton, gc, buttPanel);
