@@ -91,6 +91,7 @@ public class InfoPanel extends JPanel {
         setPosition(0, 4, descLabel, gc, dataPanel);
         gc.gridwidth = 2;
         setPosition(0, 5, scrollPane, gc, dataPanel);
+        gc.gridwidth = 1;
         //tag combo box
         setPosition(0, 0, tagLabel, gc, tagPanel);
         setPosition(1, 0, tagComBox, gc, tagPanel);
