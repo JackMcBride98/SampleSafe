@@ -19,6 +19,16 @@ public class ResultPanel extends JPanel {
             new Sample("Hihat Closed Corner", 2, new String[]{"Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, false, true),
             new Sample("bcg kick.wav", 2, new String[]{"Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", false, true, false),
             new Sample("A-Conga Low Slap 2", 4, new String[]{"Lowkey", "Slap", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true),
+            new Sample("Kick 1.wav",        5, new String[]{"Deep", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true),
+            new Sample("Hihat Quick Watcher",4, new String[]{"Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", true, true, true),
+            new Sample("Hihat Closed Corner", 2, new String[]{"Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, false, true),
+            new Sample("bcg kick.wav", 2, new String[]{"Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", false, true, false),
+            new Sample("A-Conga Low Slap 2", 4, new String[]{"Lowkey", "Slap", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true),
+            new Sample("Kick 1.wav",        5, new String[]{"Deep", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true),
+            new Sample("Hihat Quick Watcher",4, new String[]{"Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", true, true, true),
+            new Sample("Hihat Closed Corner", 2, new String[]{"Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, false, true),
+            new Sample("bcg kick.wav", 2, new String[]{"Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", false, true, false),
+            new Sample("A-Conga Low Slap 2", 4, new String[]{"Lowkey", "Slap", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true),
             new Sample("A-Conga Low Slap 1", 3, new String[]{"Slap","Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", true, true, false)
     };
 
@@ -32,14 +42,12 @@ public class ResultPanel extends JPanel {
 
         // This is the panel containing the list items
         resultView = new JPanel();
-        resultView.setLayout(new BoxLayout(resultView, BoxLayout.Y_AXIS));
 
         // Make scroll pane from result view
         scrollResultView = new JScrollPane(resultView,  JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                                                         JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollResultView.getVerticalScrollBar().setUnitIncrement(0x0A);
         scrollResultView.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
-
         // Add scroll pane
         add(scrollResultView, BorderLayout.CENTER);
 
@@ -54,17 +62,20 @@ public class ResultPanel extends JPanel {
    public void displayResult(Sample[] result)
    {
        // Remove all components
+       JPanel rView = new JPanel();
+       rView.setLayout(new BoxLayout(rView, BoxLayout.Y_AXIS));
        resultView.removeAll();
        preItem = null;
        // Instantiate new sample list item components
        for(int i = 0; i < result.length; i++){
            // Pass display sample
            sli = new SampleListItem(result[i], ss, this);
-           //sli.setPreferredSize(new Dimension(220, 100));
-           sli.setBorder(new EmptyBorder(10, 10, 10, 10));
+           sli.setBorder(BorderFactory.createMatteBorder(
+                   2, 2, 2, 2, Color.gray));
            // Add to view
-           resultView.add(sli);
+           rView.add(sli);
        }
+       resultView.add(rView);
        revalidate();
    }
 
