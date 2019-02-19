@@ -10,7 +10,7 @@ public class ResultPanel extends JPanel {
 
     /* Demo samples */
     private Sample samples[] = {
-            new Sample("SNARE(10).wav",     3, new String[]{"Snare", "Clap", "etc"}, "Jack", new Date(), "Just a demo", "Nowhere", false, false, true),
+            new Sample("SNARE(10).wav",     3, new String[]{"Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc"}, "Jack", new Date(), "Just a demo", "Nowhere", false, false, true),
             new Sample("SMD_Snare_10.wav",  4, new String[]{"Sexy", "Drum"}, "Ross",new Date(), "Just a demo", "Nowhere", false, true, true),
             new Sample("Kick Puncher",      5, new String[]{"Kick", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true),
             new Sample("Kick Agile Shot",   2, new String[]{"Kick", "Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", true, true, true),

@@ -10,15 +10,21 @@ public class InfoPanel extends JPanel {
     private JTextArea descTextArea;
     private JButton addButton, saveButton, cancelButton;
     private JComboBox tagComBox;
-    private JPanel dataPanel, communityPanel;
-    private TagPanel tagPanel;
+    private JPanel dataPanel, tagPanel, commPanel, buttPanel;
+    private TagPanel tagListPanel;
     private Checkbox sharePublic, shareFriend, shareGroup;
-    private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound"};
+    private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"};
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
 
+        dataPanel = new JPanel();
+        tagPanel = new JPanel();
+        commPanel = new JPanel();
+        buttPanel = new JPanel();
+
         setBackground(new Color(65,185, 255));
+
 
         //names that appear next to fields etc
         titleLabel = new JLabel("Name:");
@@ -42,8 +48,8 @@ public class InfoPanel extends JPanel {
         tagComBox = new JComboBox(tags);
         tagComBox.setEditable(true);
         tagComBox.setSize(80, 10);
-        tagPanel = new TagPanel(ss);
-        tagPanel.setBackground(new Color(60,160, 255));
+        tagListPanel = new TagPanel(ss);
+        tagListPanel.setBackground(new Color(60,160, 255));
 
         //check boxes
         sharePublic = new Checkbox("Make public");
@@ -57,45 +63,62 @@ public class InfoPanel extends JPanel {
 
         //creates grid layout
         setLayout(new GridBagLayout());
+        dataPanel.setLayout(new GridBagLayout());
+        tagPanel.setLayout(new GridBagLayout());
+        commPanel.setLayout(new GridBagLayout());
+        buttPanel.setLayout(new GridBagLayout());
+
         GridBagConstraints gc = new GridBagConstraints();
         gc.anchor = GridBagConstraints.LINE_START;
         gc.weightx = 0;
         gc.weighty = 0;
-        gc.insets = new Insets(5, 20, 0, 10);
+        gc.insets = new Insets(5, 10, 5, 10);
+        gc.fill =GridBagConstraints.HORIZONTAL;
 
+        //panel positions
+        setPosition(0, 0, dataPanel, gc,this);
+        setPosition(0, 1, tagPanel, gc,this);
+        setPosition(0, 2, commPanel, gc,this);
+        setPosition(0, 3, buttPanel, gc,this);
 
         //metadata
-        setPosition(0, 0, titleLabel, gc);
-        setPosition(1, 0, titleField, gc);
-        setPosition(0, 1, authorLabel, gc);
-        setPosition(1, 1, authorField, gc);
-        setPosition(0, 2, dateLabel, gc);
-        setPosition(1, 2, dateField, gc);
-        setPosition(0, 3, etcLabel, gc);
+        setPosition(0, 0, titleLabel, gc, dataPanel);
+        setPosition(1, 0, titleField, gc, dataPanel);
+        setPosition(0, 1, authorLabel, gc, dataPanel);
+        setPosition(1, 1, authorField, gc, dataPanel);
+        setPosition(0, 2, dateLabel, gc, dataPanel);
+        setPosition(1, 2, dateField, gc, dataPanel);
+        setPosition(0, 3, etcLabel, gc, dataPanel);
         //description box
-        setPosition(0, 4, descLabel, gc);
+        setPosition(0, 4, descLabel, gc, dataPanel);
         gc.gridwidth = 2;
-        setPosition(0, 5, scrollPane, gc);
+        setPosition(0, 5, scrollPane, gc, dataPanel);
+        gc.gridwidth = 1;
+
         //tag combo box
-        setPosition(0, 6, tagLabel, gc);
-        setPosition(1, 6, tagComBox, gc);
-        setPosition(1, 7, addButton, gc);
+        setPosition(0, 0, tagLabel, gc, tagPanel);
+        setPosition(1, 0, tagComBox, gc, tagPanel);
+        setPosition(2, 0, addButton, gc, tagPanel);
         //tag panel
-        setPosition(0, 8, tagPanel, gc);
+        gc.gridwidth = 3;
+        setPosition(0, 1, tagListPanel, gc,tagPanel);
+        gc.gridwidth = 1;
+
         //checkbox
-        setPosition(0, 9, sharePublic, gc);
-        setPosition(0, 10, shareFriend, gc);
-        setPosition(0, 11, shareGroup, gc);
+        setPosition(0, 0, sharePublic, gc, commPanel);
+        setPosition(0, 1, shareFriend, gc, commPanel);
+        setPosition(0, 2, shareGroup, gc, commPanel);
+
         //buttons
-        setPosition(0, 12, saveButton, gc);
-        setPosition(1, 12, cancelButton, gc);
+        setPosition(0, 0, saveButton, gc, buttPanel);
+        setPosition(1, 0, cancelButton, gc, buttPanel);
     }
 
     //adds component to certain position to panel
-    private void setPosition(int x, int y, Object o, GridBagConstraints gc){
+    private void setPosition(int x, int y, Object o, GridBagConstraints gc, JPanel panel){
         gc.gridx = x;
         gc.gridy = y;
-        add((Component) o, gc);
+        panel.add((Component) o, gc);
     }
 
     //display sample data in text fields
@@ -104,7 +127,7 @@ public class InfoPanel extends JPanel {
         authorField.setText(sample.getAuthor());
         dateField.setText((sample.getCreationDate().toString()));
         descTextArea.setText(sample.getDescription());
-        tagPanel.loadTags(sample.getTags());
+        tagListPanel.loadTags(sample.getTags());
         sharePublic.setState(sample.getSharePublic());
         shareFriend.setState(sample.getShareFriends());
         shareGroup.setState(sample.getShareGroup());
