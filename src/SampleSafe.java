@@ -22,7 +22,7 @@ public class SampleSafe extends JFrame {
         infoPanel = new InfoPanel(this);
 
         add(infoPanel, BorderLayout.LINE_END);
-        add(resultPanel, BorderLayout.CENTER);
+        add(resultPanel, BorderLayout.LINE_START);
 
         revalidate();
     }

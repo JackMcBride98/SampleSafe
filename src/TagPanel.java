@@ -26,6 +26,7 @@ public class TagPanel extends JPanel {
         for (String tag : tags) {
             this.add(new JButton(tag));
         }
+        revalidate();
     }
 
 }

@@ -102,6 +102,7 @@ public class SampleListItem extends JPanel {
         add(title, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.LINE_START);
         add(tagPanel, BorderLayout.PAGE_END);
+
         revalidate();
     }
 
