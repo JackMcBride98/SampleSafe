@@ -22,7 +22,11 @@ public class SampleListItem extends JPanel {
     private TagPanel    tagPanel;
     private JButton     btnStars[];
 
+    // Some variables for the selection of samples
     private boolean     isSelected;
+    private Color       clrHover        = new Color(255, 150, 180);
+    private Color       clrSelected     = new Color(65, 185, 255);
+    private Color       clrHoverSelect  = new Color(255, 100, 180);
 
     public SampleListItem(Sample sample, SampleSafe ss, ResultPanel rp){
         this.sample = sample;
@@ -57,7 +61,7 @@ public class SampleListItem extends JPanel {
             btnStars[i].setBorder(BorderFactory.createEmptyBorder());
             btnStars[i].setFont(new Font("Serif", Font.PLAIN, 24));
             btnStars[i].setName("" + i);
-            btnStars[i].addActionListener(new starButtonListener(i));
+            btnStars[i].addActionListener(new starButtonListener(i+1));
             topPanel.add(btnStars[i]);
         }
         highlightStars(sample.getStars());
@@ -73,9 +77,9 @@ public class SampleListItem extends JPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt){
                 Color c;
                 if(isSelected)
-                    c = new Color(255, 100, 180);
+                    c = clrHoverSelect;
                 else
-                    c = new Color(255, 150, 180);
+                    c = clrHover;
 
                 setBackground(c);
                 topPanel.setBackground(c);
@@ -96,6 +100,9 @@ public class SampleListItem extends JPanel {
         });
     }
 
+    /**
+     * Method to add more information to list item when clicked on
+     */
     private void expandview(){
         this.removeAll();
         this.setPreferredSize(new Dimension(400, 140));
@@ -106,6 +113,9 @@ public class SampleListItem extends JPanel {
         revalidate();
     }
 
+    /**
+     * remove information when user click away
+     */
     private void retractview(){
         this.removeAll();
         this.setPreferredSize(new Dimension(400, 50));
@@ -125,7 +135,6 @@ public class SampleListItem extends JPanel {
             highlightStars(rating);
             sample.setStars(rating);
         }
-
     }
 
     /**
@@ -144,7 +153,6 @@ public class SampleListItem extends JPanel {
                 b.setForeground(Color.BLACK);
             }
         }
-
     }
 
     /**
@@ -156,7 +164,6 @@ public class SampleListItem extends JPanel {
             super();
             this.c = c;
         }
-
         public void actionPerformed(ActionEvent e){
             changeRating(c);
         }
@@ -172,21 +179,20 @@ public class SampleListItem extends JPanel {
     }
 
     public void selected(){
-        Color b = new Color(65, 185, 255);
+        Color b = clrSelected;
         this.setBackground( b);
         topPanel.setBackground( b);
         tagPanel.setBackground( b);
     }
 
     public void unselect(){
+        // get the default color
         Color defColor = UIManager.getColor("Panel.background");
         setBackground(defColor);
         topPanel.setBackground(defColor);
         tagPanel.setBackground(defColor);
         retractview();
     }
-
-
 }
 
 
