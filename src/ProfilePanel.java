@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.ImageIcon;
 
 public class ProfilePanel extends JPanel {
 
@@ -16,9 +17,9 @@ public class ProfilePanel extends JPanel {
 
     public ProfilePanel(SampleSafe ss){
         this.ss = ss;
+
         profileButton = new CreateRoundButton("Profile");
         profileButton.setFocusPainted(false);
-
         profileButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 if (profileFrame == null) {
