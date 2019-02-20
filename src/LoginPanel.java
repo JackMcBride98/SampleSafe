@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel {
 
@@ -13,10 +15,10 @@ public class LoginPanel extends JPanel {
 
     public LoginPanel(SampleSafe ss){
         this.ss = ss;
-        nameLabel = new JLabel("Username!");
+        nameLabel = new JLabel("Username");
         passwordLabel = new JLabel("Password");
-        nameField = new JTextField();
-        passwordField = new JPasswordField();
+        nameField = new JTextField(16);
+        passwordField = new JPasswordField(16);
         loginButton = new JButton("Login");
         signUpButton = new JButton("Sign Up");
         setLayout(new FlowLayout());
@@ -26,5 +28,14 @@ public class LoginPanel extends JPanel {
         add(passwordField);
         add(loginButton);
         add(signUpButton);
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                String username = nameField.getText();
+                String password = new String (passwordField.getPassword());
+
+
+            }
+        });
     }
 }
