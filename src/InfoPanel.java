@@ -170,8 +170,9 @@ public class InfoPanel extends JPanel{
 
     private void addTags(String tags){
         for (String tag: tags.split(";")) {
-            descTextArea.setText(tag);
-            //TagPanel.addTag(tags);
+            //descTextArea.setText(tag);
+            //tagListPanel.addTag(tags);
+            tagListPanel.loadTags(tagListPanel.remove(tempSample.getTags(),tags));
         }
     }
 }

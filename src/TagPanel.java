@@ -69,7 +69,7 @@ public class TagPanel extends JPanel {
         return new_tags;
     }
 
-    private String[] remove(String[] t, String a){
+    public String[] remove(String[] t, String a){
         if(t.length > 0){
             String[] new_tags = new String[t.length-1];
             int k = 0;
