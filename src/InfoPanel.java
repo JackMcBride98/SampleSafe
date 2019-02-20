@@ -49,6 +49,7 @@ public class InfoPanel extends JPanel {
         tagComBox.setEditable(true);
         tagComBox.setSize(80, 10);
         tagListPanel = new TagPanel(ss);
+        tagListPanel.setPreferredSize(new Dimension(100, 100));
         tagListPanel.setBackground(new Color(60,160, 255));
 
         //check boxes
