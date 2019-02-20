@@ -12,7 +12,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 import java.util.Vector;
@@ -25,28 +24,31 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
-// taken from https://stackoverflow.com/questions/11017283/java-program-to-create-a-png-waveform-for-an-audio-file
+
 public class AudioWaveformCreator {
     AudioInputStream audioInputStream;
     Vector<Line2D.Double> lines = new Vector<Line2D.Double>();
     String errStr;
     Capture capture = new Capture();
     double duration, seconds;
-    //File file;
-    String fileName = "out.png";
+    File file;
+    String fileName;
     SamplingGraph samplingGraph;
     String waveformFilename;
     Color imageBackgroundColor = new Color(20,20,20);
 
-    public AudioWaveformCreator(URL url, String waveformFilename) throws Exception {
-        if (url != null) {
+    public AudioWaveformCreator(String fileName, String waveformFilename) throws UnsupportedAudioFileException, IOException {
+        file = new File(fileName);
+        this.waveformFilename = waveformFilename;
+    }
+
+    public void createAudioInputStream() throws Exception {
+        if (file != null && file.isFile()) {
             try {
                 errStr = null;
-                audioInputStream = AudioSystem.getAudioInputStream(url);
+                audioInputStream = AudioSystem.getAudioInputStream(file);
+                fileName = file.getName();
                 long milliseconds = (long)((audioInputStream.getFrameLength() * 1000) / audioInputStream.getFormat().getFrameRate());
                 duration = milliseconds / 1000.0;
                 samplingGraph = new SamplingGraph();
@@ -143,11 +145,11 @@ public class AudioWaveformCreator {
                 lines.add(new Line2D.Double(x, y_last, x, y_new));
                 y_last = y_new;
             }
-            saveToFile();
+            saveToFile(waveformFilename);
         }
 
 
-        public void saveToFile() {
+        public void saveToFile(String filename) {
             int w = 500;
             int h = 200;
             int INFOPAD = 15;
@@ -160,11 +162,8 @@ public class AudioWaveformCreator {
             // Write generated image to a file
             try {
                 // Save as PNG
-                File file = new File(fileName);
-                System.out.println(file.getAbsolutePath());
+                File file = new File(filename);
                 ImageIO.write(bufferedImage, "png", file);
-                JOptionPane.showMessageDialog(null,
-                        new JLabel(new ImageIcon(fileName)));
             } catch (IOException e) {
             }
         }
@@ -365,12 +364,12 @@ public class AudioWaveformCreator {
     } // End class Capture
 
     public static void main(String [] args) throws Exception {
-        //if (args.length != 2) {
-        //  printUsage();
-        //System.exit(1);
-        //}
-        URL url = new URL("http://pscode.org/media/leftright.wav");
-        AudioWaveformCreator awc = new AudioWaveformCreator(url, "out.png");
+        if (args.length != 2) {
+            printUsage();
+            System.exit(1);
+        }
+        AudioWaveformCreator awc = new AudioWaveformCreator(args[0], args[1]);
+        awc.createAudioInputStream();
     }
 
     private void reportStatus(String msg) {

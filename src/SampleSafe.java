@@ -8,6 +8,7 @@ public class SampleSafe extends JFrame {
     private InfoPanel infoPanel;
     private CommunityPanel communityPanel;
     private ProfilePanel profilePanel;
+    private SampleAuditionPanel sampleAuditionPanel;
 
     public SampleSafe(){
 
@@ -23,6 +24,7 @@ public class SampleSafe extends JFrame {
         searchBarPanel = new SearchBarPanel();
         communityPanel = new CommunityPanel();
         profilePanel = new ProfilePanel(this);
+        sampleAuditionPanel = new SampleAuditionPanel(this);
 
         add(infoPanel, BorderLayout.LINE_END);
         add(resultPanel, BorderLayout.CENTER);
@@ -34,7 +36,8 @@ public class SampleSafe extends JFrame {
         topPanel.add(profilePanel, BorderLayout.LINE_END);
 
         Box box = Box.createHorizontalBox();
-        box.add(Box.createRigidArea(new Dimension(1,0)));
+//        box.add(Box.createRigidArea(new Dimension(1,0)));
+        box.add(sampleAuditionPanel);
         box.add(Box.createHorizontalGlue());
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
