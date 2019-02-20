@@ -63,9 +63,24 @@ public class InfoPanel extends JPanel{
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
 
+        addButton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mousePressed(java.awt.event.MouseEvent evt){
+                if(tempSample != null && tagComBox.getSelectedItem() != "")
+                    addTags("" + tagComBox.getSelectedItem());
+            }
+        });
+
+        saveButton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mousePressed(java.awt.event.MouseEvent evt){
+                if(tempSample != null)
+                    saveData();
+            }
+        });
+
         cancelButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
-                displaySample(tempSample);
+                if(tempSample != null)
+                    displaySample(tempSample);
             }
         });
 
@@ -146,5 +161,17 @@ public class InfoPanel extends JPanel{
 
     public void setSample(Sample sample){
         tempSample = sample;
+    }
+
+    public void saveData(){
+        descTextArea.setText("saved");
+        //ss.save(titleField.getText(), authorField.getText(), dateField.getText(), descTextArea.getText(), Sample.getTags(), sharePublic.getState(), shareFriend.getState(), shareGroup.getState());
+    }
+
+    private void addTags(String tags){
+        for (String tag: tags.split(";")) {
+            descTextArea.setText(tag);
+            //TagPanel.addTag(tags);
+        }
     }
 }
