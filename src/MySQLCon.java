@@ -1,11 +1,11 @@
 import java.sql.*;
 
-class MySQLCon {
-    public static void main(String args[]) {
+public class MySQLCon {
+    public Connection createCon() {
         try {
             //Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root","");
             //here the big URL-ish thing after the // is the database name, then username and password
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mustermeister", "root","");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mustermeister", "root", "");
 
 //            //Creates a statement
 //            Statement stmt = con.createStatement();
@@ -18,10 +18,10 @@ class MySQLCon {
 //
 //            while (rs1.next())
 //                System.out.println(rs1.getString(1) + "  " + rs1.getString(2));
-
-            con.close();
+            return con;
         } catch (Exception e) {
             System.out.println(e);
         }
+        return null;
     }
 }
