@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class InfoPanel extends JPanel {
+public class InfoPanel extends JPanel{
 
     private SampleSafe ss;
 
@@ -14,6 +14,7 @@ public class InfoPanel extends JPanel {
     private TagPanel tagListPanel;
     private Checkbox sharePublic, shareFriend, shareGroup;
     private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"};
+    private Sample tempSample;
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
@@ -61,6 +62,27 @@ public class InfoPanel extends JPanel {
         addButton = new JButton("Add");
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
+
+        addButton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mousePressed(java.awt.event.MouseEvent evt){
+                if(tempSample != null && tagComBox.getSelectedItem() != "")
+                    addTags("" + tagComBox.getSelectedItem());
+            }
+        });
+
+        saveButton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mousePressed(java.awt.event.MouseEvent evt){
+                if(tempSample != null)
+                    saveData();
+            }
+        });
+
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mousePressed(java.awt.event.MouseEvent evt){
+                if(tempSample != null)
+                    displaySample(tempSample);
+            }
+        });
 
         //creates grid layout
         setLayout(new GridBagLayout());
@@ -124,6 +146,7 @@ public class InfoPanel extends JPanel {
 
     //display sample data in text fields
     public void displaySample(Sample sample){
+        setSample(sample);
         titleField.setText(sample.getTitle());
         authorField.setText(sample.getAuthor());
         dateField.setText((sample.getCreationDate().toString()));
@@ -132,7 +155,23 @@ public class InfoPanel extends JPanel {
         sharePublic.setState(sample.getSharePublic());
         shareFriend.setState(sample.getShareFriends());
         shareGroup.setState(sample.getShareGroup());
-        revalidate();
+        repaint();
         //url...
+    }
+
+    public void setSample(Sample sample){
+        tempSample = sample;
+    }
+
+    public void saveData(){
+        descTextArea.setText("saved");
+        //ss.save(titleField.getText(), authorField.getText(), dateField.getText(), descTextArea.getText(), Sample.getTags(), sharePublic.getState(), shareFriend.getState(), shareGroup.getState());
+    }
+
+    private void addTags(String tags){
+        for (String tag: tags.split(";")) {
+            descTextArea.setText(tag);
+            //TagPanel.addTag(tags);
+        }
     }
 }

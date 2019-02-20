@@ -136,7 +136,7 @@ public class SampleListItem extends JPanel {
         JButton b;
         for(int i = 0; i < sCount; i++){
             b = btnStars[i];
-            if( i <= rating ){
+            if( i < rating ){
                 b.setText("★");
                 //b.setForeground(Color.YELLOW);
             }else{
