@@ -17,6 +17,7 @@ public class ProfilePanel extends JPanel {
     public ProfilePanel(SampleSafe ss){
         this.ss = ss;
         profileButton = new CreateRoundButton("Profile");
+        profileButton.setFocusPainted(false);
 
         profileButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
@@ -35,10 +36,20 @@ public class ProfilePanel extends JPanel {
 
     private JFrame addProfFrame() {
         JFrame newFrame = new JFrame();
+        JButton editProfileButton = new JButton("Edit Profile");
+        
+        editProfileButton.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent event) {
+            newFrame.dispose();
+            ProfileFrame pf = new ProfileFrame();
+            pf.setVisible(true);
+            pf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        }
+        });
         newFrame.setVisible(true);
         newFrame.setBounds(800, 80, 200, 200);
         newFrame.setLayout(new GridLayout(0, 1));
-        newFrame.add(new JButton("Edit Profile"));
+        newFrame.add(editProfileButton);
         newFrame.add(new JButton("Change Password"));
         newFrame.add(new JButton("Delete Account"));
         newFrame.add(new JButton("Log Out"));
