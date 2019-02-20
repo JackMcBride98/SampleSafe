@@ -12,7 +12,7 @@ public class SampleSafe extends JFrame {
         JTextField field = new JTextField(15);
         setVisible(true);
         setTitle("SampleSafe");
-        setSize(850, 800);
+        setSize(900, 800);
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         loginPanel = new LoginPanel(this);
