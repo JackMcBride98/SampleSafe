@@ -10,7 +10,7 @@ public class TagPanel extends JPanel {
     public TagPanel(SampleSafe ss){
         this.ss     = ss;
         this.setLayout( new FlowLayout(FlowLayout.LEFT));
-        this.shouldDelete = true;
+        this.shouldDelete = false;
     }
 
     public TagPanel(SampleSafe ss, String[] tags){
@@ -46,7 +46,6 @@ public class TagPanel extends JPanel {
 
     private void deleteTag(String tag){
         if(shouldDelete){
-
             loadTags(remove(tags, tag));
         }
     }
@@ -81,8 +80,9 @@ public class TagPanel extends JPanel {
                     new_tags[k++] = t[i];
                 }
             }
+            return new_tags;
         }
-        return t;
+    return t;
     }
 
 }
