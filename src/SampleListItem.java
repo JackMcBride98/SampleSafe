@@ -16,6 +16,7 @@ public class SampleListItem extends JPanel {
 
     private Sample sample;
     private JLabel title;
+    private JLabel starTitle;
 
     private JPanel      topPanel;
     private TagPanel    tagPanel;
@@ -40,8 +41,13 @@ public class SampleListItem extends JPanel {
 
         /* Assigning sample name to the text of title label */
         title = new JLabel(sample.getTitle());
-        title.setFont(new Font("Arial", Font.BOLD, 14));
-        title.setBorder(new EmptyBorder(0x00, 0x0F, 0x00, 0x00)); // T, L, B, R
+        title.setFont(new Font("Arial", Font.BOLD, 18));
+        title.setBorder(new EmptyBorder(0x0F, 0x0F, 0x0F, 0x00)); // T, L, B, R
+
+        starTitle = new JLabel(sample.getStars() + "/5");
+        starTitle.setFont(new Font("Arial", Font.BOLD, 18));
+        starTitle.setBorder(new EmptyBorder(0x00, 0x00, 0x00, 0x0F));
+
 
         /* Assigning number of stars to the text of stars label */
         btnStars = new JButton[sCount];
@@ -60,9 +66,7 @@ public class SampleListItem extends JPanel {
         tagPanel = new TagPanel(ss , sample.getTags());
 
         /* Add panels to this **/
-        add(title, BorderLayout.PAGE_START);
-        add(topPanel, BorderLayout.LINE_START);
-        add(tagPanel, BorderLayout.PAGE_END);
+        retractview();
 
         /* Hover & Exit Colors **/
         this.addMouseListener(new java.awt.event.MouseAdapter(){
@@ -86,9 +90,29 @@ public class SampleListItem extends JPanel {
                 ss.displaySample(sample);
                 isSelected = true;
                 changeSelectionStatus(true);
+                expandview();
                 mouseEntered(evt);
             }
         });
+    }
+
+    private void expandview(){
+        this.removeAll();
+        this.setPreferredSize(new Dimension(400, 140));
+        add(title, BorderLayout.PAGE_START);
+        add(topPanel, BorderLayout.LINE_START);
+        add(tagPanel, BorderLayout.PAGE_END);
+        revalidate();
+    }
+
+    private void retractview(){
+        this.removeAll();
+        this.setPreferredSize(new Dimension(400, 50));
+        add(title, BorderLayout.LINE_START);
+        starTitle.setText(sample.getStars() + "/5");
+        add(starTitle, BorderLayout.LINE_END);
+
+        revalidate();
     }
 
     /**
@@ -132,9 +156,9 @@ public class SampleListItem extends JPanel {
             this.c = c;
         }
 
-       public void actionPerformed(ActionEvent e){
-           changeRating(c);
-       }
+        public void actionPerformed(ActionEvent e){
+            changeRating(c);
+        }
     }
 
     public void changeSelectionStatus(boolean s){
@@ -158,6 +182,7 @@ public class SampleListItem extends JPanel {
         setBackground(defColor);
         topPanel.setBackground(defColor);
         tagPanel.setBackground(defColor);
+        retractview();
     }
 
 
