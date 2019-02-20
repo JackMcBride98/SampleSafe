@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class InfoPanel extends JPanel {
+public class InfoPanel extends JPanel{
 
     private SampleSafe ss;
 
@@ -14,6 +14,7 @@ public class InfoPanel extends JPanel {
     private TagPanel tagListPanel;
     private Checkbox sharePublic, shareFriend, shareGroup;
     private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"};
+    private Sample tempSample;
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
@@ -61,6 +62,12 @@ public class InfoPanel extends JPanel {
         addButton = new JButton("Add");
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
+
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mousePressed(java.awt.event.MouseEvent evt){
+                displaySample(tempSample);
+            }
+        });
 
         //creates grid layout
         setLayout(new GridBagLayout());
@@ -124,6 +131,7 @@ public class InfoPanel extends JPanel {
 
     //display sample data in text fields
     public void displaySample(Sample sample){
+        setSample(sample);
         titleField.setText(sample.getTitle());
         authorField.setText(sample.getAuthor());
         dateField.setText((sample.getCreationDate().toString()));
@@ -134,5 +142,9 @@ public class InfoPanel extends JPanel {
         shareGroup.setState(sample.getShareGroup());
         repaint();
         //url...
+    }
+
+    public void setSample(Sample sample){
+        tempSample = sample;
     }
 }
