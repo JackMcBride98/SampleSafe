@@ -18,7 +18,11 @@ public class SampleSafe extends JFrame {
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        resultPanel = new ResultPanel(this);
+
+        LoginPanel loginPanel = new LoginPanel(this);
+        add(loginPanel);
+
+        /*resultPanel = new ResultPanel(this);
         infoPanel = new InfoPanel(this);
         searchBarPanel = new SearchBarPanel();
         communityPanel = new CommunityPanel();
@@ -39,7 +43,7 @@ public class SampleSafe extends JFrame {
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
 
-        revalidate();
+        revalidate();*/
     }
 
     public static void main(String[] args) {

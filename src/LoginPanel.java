@@ -34,7 +34,8 @@ public class LoginPanel extends JPanel {
                 String username = nameField.getText();
                 String password = new String (passwordField.getPassword());
 
-
+                System.out.println(username);
+                System.out.println();
             }
         });
     }
