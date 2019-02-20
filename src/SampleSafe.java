@@ -3,9 +3,11 @@ import java.awt.*;
 
 public class SampleSafe extends JFrame {
 
-    private LoginPanel  loginPanel;
+    private SearchBarPanel searchBarPanel;
     private ResultPanel resultPanel;
     private InfoPanel infoPanel;
+    private CommunityPanel communityPanel;
+    private ProfilePanel profilePanel;
 
     public SampleSafe(){
 
@@ -15,14 +17,27 @@ public class SampleSafe extends JFrame {
         setSize(800, 800);
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        loginPanel = new LoginPanel(this);
-        add(loginPanel, BorderLayout.PAGE_START);
 
         resultPanel = new ResultPanel(this);
         infoPanel = new InfoPanel(this);
+        searchBarPanel = new SearchBarPanel();
+        communityPanel = new CommunityPanel();
+        profilePanel = new ProfilePanel(this);
 
         add(infoPanel, BorderLayout.LINE_END);
         add(resultPanel, BorderLayout.CENTER);
+
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BorderLayout());
+        add(topPanel, BorderLayout.PAGE_START);
+        topPanel.add(searchBarPanel, BorderLayout.CENTER);
+        topPanel.add(profilePanel, BorderLayout.LINE_END);
+
+        Box box = Box.createHorizontalBox();
+        box.add(Box.createRigidArea(new Dimension(1,0)));
+        box.add(Box.createHorizontalGlue());
+        box.add(communityPanel);
+        add(box, BorderLayout.PAGE_END);
 
         revalidate();
     }
