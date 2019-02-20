@@ -132,7 +132,7 @@ public class InfoPanel extends JPanel {
         sharePublic.setState(sample.getSharePublic());
         shareFriend.setState(sample.getShareFriends());
         shareGroup.setState(sample.getShareGroup());
-        revalidate();
+        repaint();
         //url...
     }
 }
