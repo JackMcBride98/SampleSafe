@@ -38,6 +38,7 @@ public class TagPanel extends JPanel {
             this.add(btnTag);
         }
         revalidate();
+        repaint();
     }
 
     public void triggerDelete(boolean t){
@@ -75,7 +76,8 @@ public class TagPanel extends JPanel {
             int k = 0;
             for(int i = 0; i < t.length; i++){
                 if(!t[i].equals(a)){
-                    if(i == t.length-1)
+
+                    if(i == t.length-1 && k == i)
                         return t;
                     new_tags[k++] = t[i];
                 }
