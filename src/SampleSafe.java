@@ -9,7 +9,10 @@ public class SampleSafe extends JFrame {
     private CommunityPanel communityPanel;
     private ProfilePanel profilePanel;
 
-    public void SampleSafeMain(){
+    private User user;
+
+    public void SampleSafe(User user){
+        this.user = user;
         JTextField field = new JTextField(15);
         setVisible(true);
         setTitle("SampleSafe");
