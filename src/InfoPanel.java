@@ -49,9 +49,12 @@ public class InfoPanel extends JPanel{
         tagComBox = new JComboBox(tags);
         tagComBox.setEditable(true);
         tagComBox.setSize(80, 10);
+
         tagListPanel = new TagPanel(ss);
-        tagListPanel.setPreferredSize(new Dimension(100, 100));
+        tagListPanel.setPreferredSize(new Dimension(100, 300));
         tagListPanel.setBackground(new Color(60,160, 255));
+        JScrollPane tagScrollPane = new JScrollPane(tagListPanel);
+        tagScrollPane.setPreferredSize(new Dimension(90, 90));
 
         //check boxes
         sharePublic = new Checkbox("Make public");
@@ -124,7 +127,7 @@ public class InfoPanel extends JPanel{
         setPosition(2, 0, addButton, gc, tagPanel);
         //tag panel
         gc.gridwidth = 3;
-        setPosition(0, 1, tagListPanel, gc,tagPanel);
+        setPosition(0, 1, tagScrollPane, gc,tagPanel);
         gc.gridwidth = 1;
 
         //checkbox
