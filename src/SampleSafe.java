@@ -9,8 +9,7 @@ public class SampleSafe extends JFrame {
     private CommunityPanel communityPanel;
     private ProfilePanel profilePanel;
 
-    public SampleSafe(){
-
+    public void SampleSafeMain(){
         JTextField field = new JTextField(15);
         setVisible(true);
         setTitle("SampleSafe");
@@ -19,10 +18,7 @@ public class SampleSafe extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-        LoginPanel loginPanel = new LoginPanel(this);
-        add(loginPanel);
-
-        /*resultPanel = new ResultPanel(this);
+        resultPanel = new ResultPanel(this);
         infoPanel = new InfoPanel(this);
         searchBarPanel = new SearchBarPanel();
         communityPanel = new CommunityPanel();
@@ -43,7 +39,7 @@ public class SampleSafe extends JFrame {
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
 
-        revalidate();*/
+        revalidate();
     }
 
     public static void main(String[] args) {
@@ -61,9 +57,20 @@ public class SampleSafe extends JFrame {
         }
 
         SampleSafe ss = new SampleSafe();
+        ss.loginScreen();
     }
 
     public void displaySample(Sample sample){
         infoPanel.displaySample(sample);
+    }
+
+    public void loginScreen(){
+        JFrame jF = new JFrame();
+        jF.setSize(800, 800);
+        jF.setLayout(new BorderLayout());
+        jF.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        LoginPanel loginPanel = new LoginPanel(this, jF);
+        jF.add(loginPanel);
+        jF.setVisible(true);
     }
 }

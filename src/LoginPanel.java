@@ -13,7 +13,8 @@ public class LoginPanel extends JPanel {
     private JButton loginButton;
     private JButton signUpButton;
 
-    public LoginPanel(SampleSafe ss){
+
+    public LoginPanel(SampleSafe ss, JFrame jF){
         this.ss = ss;
         nameLabel = new JLabel("Username");
         passwordLabel = new JLabel("Password");
@@ -35,7 +36,9 @@ public class LoginPanel extends JPanel {
                 String password = new String (passwordField.getPassword());
 
                 System.out.println(username);
-                System.out.println();
+                System.out.println(password);
+                ss.SampleSafeMain();
+                jF.setVisible(false);
             }
         });
     }
