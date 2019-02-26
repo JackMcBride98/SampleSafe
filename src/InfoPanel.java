@@ -8,10 +8,10 @@ public class InfoPanel extends JPanel{
     private JLabel titleLabel, authorLabel, dateLabel, etcLabel, descLabel, tagLabel;
     private JTextField titleField, authorField, dateField;
     private JTextArea descTextArea;
-    private JButton addButton, saveButton, cancelButton;
+    private JButton addButton, saveButton, cancelButton, deletButton, editButton;
     private JComboBox tagComBox;
     private JPanel dataPanel, tagPanel, commPanel, buttPanel;
-    private TagPanel tagListPanel;
+    private TagPanel tagListPanel, edDelPanel;
     private Checkbox sharePublic, shareFriend, shareGroup;
     private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"};
     private Sample tempSample;
@@ -65,6 +65,8 @@ public class InfoPanel extends JPanel{
         addButton = new JButton("Add");
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
+        deletButton = new JButton("Delete");
+        editButton = new JButton("Edit");
 
         addButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
@@ -129,6 +131,8 @@ public class InfoPanel extends JPanel{
         gc.gridwidth = 3;
         setPosition(0, 1, tagScrollPane, gc,tagPanel);
         gc.gridwidth = 1;
+        setPosition(1, 2, editButton, gc, tagPanel);
+        setPosition(0, 2, deletButton, gc, tagPanel);
 
         //checkbox
         setPosition(0, 0, sharePublic, gc, commPanel);
