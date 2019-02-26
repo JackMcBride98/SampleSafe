@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class SampleSafe extends JFrame {
-
+   
     private SearchBarPanel searchBarPanel;
     private ResultPanel resultPanel;
     private InfoPanel infoPanel;
