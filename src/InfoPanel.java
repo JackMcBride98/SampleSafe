@@ -70,8 +70,8 @@ public class InfoPanel extends JPanel{
 
         addButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
-                if(tempSample != null && tagComBox.getSelectedItem() != "")
-                    addTags("" + tagComBox.getSelectedItem());
+                if(tempSample != null && tagComBox.getEditor().getItem() != "")
+                    addTags("" + tagComBox.getEditor().getItem());
             }
         });
 
