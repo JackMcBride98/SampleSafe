@@ -8,6 +8,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 public class SampleListItem extends JPanel {
     private final int sCount = 5;
@@ -29,6 +30,11 @@ public class SampleListItem extends JPanel {
     private Color       clrHoverSelect  = new Color(255, 100, 180);
 
     public SampleListItem(Sample sample, SampleSafe ss, ResultPanel rp){
+
+        // DnD Stuff
+        this.addMouseListener(new DraggableMouseListener());
+        this.setTransferHandler(new DragAndDropTransferHandler());
+
         this.sample = sample;
         this.ss = ss;
         this.rp = rp;
@@ -74,7 +80,7 @@ public class SampleListItem extends JPanel {
 
         /* Hover & Exit Colors **/
         this.addMouseListener(new java.awt.event.MouseAdapter(){
-            public void mouseEntered(java.awt.event.MouseEvent evt){
+            public void mouseEntered(MouseEvent evt){
                 Color c;
                 if(isSelected)
                     c = clrHoverSelect;
@@ -86,11 +92,11 @@ public class SampleListItem extends JPanel {
                 tagPanel.setBackground(c);
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt){
+            public void mouseExited(MouseEvent evt){
                 changeSelectionStatus(isSelected);
             }
 
-            public void mousePressed(java.awt.event.MouseEvent evt){
+            public void mousePressed(MouseEvent evt) {
                 ss.displaySample(sample);
                 isSelected = true;
                 changeSelectionStatus(true);
@@ -192,6 +198,10 @@ public class SampleListItem extends JPanel {
         topPanel.setBackground(defColor);
         tagPanel.setBackground(defColor);
         retractview();
+    }
+
+    public Sample get_sample(){
+        return sample;
     }
 }
 

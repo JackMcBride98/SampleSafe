@@ -23,9 +23,8 @@ public class SampleSafe extends JFrame {
         searchBarPanel = new SearchBarPanel();
         communityPanel = new CommunityPanel();
         profilePanel = new ProfilePanel(this);
-
-        add(infoPanel, BorderLayout.LINE_END);
         add(resultPanel, BorderLayout.LINE_START);
+        add(infoPanel, BorderLayout.LINE_END);
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());

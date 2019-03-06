@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
 import java.util.Date;
 
 
@@ -11,7 +12,7 @@ public class ResultPanel extends JPanel {
     /* Demo samples */
     private Sample samples[] = {
             new Sample("SNARE(10).wav",     3, new String[]{"Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc", "Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc"}, "Jack", new Date(), "Just a demo", "Nowhere", false, false, true),
-            new Sample("SMD_Snare_10.wav",  4, new String[]{"Sexy", "Drum"}, "Ross",new Date(), "Just a demo", "Nowhere", false, true, true),
+            new Sample("SMD_Snare_10.wav",  4, new String[]{"Sexy", "Drum"}, "Ross",new Date(), "Just a demo", "C:\\Users\\jiehe\\Desktop\\SMD_Snare_10.wav", false, true, true),
             new Sample("Kick Puncher",      5, new String[]{"Kick", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true),
             new Sample("Kick Agile Shot",   2, new String[]{"Kick", "Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", true, true, true),
             new Sample("Kick 1.wav",        5, new String[]{"Deep", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true),
@@ -35,6 +36,9 @@ public class ResultPanel extends JPanel {
     private SampleListItem sli;
     private JPanel resultView;
     private JScrollPane scrollResultView;
+
+    //DnD stuff
+    private static DataFlavor dragAndDropPanelDataFlavor = null;
 
     public ResultPanel(SampleSafe ss){
         this.ss = ss;
@@ -84,6 +88,16 @@ public class ResultPanel extends JPanel {
             preItem.changeSelectionStatus(false);
         }
         preItem = sli;
+   }
+
+   // DnD stuff
+   public static DataFlavor getDragAndDropPanelDataFlavor() throws Exception {
+       // Lazy load/create the flavor
+       if (dragAndDropPanelDataFlavor == null) {
+           dragAndDropPanelDataFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType + ";class=RandomDragAndDropPanel");
+       }
+
+       return dragAndDropPanelDataFlavor;
    }
 
 }
