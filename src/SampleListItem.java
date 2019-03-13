@@ -8,6 +8,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 public class SampleListItem extends JPanel {
     private final int sCount = 5;
@@ -22,9 +23,18 @@ public class SampleListItem extends JPanel {
     private TagPanel    tagPanel;
     private JButton     btnStars[];
 
+    // Some variables for the selection of samples
     private boolean     isSelected;
+    private Color       clrHover        = new Color(255, 150, 180);
+    private Color       clrSelected     = new Color(65, 185, 255);
+    private Color       clrHoverSelect  = new Color(255, 100, 180);
 
     public SampleListItem(Sample sample, SampleSafe ss, ResultPanel rp){
+
+        // DnD Stuff
+        this.addMouseListener(new DraggableMouseListener());
+        this.setTransferHandler(new DragAndDropTransferHandler());
+
         this.sample = sample;
         this.ss = ss;
         this.rp = rp;
@@ -57,7 +67,7 @@ public class SampleListItem extends JPanel {
             btnStars[i].setBorder(BorderFactory.createEmptyBorder());
             btnStars[i].setFont(new Font("Serif", Font.PLAIN, 24));
             btnStars[i].setName("" + i);
-            btnStars[i].addActionListener(new starButtonListener(i));
+            btnStars[i].addActionListener(new starButtonListener(i+1));
             topPanel.add(btnStars[i]);
         }
         highlightStars(sample.getStars());
@@ -70,23 +80,23 @@ public class SampleListItem extends JPanel {
 
         /* Hover & Exit Colors **/
         this.addMouseListener(new java.awt.event.MouseAdapter(){
-            public void mouseEntered(java.awt.event.MouseEvent evt){
+            public void mouseEntered(MouseEvent evt){
                 Color c;
                 if(isSelected)
-                    c = new Color(255, 100, 180);
+                    c = clrHoverSelect;
                 else
-                    c = new Color(255, 150, 180);
+                    c = clrHover;
 
                 setBackground(c);
                 topPanel.setBackground(c);
                 tagPanel.setBackground(c);
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt){
+            public void mouseExited(MouseEvent evt){
                 changeSelectionStatus(isSelected);
             }
 
-            public void mousePressed(java.awt.event.MouseEvent evt){
+            public void mousePressed(MouseEvent evt) {
                 ss.displaySample(sample);
                 isSelected = true;
                 changeSelectionStatus(true);
@@ -96,15 +106,22 @@ public class SampleListItem extends JPanel {
         });
     }
 
+    /**
+     * Method to add more information to list item when clicked on
+     */
     private void expandview(){
         this.removeAll();
         this.setPreferredSize(new Dimension(400, 140));
         add(title, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.LINE_START);
         add(tagPanel, BorderLayout.PAGE_END);
+
         revalidate();
     }
 
+    /**
+     * remove information when user click away
+     */
     private void retractview(){
         this.removeAll();
         this.setPreferredSize(new Dimension(400, 50));
@@ -124,7 +141,6 @@ public class SampleListItem extends JPanel {
             highlightStars(rating);
             sample.setStars(rating);
         }
-
     }
 
     /**
@@ -135,7 +151,7 @@ public class SampleListItem extends JPanel {
         JButton b;
         for(int i = 0; i < sCount; i++){
             b = btnStars[i];
-            if( i <= rating ){
+            if( i < rating ){
                 b.setText("★");
                 //b.setForeground(Color.YELLOW);
             }else{
@@ -143,7 +159,6 @@ public class SampleListItem extends JPanel {
                 b.setForeground(Color.BLACK);
             }
         }
-
     }
 
     /**
@@ -155,7 +170,6 @@ public class SampleListItem extends JPanel {
             super();
             this.c = c;
         }
-
         public void actionPerformed(ActionEvent e){
             changeRating(c);
         }
@@ -171,13 +185,14 @@ public class SampleListItem extends JPanel {
     }
 
     public void selected(){
-        Color b = new Color(65, 185, 255);
+        Color b = clrSelected;
         this.setBackground( b);
         topPanel.setBackground( b);
         tagPanel.setBackground( b);
     }
 
     public void unselect(){
+        // get the default color
         Color defColor = UIManager.getColor("Panel.background");
         setBackground(defColor);
         topPanel.setBackground(defColor);
@@ -185,7 +200,9 @@ public class SampleListItem extends JPanel {
         retractview();
     }
 
-
+    public Sample get_sample(){
+        return sample;
+    }
 }
 
 

@@ -4,11 +4,21 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class CreateRoundButton extends JButton {
 
         public CreateRoundButton(String label) {
+            super(label);
+            Dimension size = getPreferredSize();
+            size.width = size.height = Math.max(size.width, size.height);
+            setPreferredSize(size);
+            
+            setContentAreaFilled(false);
+        }
+        
+        public CreateRoundButton(ImageIcon label) {
             super(label);
             Dimension size = getPreferredSize();
             size.width = size.height = Math.max(size.width, size.height);
@@ -42,5 +52,6 @@ public class CreateRoundButton extends JButton {
             }
             return shape.contains(x, y);
         }
+        
 
     }
