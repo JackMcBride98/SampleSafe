@@ -92,9 +92,16 @@ public class InfoPanel extends JPanel{
         //creates grid layout
         setLayout(new GridBagLayout());
         dataPanel.setLayout(new GridBagLayout());
+        dataPanel.setBackground(new Color(65,185, 255));
+
         tagPanel.setLayout(new GridBagLayout());
+        tagPanel.setBackground(new Color(65,185, 255));
+
         commPanel.setLayout(new GridBagLayout());
+        commPanel.setBackground(new Color(65,185, 255));
+
         buttPanel.setLayout(new GridBagLayout());
+        buttPanel.setBackground(new Color(65,185, 255));
 
         GridBagConstraints gc = new GridBagConstraints();
         gc.anchor = GridBagConstraints.LINE_START;

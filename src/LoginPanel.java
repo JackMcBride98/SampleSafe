@@ -16,6 +16,7 @@ public class LoginPanel extends JPanel {
 
     public LoginPanel(SampleSafe ss, JFrame jF){
         this.ss = ss;
+        setBackground(new Color(255,245, 45));
         nameLabel = new JLabel("Username");
         passwordLabel = new JLabel("Password");
         nameField = new JTextField(16);
@@ -37,8 +38,8 @@ public class LoginPanel extends JPanel {
 
                 System.out.println(username);
                 System.out.println(password);
-                ss.SampleSafeMain();
                 jF.setVisible(false);
+                ss.SampleSafeMain();
             }
         });
     }

@@ -11,7 +11,7 @@ public class SampleSafe extends JFrame {
     private CommunityWindow communityWindow;
 
     public void SampleSafeMain(){
-        setVisible(true);
+
         setTitle("SampleSafe");
         setSize(900, 800);
         setLayout(new BorderLayout());
@@ -40,6 +40,7 @@ public class SampleSafe extends JFrame {
         add(box, BorderLayout.PAGE_END);
 
         revalidate();
+        setVisible(true);
     }
 
     public static void main(String[] args) {
@@ -66,7 +67,7 @@ public class SampleSafe extends JFrame {
 
     public void loginScreen(){
         JFrame jF = new JFrame();
-        jF.setSize(800, 800);
+        jF.setSize(300, 200);
         jF.setLayout(new BorderLayout());
         jF.setDefaultCloseOperation(EXIT_ON_CLOSE);
         LoginPanel loginPanel = new LoginPanel(this, jF);
