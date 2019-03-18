@@ -37,7 +37,11 @@ public class LoginPanel extends JPanel {
 
                 System.out.println(username);
                 System.out.println(password);
-                ss.SampleSafeMain();
+                if(username.isEmpty()){
+                    ss.SampleSafeMain();
+                } else{
+                    ss.SampleSafeMain(username);
+                }
                 jF.setVisible(false);
             }
         });

@@ -18,7 +18,29 @@ public class ProfilePanel extends JPanel {
     public ProfilePanel(SampleSafe ss){
         this.ss = ss;
 
-        profileButton = new CreateRoundButton("Profile");
+        profileButton = new JButton("Profile");
+        
+        
+        profileButton.setFocusPainted(false);
+        profileButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                if (profileFrame == null) {
+                    profileFrame = addProfFrame();
+                } else if (!profileFrame.isShowing()) {
+                    profileFrame = addProfFrame();
+                }
+            }
+
+        });
+
+        setLayout(new FlowLayout());
+        add(profileButton);
+    }
+    
+    public ProfilePanel(SampleSafe ss, String user){
+        this.ss = ss;
+
+        profileButton = new JButton(user);
         profileButton.setFocusPainted(false);
         profileButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
@@ -42,10 +64,18 @@ public class ProfilePanel extends JPanel {
         editProfileButton.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent event) {
             newFrame.dispose();
-            ProfileFrame pf = new ProfileFrame();
+            ProfileFrame pf = new ProfileFrame(profileButton.getText());
             pf.setVisible(true);
             pf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
+        });
+        JButton logOutButton = new JButton("Log Out");
+        logOutButton.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent event) {
+            newFrame.dispose();
+            ss.dispose();
+            ss.loginScreen();
+        } 
         });
         newFrame.setVisible(true);
         newFrame.setBounds(800, 80, 200, 200);
@@ -53,7 +83,7 @@ public class ProfilePanel extends JPanel {
         newFrame.add(editProfileButton);
         newFrame.add(new JButton("Change Password"));
         newFrame.add(new JButton("Delete Account"));
-        newFrame.add(new JButton("Log Out"));
+        newFrame.add(logOutButton);
         return newFrame;
     }
 }
