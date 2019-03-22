@@ -53,7 +53,7 @@ public class ResultPanel extends JPanel {
         samples1.add(new Sample("bcg kick.wav", 2, new String[]{"Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", false, true, false));
         samples1.add(new Sample("A-Conga Low Slap 2", 4, new String[]{"Lowkey", "Slap", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true));
         samples1.add(new Sample("A-Conga Low Slap 1", 3, new String[]{"Slap","Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", true, true, false));
-
+        ss.results = samples1;
         // demostration of displaying samples
         displayResult(samples1);
    }

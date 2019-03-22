@@ -20,7 +20,7 @@ public class CommunityWindow extends JFrame {
 
         resultPanel = new ResultPanel(ss);
         infoPanel = new InfoPanel(ss);
-        searchBarPanel = new SearchBarPanel();
+        searchBarPanel = new SearchBarPanel(ss);
         communityPanel = new CommunityPanelCommunity(this, ss);
         profilePanel = new ProfilePanel(ss);
 

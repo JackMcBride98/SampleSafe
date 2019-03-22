@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SampleSafe extends JFrame {
    
@@ -9,6 +10,8 @@ public class SampleSafe extends JFrame {
     private CommunityPanelMain communityPanel;
     private ProfilePanel profilePanel;
     private CommunityWindow communityWindow;
+
+    protected ArrayList<Sample> results;
 
     public void SampleSafeMain(){
 
@@ -21,7 +24,7 @@ public class SampleSafe extends JFrame {
         communityWindow.setVisible(false);
         resultPanel = new ResultPanel(this);
         infoPanel = new InfoPanel(this);
-        searchBarPanel = new SearchBarPanel();
+        searchBarPanel = new SearchBarPanel(this);
         communityPanel = new CommunityPanelMain(this, communityWindow, resultPanel);
         profilePanel = new ProfilePanel(this);
         add(resultPanel, BorderLayout.LINE_START);
@@ -63,6 +66,10 @@ public class SampleSafe extends JFrame {
 
     public void displaySample(Sample sample){
         infoPanel.displaySample(sample);
+    }
+
+    public void displayResult(ArrayList<Sample> samples){
+        resultPanel.displayResult(samples);
     }
 
     public void loginScreen(){

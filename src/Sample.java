@@ -78,4 +78,16 @@ class Sample{
     public Boolean  getSharePublic()    {return sharePublic;}
     public Boolean  getShareFriends()   {return  shareFriends;}
     public Boolean  getShareGroup()     {return shareGroup;}
+
+    /** Compare **/
+    /** Returns True if B is greater than "this" by type t **/
+    public boolean compareTo(Sample b, misc.SORT_TYPE t ){
+        if(t.equals(misc.SORT_TYPE.NAME))
+            return (title.compareTo(b.getTitle()) > 0);
+        if(t.equals(misc.SORT_TYPE.RATING))
+            return (b.getStars()) > getStars();
+        if(t.equals(misc.SORT_TYPE.DATE))
+            return (getCreationDate().compareTo(b.getCreationDate()) > 0);
+        return false;
+    }
 }
