@@ -2,6 +2,8 @@
  * Custom list view for samples
  */
 
+import javax.imageio.ImageIO;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -9,10 +11,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class SampleListItem extends JPanel {
     private final int sCount = 5;
-    private SampleSafe  ss;
     private ResultPanel rp;
 
     private Sample sample;
@@ -29,14 +33,13 @@ public class SampleListItem extends JPanel {
     private Color       clrSelected     = new Color(65, 185, 255);
     private Color       clrHoverSelect  = new Color(255, 100, 180);
 
-    public SampleListItem(Sample sample, SampleSafe ss, ResultPanel rp){
+    public SampleListItem(Sample sample, int currentView, ResultPanel rp, SampleSafeMainView ssmv, SampleSafeCommunityView sscv){
 
-        // DnD Stuff
+        // Drag&Drop Stuff
         this.addMouseListener(new DraggableMouseListener());
         this.setTransferHandler(new DragAndDropTransferHandler());
 
         this.sample = sample;
-        this.ss = ss;
         this.rp = rp;
 
         isSelected = false;
@@ -58,7 +61,6 @@ public class SampleListItem extends JPanel {
         starTitle.setFont(new Font("Arial", Font.BOLD, 18));
         starTitle.setBorder(new EmptyBorder(0x00, 0x00, 0x00, 0x0F));
 
-
         /* Assigning number of stars to the text of stars label */
         btnStars = new JButton[sCount];
         for(int i = 0; i < sCount ; i++) {
@@ -73,7 +75,7 @@ public class SampleListItem extends JPanel {
         highlightStars(sample.getStars());
 
         /** Create tags & add to belPanel **/
-        tagPanel = new TagPanel(ss , sample.getTags());
+        tagPanel = new TagPanel(sample.getTags());
 
         /* Add panels to this **/
         retractview();
@@ -97,11 +99,44 @@ public class SampleListItem extends JPanel {
             }
 
             public void mousePressed(MouseEvent evt) {
-                ss.displaySample(sample);
+                if(currentView == 0){
+                    ssmv.displaySample(sample);
+                }else{
+                    sscv.displaySample(sample);
+                }
                 isSelected = true;
                 changeSelectionStatus(true);
                 expandview();
                 mouseEntered(evt);
+
+                BufferedImage waveFormPicture = null;
+
+                try {
+                    AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()) + " Pic");
+                    awc.createAudioInputStream();
+                    waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle() + " Pic")));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
+
+                ssmv.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
+
+                String soundName = sample.getUrl();
+                Clip clip = null;
+                try {
+                    AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+                    clip = AudioSystem.getClip();
+                    clip.open(audioInputStream);
+                } catch (UnsupportedAudioFileException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (LineUnavailableException e) {
+                    e.printStackTrace();
+                }
+                clip.start();
             }
         });
     }
@@ -120,7 +155,7 @@ public class SampleListItem extends JPanel {
     }
 
     /**
-     * remove information when user click away
+     * Remove information when user click away
      */
     private void retractview(){
         this.removeAll();

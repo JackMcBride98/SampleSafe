@@ -1,45 +1,63 @@
+import javafx.scene.layout.VBox;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class LoginPanel extends JPanel {
 
-    private SampleSafe ss;
-    private JLabel nameLabel;
+    private JLabel usernameLabel;
     private JLabel passwordLabel;
-    private JTextField nameField;
+    private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton signUpButton;
 
 
-    public LoginPanel(SampleSafe ss, JFrame jF){
-        this.ss = ss;
-        nameLabel = new JLabel("Username");
-        passwordLabel = new JLabel("Password");
-        nameField = new JTextField(16);
-        passwordField = new JPasswordField(16);
-        loginButton = new JButton("Login");
-        signUpButton = new JButton("Sign Up");
-        setLayout(new FlowLayout());
-        add(nameLabel);
-        add(nameField);
-        add(passwordLabel);
-        add(passwordField);
-        add(loginButton);
-        add(signUpButton);
+    public LoginPanel(SampleSafeMainView ssmv, JFrame frame){
 
-        loginButton.addActionListener(new ActionListener() {
+        this.usernameLabel = new JLabel("Username:");
+        this.usernameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.usernameField = new JTextField(16);
+        this.usernameField.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.passwordLabel = new JLabel("Password:");
+        this.passwordLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.passwordField = new JPasswordField(16);
+        this.passwordField.setFont(new Font("Arial", Font.PLAIN, 25));
+
+        this.loginButton = new JButton("Login");
+        this.loginButton.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                String username = nameField.getText();
+                String username = usernameField.getText();
                 String password = new String (passwordField.getPassword());
 
-                System.out.println(username);
-                System.out.println(password);
-                ss.SampleSafeMain();
-                jF.setVisible(false);
+                String documentsLocation = System.getProperty("user.home") + "\\Documents" + "\\SampleSafe";
+                File dir = new File(documentsLocation);
+                dir.mkdirs();
+                System.out.println(System.getProperty("user.home"));
+                frame.setVisible(false);
+                ssmv.setVisible(true);
             }
         });
+        this.signUpButton = new JButton("Sign Up");
+        this.signUpButton.setFont(new Font("Arial", Font.PLAIN, 25));
+
+        Box box = Box.createHorizontalBox();
+        box.add(Box.createRigidArea(new Dimension(1,500)));
+        this.add(box);
+
+        this.setLayout(new FlowLayout());
+
+        this.add(usernameLabel);
+        this.add(usernameField);
+
+        this.add(passwordLabel);
+        this.add(passwordField);
+
+        this.add(loginButton);
+        this.add(signUpButton);
     }
 }

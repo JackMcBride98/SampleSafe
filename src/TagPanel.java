@@ -3,17 +3,14 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class TagPanel extends JPanel {
-    private SampleSafe  ss;
     private String      tags[];
     private boolean     shouldDelete = false;
 
-    public TagPanel(SampleSafe ss){
-        this.ss     = ss;
+    public TagPanel(){
         this.setLayout( new FlowLayout(FlowLayout.LEFT));
     }
 
-    public TagPanel(SampleSafe ss, String[] tags){
-        this.ss     = ss;
+    public TagPanel(String[] tags){
         this.tags   = tags;
 
         this.setLayout( new FlowLayout(FlowLayout.LEFT));

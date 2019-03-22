@@ -1,31 +1,34 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class CommunityWindow extends JFrame {
+public class SampleSafeCommunityView extends JFrame {
 
+    SampleSafe ss;
     private SearchBarPanel searchBarPanel;
     private ResultPanel resultPanel;
-    private CommunityPanelCommunity communityPanel;
+    private OtherButtonsPanelCommunity communityPanel;
     private GroupsPanel groupsPanel;
     private InfoPanel infoPanel;
     private ProfilePanel profilePanel;
 
-    public CommunityWindow(SampleSafe ss){
+    public SampleSafeCommunityView(SampleSafe ss){
+        this.ss = ss;
+    }
 
-        setVisible(true);
-        setTitle("Community");
-        setSize(800, 800);
-        setLayout(new BorderLayout());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    public void Setup(){
 
-        resultPanel = new ResultPanel(ss);
+        this.setTitle("Community");
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setLayout(new BorderLayout());
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
         infoPanel = new InfoPanel(ss);
         searchBarPanel = new SearchBarPanel();
-        communityPanel = new CommunityPanelCommunity(this, ss);
         profilePanel = new ProfilePanel(ss);
-
+        communityPanel = new OtherButtonsPanelCommunity(ss, ss.getSSCV());
+        add(resultPanel, BorderLayout.LINE_START);
         add(infoPanel, BorderLayout.LINE_END);
-        add(resultPanel, BorderLayout.CENTER);
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
@@ -42,5 +45,11 @@ public class CommunityWindow extends JFrame {
         revalidate();
     }
 
+    public void displaySample(Sample sample){
+        infoPanel.displaySample(sample);
+    }
 
+    public SampleSafe getSS() {
+        return ss;
+    }
 }

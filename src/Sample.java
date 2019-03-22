@@ -3,7 +3,7 @@ import java.util.Date;
 /**
  * ResultItem, class for the items displayed in the result panel
  */
-class Sample{
+class Sample {
     /* Basic info to display*/
     private String      title;
     private int         stars;
