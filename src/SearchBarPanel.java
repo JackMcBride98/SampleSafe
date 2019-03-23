@@ -30,7 +30,7 @@ public class SearchBarPanel extends JPanel {
         sortButton.addActionListener(   new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sof.show_dialog(sortButton);
+                sof.show_dialog();
             }
         });
         ActionListener sortOpListener = new ActionListener() {
@@ -47,7 +47,7 @@ public class SearchBarPanel extends JPanel {
                     sort_by(misc.SORT_TYPE.DATE);
             }
         };
-        sof = new SortOptionFrame(sortOpListener);
+        sof = new SortOptionFrame(sortOpListener, sortButton);
     }
 
     public void do_search(){

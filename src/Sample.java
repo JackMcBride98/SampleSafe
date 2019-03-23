@@ -3,7 +3,7 @@ import java.util.Date;
 /**
  * ResultItem, class for the items displayed in the result panel
  */
-class Sample{
+class Sample implements Comparable{
     /* Basic info to display*/
     private String      title;
     private int         stars;
@@ -80,14 +80,18 @@ class Sample{
     public Boolean  getShareGroup()     {return shareGroup;}
 
     /** Compare **/
-    /** Returns True if B is greater than "this" by type t **/
-    public boolean compareTo(Sample b, misc.SORT_TYPE t ){
-        if(t.equals(misc.SORT_TYPE.NAME))
-            return (title.compareTo(b.getTitle()) > 0);
-        if(t.equals(misc.SORT_TYPE.RATING))
-            return (b.getStars()) > getStars();
-        if(t.equals(misc.SORT_TYPE.DATE))
-            return (getCreationDate().compareTo(b.getCreationDate()) > 0);
-        return false;
+    @Override
+    public int compareTo(Object o) {
+        Sample b = (Sample) o;
+        if(misc.t.equals(misc.SORT_TYPE.NAME))
+            return (title.compareTo(b.getTitle()));
+        if(misc.t.equals(misc.SORT_TYPE.RATING)){
+            if(getStars() == b.getStars()) return 0;
+            if(getStars() >  b.getStars()) return 1;
+            return -1;}
+        if(misc.t.equals(misc.SORT_TYPE.DATE))
+            return (getCreationDate().compareTo(b.getCreationDate()));
+
+        return 0;
     }
 }

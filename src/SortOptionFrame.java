@@ -6,10 +6,10 @@ import java.awt.event.ActionListener;
 
 public class SortOptionFrame extends CustomPopUp{
 
-    public SortOptionFrame(ActionListener al){
-      super(100, 90);
+    public SortOptionFrame(ActionListener al, JButton relative){
+      super(100, 90, relative);
 
-      // add sort options
+      // add sort optionsW
         this.getContentPane().setLayout(new BoxLayout( getContentPane(), BoxLayout.Y_AXIS));
         String names[] = {"Rating", "Sample Name", "Creation Date"};
         for (String n : names){
@@ -22,15 +22,5 @@ public class SortOptionFrame extends CustomPopUp{
             this.getContentPane().add(nb);
         }
         revalidate();
-    }
-
-    public void show_dialog(JButton relative) {
-        super.show_dialog();
-        setLocation(relative.getLocationOnScreen().x - (this.getWidth() - relative.getWidth())/2, relative.getLocationOnScreen().y + relative.getHeight() );
-    }
-
-    @Override
-    public void close_dialog() {
-        super.close_dialog();
     }
 }
