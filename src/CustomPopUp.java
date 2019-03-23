@@ -6,10 +6,9 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 public class CustomPopUp extends JFrame{
-
+    public static CustomPopUp currently = null;
     // Should be object or something like that but. using JBUtton for now
-    JButton parent;
-    Thread  tracking;
+    Component parent;
     private volatile boolean can_track = false;
     public CustomPopUp(int wd, int ht, JButton parent){
         this.parent = parent;
@@ -18,23 +17,33 @@ public class CustomPopUp extends JFrame{
         getContentPane().setBackground(Color.gray);
         setSize(wd, ht);
         setAlwaysOnTop( true );
-        tracking = new Thread(){
-            public void run(){
 
-                while(can_track){
-                    System.out.println("Thread running...");
-                    setLocation(parent.getLocationOnScreen().x - (getWidth() - parent.getWidth())/2, parent.getLocationOnScreen().y + parent.getHeight() );
-                }
-            }
-        };
         // rounded corners. but... buttons dont.
         //setShape(new RoundRectangle2D.Double(0,0,this.getWidth() ,this.getHeight(),12,12));
+        this.getContentPane().setBackground(Color.lightGray);
+        this.getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
     }
-
+    /** ONLY GOD KNOWS WHAT I HAVE DONE */
     public void show_dialog(){
         setVisible(true);
+
+        /** if another pop up is showing. close that **/
+        if(currently != null)
+            currently.close_dialog();
+        currently = this;
+
+        /** Tracks the component **/
         if (parent != null){
             can_track = true;
+            Thread tracking = new Thread(){
+                public void run(){
+                    while(can_track){
+                        //System.out.println("Thread running...");
+                        setLocation(parent.getLocationOnScreen().x - (getWidth() - parent.getWidth())/2, parent.getLocationOnScreen().y + parent.getHeight() );
+                    }
+                }
+            };
+
             tracking.start();
         }
 

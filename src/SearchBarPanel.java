@@ -4,7 +4,8 @@ import java.awt.event.ActionListener;
 
 public class SearchBarPanel extends JPanel {
 
-    SortOptionFrame sof;
+    SortOptionFrame     sof;
+    FilterOptionFrame   fof;
     SampleSafe ss;
     public SearchBarPanel(SampleSafe ss) {
         this.ss = ss;
@@ -30,7 +31,19 @@ public class SearchBarPanel extends JPanel {
         sortButton.addActionListener(   new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sof.show_dialog();
+                if(sof.isVisible())
+                    sof.close_dialog();
+                else
+                    sof.show_dialog();
+            }
+        });
+        filterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(fof.isVisible())
+                    fof.close_dialog();
+                else
+                    fof.show_dialog();
             }
         });
         ActionListener sortOpListener = new ActionListener() {
@@ -48,6 +61,13 @@ public class SearchBarPanel extends JPanel {
             }
         };
         sof = new SortOptionFrame(sortOpListener, sortButton);
+        ActionListener filerOptionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Filter clicked!");
+            }
+        };
+        fof = new FilterOptionFrame(filerOptionListener, filterButton);
     }
 
     public void do_search(){
