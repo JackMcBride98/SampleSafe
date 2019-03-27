@@ -53,6 +53,8 @@ public class CustomPopUp extends JFrame{
         setVisible(false);
         try{
             can_track = false;
+            if (currently.equals(this))
+                currently = null;
         }catch (Exception e){}
     }
 }

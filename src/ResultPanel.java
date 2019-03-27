@@ -20,16 +20,18 @@ public class ResultPanel extends JPanel {
 
     public ResultPanel(SampleSafe ss){
         this.ss = ss;
-        setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout());
+        this.setBackground(Color.gray);
+        this.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
 
         // This is the panel containing the list items
         resultView = new JPanel();
-
+        resultView.setBackground(Color.GRAY);
         // Make scroll pane from result view
         scrollResultView = new JScrollPane(resultView,  JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                                                         JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollResultView.getVerticalScrollBar().setUnitIncrement(0x0A);
-        scrollResultView.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
+        scrollResultView.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
         // Add scroll pane
         add(scrollResultView, BorderLayout.CENTER);
 
@@ -74,7 +76,7 @@ public class ResultPanel extends JPanel {
            // Pass display sample
            sli = new SampleListItem(result.get(i), ss, this);
            sli.setBorder(BorderFactory.createMatteBorder(
-                   2, 2, 2, 2, Color.gray));
+                   2, 2, 2, 20, Color.gray));
            // Add to view
            rView.add(sli);
        }

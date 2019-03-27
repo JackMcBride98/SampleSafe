@@ -19,6 +19,7 @@ public class SampleSafe extends JFrame {
         setSize(900, 800);
         setLayout(new BorderLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setBackground(Color.gray);
 
         communityWindow = new CommunityWindow(this);
         communityWindow.setVisible(false);

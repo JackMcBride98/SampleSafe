@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,17 +10,26 @@ public class SearchBarPanel extends JPanel {
     FilterOptionFrame   fof;
     SampleSafe ss;
     public SearchBarPanel(SampleSafe ss) {
+        JPanel holder = new JPanel();
+        holder.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
+        holder.setBackground(new Color(100,100,100));
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setBackground(new Color(100, 100, 100));
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.DARK_GRAY));
         this.ss = ss;
+
         JButton searchButton = new JButton("SEARCH");
         JButton filterButton = new JButton("FILTER");
         JButton sortButton = new JButton("SORT");
         JTextField searchField = new JTextField(25);
 
-        add(searchButton);
-        add(searchField);
-        add(filterButton);
-        add(sortButton);
+        searchField.setFont(searchField.getFont().deriveFont(18.0f));
 
+        holder.add(searchButton);
+        holder.add(searchField);
+        holder.add(filterButton);
+        holder.add(sortButton);
+        this.add(holder);
         // add some listeners
         ActionListener searchListener = new ActionListener() {
             @Override
@@ -37,7 +48,7 @@ public class SearchBarPanel extends JPanel {
                     sof.show_dialog();
             }
         });
-        filterButton.addActionListener(new ActionListener() {
+        filterButton.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(fof.isVisible())

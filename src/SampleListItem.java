@@ -25,8 +25,11 @@ public class SampleListItem extends JPanel {
 
     // Some variables for the selection of samples
     private boolean     isSelected;
-    private Color       clrHover        = new Color(255, 150, 180);
-    private Color       clrSelected     = new Color(65, 185, 255);
+    private Color       textDefaut      = Color.WHITE;
+    private Color       textActive      = Color.WHITE;
+    private Color       clrDefault      = Color.darkGray;
+    private Color       clrHover        = new Color(255, 154, 200);
+    private Color       clrSelected     = new Color(255, 100, 180); //new Color(65, 185, 255);
     private Color       clrHoverSelect  = new Color(255, 100, 180);
 
     public SampleListItem(Sample sample, SampleSafe ss, ResultPanel rp){
@@ -77,6 +80,7 @@ public class SampleListItem extends JPanel {
 
         /* Add panels to this **/
         retractview();
+        unselect();
 
         /* Hover & Exit Colors **/
         this.addMouseListener(new java.awt.event.MouseAdapter(){
@@ -186,6 +190,8 @@ public class SampleListItem extends JPanel {
 
     public void selected(){
         Color b = clrSelected;
+        title.setForeground( textActive);
+        starTitle.setForeground( textActive);
         this.setBackground( b);
         topPanel.setBackground( b);
         tagPanel.setBackground( b);
@@ -193,10 +199,12 @@ public class SampleListItem extends JPanel {
 
     public void unselect(){
         // get the default color
-        Color defColor = UIManager.getColor("Panel.background");
-        setBackground(defColor);
-        topPanel.setBackground(defColor);
-        tagPanel.setBackground(defColor);
+        //Color defColor = UIManager.getColor("Panel.background");
+        title.setForeground( textDefaut);
+        starTitle.setForeground( textDefaut);
+        this.setBackground(clrDefault);
+        topPanel.setBackground(clrDefault);
+        tagPanel.setBackground(clrDefault);
         retractview();
     }
 
