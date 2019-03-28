@@ -3,6 +3,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.Collections;
 
 public class SearchBarPanel extends JPanel {
 
@@ -76,6 +78,7 @@ public class SearchBarPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Filter clicked!");
+                fof.close_dialog();
             }
         };
         fof = new FilterOptionFrame(filerOptionListener, filterButton);
@@ -86,10 +89,16 @@ public class SearchBarPanel extends JPanel {
     }
 
     public void sort_by(misc.SORT_TYPE sType){
-        JOptionPane.showMessageDialog(null, "Apparently its sorthing..." + sType.toString());
+        // Set the sorting type
+        misc.t = sType;
+        if(misc.t == sType){ // if its the same type as before.
+            // alter the sort order
+            misc.asc = !misc.asc;
+        }else{ misc.asc = true;} // default is true for asc
 
-        // sort stuff.
 
+        if(misc.asc){Collections.sort(ss.results);}
+        else{Collections.sort(ss.results, Collections.reverseOrder());}
         ss.displayResult(ss.results);
     }
 }
