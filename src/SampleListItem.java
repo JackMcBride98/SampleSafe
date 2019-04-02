@@ -28,9 +28,9 @@ public class SampleListItem extends JPanel {
     private Color       textDefaut      = Color.WHITE;
     private Color       textActive      = Color.WHITE;
     private Color       clrDefault      = Color.darkGray;
-    private Color       clrHover        = new Color(255, 154, 200);
-    private Color       clrSelected     = new Color(255, 100, 180); //new Color(65, 185, 255);
-    private Color       clrHoverSelect  = new Color(255, 100, 180);
+    private Color       clrHover        = new Color(128, 167, 255);
+    private Color       clrSelected     = new Color(65,185, 255); //new Color(65, 185, 255);
+    private Color       clrHoverSelect  = new Color(65,185, 255);
 
     public SampleListItem(Sample sample, SampleSafe ss, ResultPanel rp){
 
@@ -115,7 +115,7 @@ public class SampleListItem extends JPanel {
      */
     private void expandview(){
         this.removeAll();
-        this.setPreferredSize(new Dimension(400, 140));
+        this.setPreferredSize(new Dimension(640, 140));
         add(title, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.LINE_START);
         add(tagPanel, BorderLayout.PAGE_END);
@@ -128,7 +128,7 @@ public class SampleListItem extends JPanel {
      */
     private void retractview(){
         this.removeAll();
-        this.setPreferredSize(new Dimension(400, 50));
+        this.setPreferredSize(new Dimension(640, 50));
         add(title, BorderLayout.LINE_START);
         starTitle.setText(sample.getStars() + "/5");
         add(starTitle, BorderLayout.LINE_END);

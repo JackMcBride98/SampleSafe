@@ -1,9 +1,8 @@
 import javax.swing.*;
-import javax.swing.border.AbstractBorder;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.geom.RoundRectangle2D;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import javax.swing.JFrame;
 
 public class CustomPopUp extends JFrame{
     public static CustomPopUp currently = null;
@@ -18,10 +17,19 @@ public class CustomPopUp extends JFrame{
         setSize(wd, ht);
         setAlwaysOnTop( true );
 
-        // rounded corners. but... buttons dont.
-        //setShape(new RoundRectangle2D.Double(0,0,this.getWidth() ,this.getHeight(),12,12));
         this.getContentPane().setBackground(Color.lightGray);
         this.getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+        this.addWindowFocusListener(new WindowFocusListener() {
+            @Override
+            public void windowGainedFocus(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowLostFocus(WindowEvent e) {
+                close_dialog();
+            }
+        });
     }
     /** ONLY GOD KNOWS WHAT I HAVE DONE */
     public void show_dialog(){

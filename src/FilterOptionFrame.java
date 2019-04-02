@@ -28,11 +28,10 @@ public class FilterOptionFrame extends CustomPopUp {
         this.add(ratingFilter);
 
         /** Author panel **/
-        authorFilter.setLayout(new FlowLayout());
         authorFilter.add(new JLabel("Author: "));
-        authorField = new JTextField(5);
+        authorField = new JTextField(12);
         authorFilter.add(authorField);
-        this.add(authorField);
+        this.add(authorFilter);
 
 
 

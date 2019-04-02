@@ -8,4 +8,6 @@ public class misc {
     public enum SORT_TYPE{
         RATING, NAME, DATE
     }
+
+    // drop common setting here
 }
