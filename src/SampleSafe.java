@@ -1,54 +1,24 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.image.ImageObserver;
 
 public class SampleSafe extends JFrame {
-   
-    private SearchBarPanel searchBarPanel;
-    private ResultPanel resultPanel;
-    private InfoPanel infoPanel;
-    private CommunityPanelMain communityPanel;
-    private ProfilePanel profilePanel;
-    private CommunityWindow communityWindow;
 
-    protected ArrayList<Sample> results;
+    //0 == ssmv, 1 == sscv
+    private int currentView;
 
-    public void SampleSafeMain(){
+    protected SampleSafeMainView ssmv;
+    protected SampleSafeCommunityView sscv;
 
-        setTitle("SampleSafe");
-        setSize(900, 800);
-        setLayout(new BorderLayout());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setBackground(Color.gray);
+    public SampleSafe(){
+        this.ssmv = new SampleSafeMainView(this);
+        this.sscv = new SampleSafeCommunityView(this);
 
-        communityWindow = new CommunityWindow(this);
-        communityWindow.setVisible(false);
-        resultPanel = new ResultPanel(this);
-        infoPanel = new InfoPanel(this);
-        searchBarPanel = new SearchBarPanel(this);
-        communityPanel = new CommunityPanelMain(this, communityWindow, resultPanel);
-        profilePanel = new ProfilePanel(this);
-        add(resultPanel, BorderLayout.LINE_START);
-        add(infoPanel, BorderLayout.LINE_END);
-
-        JPanel topPanel = new JPanel();
-        topPanel.setLayout(new BorderLayout());
-        add(topPanel, BorderLayout.PAGE_START);
-        topPanel.add(searchBarPanel, BorderLayout.CENTER);
-        topPanel.add(profilePanel, BorderLayout.LINE_END);
-
-        Box box = Box.createHorizontalBox();
-        box.add(Box.createRigidArea(new Dimension(1,0)));
-        box.add(Box.createHorizontalGlue());
-        box.add(communityPanel);
-        add(box, BorderLayout.PAGE_END);
-
-        revalidate();
-        setVisible(true);
+        this.ssmv.Setup();
+        this.sscv.Setup();
     }
 
-    public static void main(String[] args) {
-
+    public void setLookAndFeel(){
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException e) {
@@ -60,26 +30,30 @@ public class SampleSafe extends JFrame {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getCurrentView() {
+        return currentView;
+    }
+
+    public void setCurrentView(int currentView) {
+        this.currentView = currentView;
+    }
+
+    public SampleSafeMainView getSSMV() {
+        return ssmv;
+    }
+
+    public SampleSafeCommunityView getSSCV() {
+        return sscv;
+    }
+
+    public static void main(String[] args) {
 
         SampleSafe ss = new SampleSafe();
-        ss.loginScreen();
-    }
 
-    public void displaySample(Sample sample){
-        infoPanel.displaySample(sample);
-    }
+        ss.setLookAndFeel();
 
-    public void displayResult(ArrayList<Sample> samples){
-        resultPanel.displayResult(samples);
-    }
-
-    public void loginScreen(){
-        JFrame jF = new JFrame();
-        jF.setSize(300, 200);
-        jF.setLayout(new BorderLayout());
-        jF.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        LoginPanel loginPanel = new LoginPanel(this, jF);
-        jF.add(loginPanel);
-        jF.setVisible(true);
+        new LoginScreen(ss, ss.ssmv, ss.sscv);
     }
 }

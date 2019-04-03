@@ -97,8 +97,15 @@ public class SearchBarPanel extends JPanel {
         }else{ misc.asc = true;} // default is true for asc
 
 
-        if(misc.asc){Collections.sort(ss.results);}
-        else{Collections.sort(ss.results, Collections.reverseOrder());}
-        ss.displayResult(ss.results);
+        if (ss.getCurrentView() == 1){
+
+            if(misc.asc){Collections.sort(ss.getSSMV().result);}
+            else{Collections.sort(ss.getSSMV().result, Collections.reverseOrder());}
+            ss.getSSMV().displayResult(ss.getSSMV().result);
+        }else{
+            if(misc.asc){Collections.sort(ss.getSSCV().result);}
+            else{Collections.sort(ss.getSSCV().result, Collections.reverseOrder());}
+            ss.getSSCV().displayResult(ss.getSSCV().result);
+        }
     }
 }

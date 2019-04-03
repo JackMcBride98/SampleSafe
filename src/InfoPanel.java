@@ -25,6 +25,7 @@ public class InfoPanel extends JPanel{
         buttPanel = new JPanel();
 
         setBackground(new Color(65,185, 255));
+        setPreferredSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth()*1/3, 100));
 
 
         //names that appear next to fields etc
@@ -50,7 +51,7 @@ public class InfoPanel extends JPanel{
         tagComBox.setEditable(true);
         tagComBox.setSize(80, 10);
 
-        tagListPanel = new TagPanel(ss);
+        tagListPanel = new TagPanel();
         tagListPanel.setPreferredSize(new Dimension(100, 300));
         tagListPanel.setBackground(new Color(60,160, 255));
         JScrollPane tagScrollPane = new JScrollPane(tagListPanel);
@@ -108,7 +109,7 @@ public class InfoPanel extends JPanel{
         gc.weightx = 0;
         gc.weighty = 0;
         gc.insets = new Insets(5, 10, 5, 10);
-        gc.fill =GridBagConstraints.HORIZONTAL;
+        gc.fill = GridBagConstraints.HORIZONTAL;
 
         //panel positions
         setPosition(0, 0, dataPanel, gc,this);

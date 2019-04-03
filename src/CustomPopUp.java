@@ -22,7 +22,7 @@ public class CustomPopUp extends JFrame{
         this.addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(WindowEvent e) {
-
+                // Well this is a good thing. Jie
             }
 
             @Override
@@ -46,12 +46,11 @@ public class CustomPopUp extends JFrame{
             Thread tracking = new Thread(){
                 public void run(){
                     while(can_track){
-                        //System.out.println("Thread running...");
+                        // Can track better than MBDA Meteor.!
                         setLocation(parent.getLocationOnScreen().x - (getWidth() - parent.getWidth())/2, parent.getLocationOnScreen().y + parent.getHeight() );
                     }
                 }
             };
-
             tracking.start();
         }
 
