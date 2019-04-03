@@ -18,14 +18,15 @@ public class ProfileFrame extends javax.swing.JFrame {
      */
     private JButton profilePicFrame;
     
-    public ProfileFrame() {
+    public ProfileFrame(String user) {
         initComponents();
         
-        profilePicFrame = new CreateRoundButton("Profile");
+        profilePicFrame = new CreateRoundButton(user);
         profilePicFrame.setBounds(10, 10, 100, 100);
         profilePicFrame.setVisible(true);
         add(profilePicFrame);
         profilePicFrame.setFocusPainted(false);
+        NameText.setText(user);
     }
 
     /**
@@ -40,8 +41,8 @@ public class ProfileFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cancelButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        SaveExitButton = new javax.swing.JButton();
+        NameText = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -59,10 +60,20 @@ public class ProfileFrame extends javax.swing.JFrame {
 
         jButton2.setText("Apply");
 
-        jButton3.setText("Save And Exit");
+        SaveExitButton.setText("Save And Exit");
+        SaveExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveExitButtonActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
-        jTextField2.setMaximumSize(new java.awt.Dimension(6, 20));
+        NameText.setText("jTextField2");
+        NameText.setMaximumSize(new java.awt.Dimension(6, 20));
+        NameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameTextActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Name:");
 
@@ -89,7 +100,7 @@ public class ProfileFrame extends javax.swing.JFrame {
                                     .addGap(78, 78, 78)
                                     .addComponent(jButton2)
                                     .addGap(54, 54, 54)
-                                    .addComponent(jButton3))
+                                    .addComponent(SaveExitButton))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel1)
                                     .addGap(235, 235, 235))))
@@ -97,7 +108,7 @@ public class ProfileFrame extends javax.swing.JFrame {
                             .addContainerGap()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(NameText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,12 +124,12 @@ public class ProfileFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(SaveExitButton))
                 .addContainerGap())
         );
 
@@ -128,6 +139,14 @@ public class ProfileFrame extends javax.swing.JFrame {
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void NameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTextActionPerformed
+        
+    }//GEN-LAST:event_NameTextActionPerformed
+
+    private void SaveExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveExitButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SaveExitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,19 +178,19 @@ public class ProfileFrame extends javax.swing.JFrame {
         /* Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProfileFrame().setVisible(true);
+                new ProfileFrame("Profile").setVisible(true);
             }
         });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField NameText;
+    private javax.swing.JButton SaveExitButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
