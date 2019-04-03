@@ -1,29 +1,37 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.Collections;
 
 public class SearchBarPanel extends JPanel {
 
-    SortOptionJFrame sortPopup;
-    JFrame ss;
-    public SearchBarPanel() {
+    SortOptionFrame     sof;
+    FilterOptionFrame   fof;
+    SampleSafe ss;
+    public SearchBarPanel(SampleSafe ss) {
+        JPanel holder = new JPanel();
+        holder.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
+        holder.setBackground(new Color(100,100,100));
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setBackground(new Color(100, 100, 100));
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.DARK_GRAY));
+        this.ss = ss;
+
         JButton searchButton = new JButton("SEARCH");
         JButton filterButton = new JButton("FILTER");
         JButton sortButton = new JButton("SORT");
         JTextField searchField = new JTextField(25);
 
-        sortPopup = new SortOptionJFrame(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "DUCK YOU!");
-            }
-        });
+        searchField.setFont(searchField.getFont().deriveFont(18.0f));
 
-        add(searchButton);
-        add(searchField);
-        add(filterButton);
-        add(sortButton);
-
+        holder.add(searchButton);
+        holder.add(searchField);
+        holder.add(filterButton);
+        holder.add(sortButton);
+        this.add(holder);
         // add some listeners
         ActionListener searchListener = new ActionListener() {
             @Override
@@ -31,22 +39,73 @@ public class SearchBarPanel extends JPanel {
                 do_search();
             }
         };
-
-        searchField.addActionListener(  searchListener);
         searchButton.addActionListener( searchListener);
+        searchField.addActionListener(  searchListener);
         sortButton.addActionListener(   new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sortPopup.showOption(searchButton);
+                if(sof.isVisible())
+                    sof.close_dialog();
+                else
+                    sof.show_dialog();
             }
         });
+        filterButton.addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(fof.isVisible())
+                    fof.close_dialog();
+                else
+                    fof.show_dialog();
+            }
+        });
+        ActionListener sortOpListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // for now call sort_by()
+                sof.close_dialog();
+                String n = ((JButton) e.getSource()).getText();
+                if(n.equals("Rating"))
+                    sort_by(misc.SORT_TYPE.RATING);
+                else if(n.equals("Sample Name"))
+                    sort_by(misc.SORT_TYPE.NAME);
+                else
+                    sort_by(misc.SORT_TYPE.DATE);
+            }
+        };
+        sof = new SortOptionFrame(sortOpListener, sortButton);
+        ActionListener filerOptionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Filter clicked!");
+                fof.close_dialog();
+            }
+        };
+        fof = new FilterOptionFrame(filerOptionListener, filterButton);
     }
 
     public void do_search(){
-        JOptionPane.showMessageDialog(null, "Searching,, apparently");
+        JOptionPane.showMessageDialog(null, "Apparently its searching...");
     }
 
-    public void sort_result(String t){
-    }
+    public void sort_by(misc.SORT_TYPE sType){
+        // Set the sorting type
+        misc.t = sType;
+        if(misc.t == sType){ // if its the same type as before.
+            // alter the sort order
+            misc.asc = !misc.asc;
+        }else{ misc.asc = true;} // default is true for asc
 
+
+        if (ss.getCurrentView() == 1){
+
+            if(misc.asc){Collections.sort(ss.getSSMV().result);}
+            else{Collections.sort(ss.getSSMV().result, Collections.reverseOrder());}
+            ss.getSSMV().displayResult(ss.getSSMV().result);
+        }else{
+            if(misc.asc){Collections.sort(ss.getSSCV().result);}
+            else{Collections.sort(ss.getSSCV().result, Collections.reverseOrder());}
+            ss.getSSCV().displayResult(ss.getSSCV().result);
+        }
+    }
 }

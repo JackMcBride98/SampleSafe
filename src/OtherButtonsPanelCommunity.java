@@ -3,16 +3,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CommunityPanelCommunity extends JPanel{
+public class OtherButtonsPanelCommunity extends JPanel{
 
-    public CommunityPanelCommunity(CommunityWindow community, SampleSafe ss){
+    public OtherButtonsPanelCommunity(SampleSafe ss, SampleSafeCommunityView communityView){
         JButton uploadButton = new JButton("UPLOAD");
         JButton backToMMButton = new JButton("BACK TO LOCAL");
 
         backToMMButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                ss.setVisible(true);
-                community.setVisible(false);
+                ss.getSSMV().setVisible(true);
+                communityView.setVisible(false);
             }
         });
 
