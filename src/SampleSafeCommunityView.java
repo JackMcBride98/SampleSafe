@@ -8,6 +8,7 @@ public class SampleSafeCommunityView extends JFrame {
     SampleSafe ss;
     private SearchBarPanel searchBarPanel;
     private ResultPanel resultPanel;
+    private FriendsPanel friendsPanel;
     private OtherButtonsPanelCommunity communityPanel;
     private GroupsPanel groupsPanel;
     private InfoPanel infoPanel;
@@ -27,12 +28,12 @@ public class SampleSafeCommunityView extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
-        infoPanel = new InfoPanel(ss);
+        friendsPanel = new FriendsPanel(ss);
         searchBarPanel = new SearchBarPanel(ss);
         profilePanel = new ProfilePanel(ss);
         communityPanel = new OtherButtonsPanelCommunity(ss, ss.getSSCV());
         add(resultPanel, BorderLayout.LINE_START);
-        add(infoPanel, BorderLayout.LINE_END);
+        add(friendsPanel, BorderLayout.LINE_END);
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
@@ -45,7 +46,7 @@ public class SampleSafeCommunityView extends JFrame {
         box.add(Box.createHorizontalGlue());
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
-        this.setSize(new Dimension(900, 800));
+        this.setSize(new Dimension(850, 725));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         revalidate();

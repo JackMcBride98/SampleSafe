@@ -53,7 +53,7 @@ public class SampleSafeMainView extends JFrame{
         box.setBorder(new EmptyBorder(75, 10, 10, 10));
         bottomPanel.add(box, BorderLayout.LINE_END);
 
-        this.setSize(new Dimension(900, 800));
+        this.setSize(new Dimension(850, 725));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         revalidate();
