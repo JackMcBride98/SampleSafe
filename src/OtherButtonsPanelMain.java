@@ -18,11 +18,11 @@ public class OtherButtonsPanelMain extends JPanel{
     public OtherButtonsPanelMain(SampleSafe ss, SampleSafeCommunityView communityView, ResultPanel rp){
 
         JButton importButton = new JButton("IMPORT");
-        importButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        //importButton.setFont(new Font("Arial", Font.PLAIN, 35));
         JButton exportButton = new JButton("EXPORT");
-        exportButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        //exportButton.setFont(new Font("Arial", Font.PLAIN, 35));
         JButton communityButton = new JButton("COMMUNITY");
-        communityButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        //communityButton.setFont(new Font("Arial", Font.PLAIN, 35));
         JFileChooser importBtn = new JFileChooser();
         importBtn.setMultiSelectionEnabled(true);
         communityButton.addActionListener(new ActionListener() {

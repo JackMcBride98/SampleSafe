@@ -50,8 +50,9 @@ public class SampleSafeMainView extends JFrame{
         box.add(Box.createRigidArea(new Dimension(1,0)));
         box.add(Box.createHorizontalGlue());
         box.add(otherButtonsPanel);
-        box.setBorder(new EmptyBorder(75, 10, 10, 10));
+        add(box, BorderLayout.PAGE_END);
         bottomPanel.add(box, BorderLayout.LINE_END);
+        this.add(bottomPanel);
 
         this.setSize(new Dimension(900, 800));
         this.setResizable(false);
