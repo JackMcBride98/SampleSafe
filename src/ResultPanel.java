@@ -39,7 +39,7 @@ public class ResultPanel extends JPanel {
         scrollResultView.setPreferredSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2, 100));
         add(scrollResultView, BorderLayout.CENTER);
 
-        samples.add(new Sample("BONGO.wav",3, new String[]{"Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc"}, "Jack", new Date(), "Just a demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Sam Bongo 2.wav", false, false, true));
+        samples.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Blam!", "Boop"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
 
         /*samples.add(new Sample("SNARE(10).wav",     3, new String[]{"Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc"}, "Jack", new Date(), "Just a demo", "C:\\Users\\User\\Documents\\SampleSafe\\light hat 1.wav", false, false, true));
         samples.add(new Sample("SMD_Snare_10.wav",  4, new String[]{"Sexy", "Drum"}, "Ross",new Date(), "Just a demo", "C:\\Users\\User\\Documents\\SampleSafe\\mile kit snare.wav", false, true, true));

@@ -1,10 +1,8 @@
-// A borderless window for selecting sort option
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class SortOptionFrame extends CustomPopUp{
+public class SortOptionFrame extends CustomPopUp {
 
     public SortOptionFrame(ActionListener al, JButton parent){
       super(100, 90, parent);

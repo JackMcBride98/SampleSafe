@@ -1,11 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SampleSafeCommunityView extends JFrame {
 
-    SampleSafe ss;
+    private SampleSafe ss;
     private SearchBarPanel searchBarPanel;
     private ResultPanel resultPanel;
     private OtherButtonsPanelCommunity communityPanel;

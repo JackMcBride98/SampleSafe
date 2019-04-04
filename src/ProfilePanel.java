@@ -74,7 +74,7 @@ public class ProfilePanel extends JPanel {
         public void actionPerformed(ActionEvent event) {
             newFrame.dispose();
             ss.dispose();
-            ss.loginScreen();
+            //ss.loginScreen();
         } 
         });
         newFrame.setVisible(true);

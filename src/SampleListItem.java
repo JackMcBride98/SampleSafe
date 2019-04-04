@@ -2,6 +2,7 @@
  * Custom list view for samples
  */
 
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class SampleListItem extends JPanel {
     private JLabel starTitle;
 
     private JPanel      topPanel;
-    private TagPanel    tagPanel;
+    private TagPanel tagPanel;
     private JButton     btnStars[];
 
     // Some variables for the selection of samples
@@ -116,16 +117,18 @@ public class SampleListItem extends JPanel {
                 BufferedImage waveFormPicture = null;
 
                 try {
+                    System.out.println(sample.getTitle());
                     AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()) + " Pic");
                     awc.createAudioInputStream();
                     waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle() + " Pic")));
-                } catch (Exception e) {
+                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
                 ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
-
                 ssmv.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
+                ssmv.getAuditionPanel().revalidate();
+
 
                 String soundName = sample.getUrl();
                 Clip clip = null;

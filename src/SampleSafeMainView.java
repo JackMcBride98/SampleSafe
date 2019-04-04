@@ -13,6 +13,7 @@ public class SampleSafeMainView extends JFrame{
     private OtherButtonsPanelMain otherButtonsPanel;
     private SampleAuditionPanel auditionPanel;
     public ArrayList<Sample> result;
+
     public SampleSafeMainView(SampleSafe ss){
         this.ss = ss;
     }

@@ -3,7 +3,7 @@ import java.util.Date;
 /**
  * ResultItem, class for the items displayed in the result panel
  */
-class Sample implements Comparable{
+public class Sample implements Comparable{
     /* Basic info to display*/
     private String      title;
     private int         stars;
@@ -83,13 +83,13 @@ class Sample implements Comparable{
     @Override
     public int compareTo(Object o) {
         Sample b = (Sample) o;
-        if(misc.t.equals(misc.SORT_TYPE.NAME))
+        if(Misc.t.equals(Misc.SORT_TYPE.NAME))
             return (title.compareTo(b.getTitle()));
-        if(misc.t.equals(misc.SORT_TYPE.RATING)){
+        if(Misc.t.equals(Misc.SORT_TYPE.RATING)){
             if(getStars() == b.getStars()) return 0;
             if(getStars() >  b.getStars()) return 1;
             return -1;}
-        if(misc.t.equals(misc.SORT_TYPE.DATE))
+        if(Misc.t.equals(Misc.SORT_TYPE.DATE))
             return (getCreationDate().compareTo(b.getCreationDate()));
 
         return 0;
