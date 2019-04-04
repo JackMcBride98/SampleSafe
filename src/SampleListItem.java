@@ -125,9 +125,10 @@ public class SampleListItem extends JPanel {
                     e.printStackTrace();
                 }
 
+
                 ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
                 ssmv.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
-                ssmv.getAuditionPanel().revalidate();
+                //ssmv.getAuditionPanel().revalidate();
 
 
                 String soundName = sample.getUrl();
