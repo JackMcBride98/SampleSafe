@@ -2,6 +2,7 @@
  * Custom list view for samples
  */
 
+
 import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -24,7 +25,7 @@ public class SampleListItem extends JPanel {
     private JLabel starTitle;
 
     private JPanel      topPanel;
-    private TagPanel    tagPanel;
+    private TagPanel tagPanel;
     private JButton     btnStars[];
 
     // Some variables for the selection of samples
@@ -82,9 +83,9 @@ public class SampleListItem extends JPanel {
             public void mouseEntered(MouseEvent evt){
                 Color c;
                 if(isSelected)
-                    c = misc.clrHoverSelect;
+                    c = Misc.clrHoverSelect;
                 else
-                    c = misc.clrHover;
+                    c = Misc.clrHover;
 
                 setBackground(c);
                 topPanel.setBackground(c);
@@ -109,16 +110,19 @@ public class SampleListItem extends JPanel {
                 BufferedImage waveFormPicture = null;
 
                 try {
+                    System.out.println(sample.getTitle());
                     AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()) + " Pic");
                     awc.createAudioInputStream();
                     waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle() + " Pic")));
-                } catch (Exception e) {
+                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
 
+                ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
                 ssmv.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
+                //ssmv.getAuditionPanel().revalidate();
+
 
                 String soundName = sample.getUrl();
                 Clip clip = null;
@@ -217,21 +221,21 @@ public class SampleListItem extends JPanel {
     }
 
     public void selected(){
-        title.setForeground( misc.clrTextActive);
-        starTitle.setForeground(misc.clrTextActive);
-        this.setBackground( misc.clrSelected);
-        topPanel.setBackground( misc.clrSelected);
-        tagPanel.setBackground( misc.clrSelected);
+        title.setForeground( Misc.clrTextActive);
+        starTitle.setForeground(Misc.clrTextActive);
+        this.setBackground( Misc.clrSelected);
+        topPanel.setBackground( Misc.clrSelected);
+        tagPanel.setBackground( Misc.clrSelected);
     }
 
     public void unselect(){
         // get the default color
         //Color defColor = UIManager.getColor("Panel.background");
-        title.setForeground( misc.clrThemeText);
-        starTitle.setForeground( misc.clrThemeText);
-        this.setBackground(misc.clrMainTheme1);
-        topPanel.setBackground(misc.clrMainTheme1);
-        tagPanel.setBackground(misc.clrMainTheme1);
+        title.setForeground( Misc.clrThemeText);
+        starTitle.setForeground( Misc.clrThemeText);
+        this.setBackground(Misc.clrMainTheme1);
+        topPanel.setBackground(Misc.clrMainTheme1);
+        tagPanel.setBackground(Misc.clrMainTheme1);
         retractview();
     }
 

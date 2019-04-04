@@ -1,14 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class SampleSafeCommunityView extends JFrame {
 
-    SampleSafe ss;
+    private SampleSafe ss;
     private SearchBarPanel searchBarPanel;
     private ResultPanel resultPanel;
-    private FriendsPanel friendsPanel;
     private OtherButtonsPanelCommunity communityPanel;
     private GroupsPanel groupsPanel;
     private InfoPanel infoPanel;
@@ -26,14 +25,15 @@ public class SampleSafeCommunityView extends JFrame {
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        result = new ArrayList<Sample>();
 
         resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
-        friendsPanel = new FriendsPanel(ss);
+        infoPanel = new InfoPanel(ss);
         searchBarPanel = new SearchBarPanel(ss);
         profilePanel = new ProfilePanel(ss);
         communityPanel = new OtherButtonsPanelCommunity(ss, ss.getSSCV());
         add(resultPanel, BorderLayout.LINE_START);
-        add(friendsPanel, BorderLayout.LINE_END);
+        add(infoPanel, BorderLayout.LINE_END);
 
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
@@ -47,6 +47,11 @@ public class SampleSafeCommunityView extends JFrame {
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
         this.setSize(new Dimension(850, 725));
+
+        result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Blam!", "Boop"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
+        displayResult(result);
+
+        this.setSize(new Dimension(900, 800));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         revalidate();

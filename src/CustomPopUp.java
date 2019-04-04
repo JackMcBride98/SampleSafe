@@ -40,8 +40,10 @@ public class CustomPopUp extends JFrame{
             currently.close_dialog();
         currently = this;
 
+        setLocation(parent.getLocationOnScreen().x - (getWidth() - parent.getWidth())/2, parent.getLocationOnScreen().y + parent.getHeight() );
+
         /** Tracks the component **/
-        if (parent != null){
+       /** if (parent != null){
             can_track = true;
             Thread tracking = new Thread(){
                 public void run(){
@@ -52,16 +54,18 @@ public class CustomPopUp extends JFrame{
                 }
             };
             tracking.start();
-        }
+        } **/
 
     }
 
     public void close_dialog(){
         setVisible(false);
+
         try{
-            can_track = false;
+        //    can_track = false;
             if (currently.equals(this))
-                currently = null;
+            currently = null;
         }catch (Exception e){}
+
     }
 }

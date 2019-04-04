@@ -24,7 +24,7 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
         playButton = new JButton("►");
         playButton.addActionListener(this);
         try{
-            audioInputStream = AudioSystem.getAudioInputStream(new File("C:\\Users\\User\\Documents\\SampleSafe\\Sam Bongo 2.wav"));
+            audioInputStream = AudioSystem.getAudioInputStream(new File(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav")) ;
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             // If you want the sound to loop infinitely, then put: clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -33,14 +33,12 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
             ex.printStackTrace();
         }
         try {
-            awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Sam Bongo 2.wav"),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Sam Bongo 2.wav") + " Pic");
+            awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav"),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav") + " Pic");
             awc.createAudioInputStream();
-            BufferedImage waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Sam Bongo 2.wav" + " Pic")));
+            BufferedImage waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav" + " Pic")));
             sampleWaveformPicLabel = new JLabel(new ImageIcon(waveFormPicture));
             add(sampleWaveformPicLabel);
             add(playButton);
-            //sampleWaveformPicLabel = new JLabel(new ImageIcon(ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Sam Bongo 4.wav" + " Pic")))));
-            //revalidate();
         } catch (Exception e){
             e.printStackTrace();
         }
