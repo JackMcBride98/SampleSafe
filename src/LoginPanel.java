@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Random;
+
 
 public class LoginPanel extends JPanel {
 
@@ -14,21 +16,44 @@ public class LoginPanel extends JPanel {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton signUpButton;
-
+    private JLabel title;
+    Random rand = new Random();
 
     public LoginPanel(SampleSafeMainView ssmv, JFrame frame){
+        this.setForeground(misc.clrThemeText);
+        this.setBackground(misc.clrMainTheme1);
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //this.title.setHorizontalAlignment(JLabel.CENTER);
+        JPanel titlePanel = new JPanel();
+        titlePanel.setLayout(new FlowLayout());
+        titlePanel.setBackground(misc.clrMainTheme1);
+
+        String strTitle = "Sample Safe";
+        for (char ch : strTitle.toCharArray()){
+            JLabel t = new JLabel(ch + "");
+            t.setFont(new Font("Arial", Font.PLAIN, rand.nextInt(20) + 20));
+            t.setForeground(misc.clrThemeText);
+            titlePanel.add(t);
+        }
+        this.add(titlePanel, BorderLayout.PAGE_START);
+
 
         this.usernameLabel = new JLabel("Username:");
-        this.usernameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.usernameLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        this.usernameLabel.setForeground(misc.clrThemeText);
         this.usernameField = new JTextField(16);
-        this.usernameField.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.usernameField.setFont(new Font("Arial", Font.PLAIN, 18));
+
         this.passwordLabel = new JLabel("Password:");
-        this.passwordLabel.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.passwordLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        this.passwordLabel.setForeground(misc.clrThemeText);
         this.passwordField = new JPasswordField(16);
-        this.passwordField.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.passwordField.setFont(new Font("Arial", Font.PLAIN, 18));
 
         this.loginButton = new JButton("Login");
-        this.loginButton.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.loginButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        this.loginButton.setForeground(misc.clrMainTheme1);
         this.loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 String username = usernameField.getText();
@@ -43,21 +68,29 @@ public class LoginPanel extends JPanel {
             }
         });
         this.signUpButton = new JButton("Sign Up");
-        this.signUpButton.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.signUpButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        this.signUpButton.setForeground(misc.clrMainTheme1);
 
-        Box box = Box.createHorizontalBox();
-        box.add(Box.createRigidArea(new Dimension(1,500)));
-        this.add(box);
+        JPanel usernamePanel = new JPanel();
+        usernamePanel.setBackground(misc.clrMainTheme1);
+        usernamePanel.add(usernameLabel);
+        usernamePanel.add(usernameField);
 
-        this.setLayout(new FlowLayout());
+        JPanel passwordPanel = new JPanel();
+        passwordPanel.setBackground(misc.clrMainTheme1);
+        passwordPanel.add(passwordLabel);
+        passwordPanel.add(passwordField);
 
-        this.add(usernameLabel);
-        this.add(usernameField);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(misc.clrMainTheme);
+        buttonPanel.add(loginButton);
+        buttonPanel.add(signUpButton);
 
-        this.add(passwordLabel);
-        this.add(passwordField);
-
-        this.add(loginButton);
-        this.add(signUpButton);
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        container.add(usernamePanel);
+        container.add(passwordPanel);
+        container.add(buttonPanel, BorderLayout.PAGE_END);
+        this.add(container);
     }
 }

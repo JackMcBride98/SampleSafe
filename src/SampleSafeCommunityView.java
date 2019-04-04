@@ -22,7 +22,7 @@ public class SampleSafeCommunityView extends JFrame {
     public void Setup(){
 
         this.setTitle("Community");
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -45,7 +45,7 @@ public class SampleSafeCommunityView extends JFrame {
         box.add(Box.createHorizontalGlue());
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
-
+        this.setSize(new Dimension(800, 800));
         revalidate();
     }
 

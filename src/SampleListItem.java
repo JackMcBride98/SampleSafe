@@ -143,7 +143,7 @@ public class SampleListItem extends JPanel {
      */
     private void expandview(){
         this.removeAll();
-        this.setPreferredSize(new Dimension(640, 140));
+        this.setPreferredSize(new Dimension(480, 140));
         add(title, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.LINE_START);
         add(tagPanel, BorderLayout.PAGE_END);
@@ -156,7 +156,7 @@ public class SampleListItem extends JPanel {
      */
     private void retractview(){
         this.removeAll();
-        this.setPreferredSize(new Dimension(640, 50));
+        this.setPreferredSize(new Dimension(480, 50));
         add(title, BorderLayout.LINE_START);
         starTitle.setText(sample.getStars() + "/5");
         add(starTitle, BorderLayout.LINE_END);

@@ -36,7 +36,7 @@ public class ResultPanel extends JPanel {
         scrollResultView.getVerticalScrollBar().setUnitIncrement(0x0A);
         scrollResultView.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
         // Add scroll pane
-        scrollResultView.setPreferredSize(new Dimension(640, 100));
+        scrollResultView.setPreferredSize(new Dimension(480, 100));
         add(scrollResultView, BorderLayout.CENTER);
 
         samples.add(new Sample("BONGO.wav",3, new String[]{"Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc"}, "Jack", new Date(), "Just a demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Sam Bongo 2.wav", false, false, true));
