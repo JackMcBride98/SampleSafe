@@ -21,6 +21,7 @@ public class SampleSafe extends JFrame {
     public void setLookAndFeel(){
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+            JOptionPane.showMessageDialog(null, "Senpai is gay");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

@@ -45,7 +45,9 @@ public class SampleSafeCommunityView extends JFrame {
         box.add(Box.createHorizontalGlue());
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
-        this.setSize(new Dimension(800, 800));
+        this.setSize(new Dimension(900, 800));
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         revalidate();
     }
 

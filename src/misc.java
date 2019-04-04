@@ -12,6 +12,7 @@ public class misc {
 
     public static Color clrMainTheme    = Color.gray;
     public static Color clrMainTheme1   = Color.darkGray;
+    public static Color clrMainTheme2   = new Color(100, 100, 100);
     public static Color clrThemeText    = Color.white;
     public static Color clrTextActive   = Color.white;
     public static Color clrHover        = new Color(128, 167, 255);

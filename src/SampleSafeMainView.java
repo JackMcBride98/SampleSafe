@@ -18,8 +18,8 @@ public class SampleSafeMainView extends JFrame{
     }
 
     public void Setup(){
-        this.setTitle("SampleSafe");
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setTitle("Sample Safe");
+
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -27,7 +27,6 @@ public class SampleSafeMainView extends JFrame{
         resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
         infoPanel = new InfoPanel(ss);
         searchBarPanel = new SearchBarPanel(ss);
-        searchBarPanel.setBorder(new EmptyBorder(20, 10, 10, 10));
         otherButtonsPanel = new OtherButtonsPanelMain(ss, ss.getSSCV(), resultPanel);
         profilePanel = new ProfilePanel(ss);
         auditionPanel = new SampleAuditionPanel(ss);
@@ -54,7 +53,9 @@ public class SampleSafeMainView extends JFrame{
         box.setBorder(new EmptyBorder(75, 10, 10, 10));
         bottomPanel.add(box, BorderLayout.LINE_END);
 
-        this.setSize(new Dimension(800, 800));
+        this.setSize(new Dimension(900, 800));
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         revalidate();
     }
 
