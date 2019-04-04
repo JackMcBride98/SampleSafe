@@ -17,7 +17,7 @@ public class SearchBarPanel extends JPanel {
         holder.setBackground(new Color(100,100,100));
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBackground(new Color(100, 100, 100));
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.DARK_GRAY));
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, misc.clrMainTheme1));
         this.ss = ss;
 
         JButton searchButton = new JButton("SEARCH");

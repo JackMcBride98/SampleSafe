@@ -24,7 +24,7 @@ public class ResultPanel extends JPanel {
         this.ssmv = mv;
         this.sscv = cv;
         this.setLayout(new BorderLayout());
-        this.setBackground(Color.gray);
+        this.setBackground(misc.clrMainTheme);
         this.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
 
         // This is the panel containing the list items
@@ -36,12 +36,11 @@ public class ResultPanel extends JPanel {
         scrollResultView.getVerticalScrollBar().setUnitIncrement(0x0A);
         scrollResultView.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
         // Add scroll pane
-        scrollResultView.setPreferredSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2, 100));
+        scrollResultView.setPreferredSize(new Dimension(640, 100));
         add(scrollResultView, BorderLayout.CENTER);
 
         samples.add(new Sample("BONGO.wav",3, new String[]{"Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc"}, "Jack", new Date(), "Just a demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Sam Bongo 2.wav", false, false, true));
-
-        /*samples.add(new Sample("SNARE(10).wav",     3, new String[]{"Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc"}, "Jack", new Date(), "Just a demo", "C:\\Users\\User\\Documents\\SampleSafe\\light hat 1.wav", false, false, true));
+        samples.add(new Sample("SNARE(10).wav",     3, new String[]{"Snare", "Clap", "Blam!", "Ahhhhh!!!", "Boop", "etc"}, "Jack", new Date(), "Just a demo", "C:\\Users\\User\\Documents\\SampleSafe\\light hat 1.wav", false, false, true));
         samples.add(new Sample("SMD_Snare_10.wav",  4, new String[]{"Sexy", "Drum"}, "Ross",new Date(), "Just a demo", "C:\\Users\\User\\Documents\\SampleSafe\\mile kit snare.wav", false, true, true));
         samples.add(new Sample("Kick Puncher",      5, new String[]{"Kick", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true));
         samples.add(new Sample("Kick Agile Shot",   2, new String[]{"Kick", "Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", true, true, true));
@@ -61,7 +60,7 @@ public class ResultPanel extends JPanel {
         samples.add(new Sample("bcg kick.wav", 2, new String[]{"Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", false, true, false));
         samples.add(new Sample("A-Conga Low Slap 2", 4, new String[]{"Lowkey", "Slap", "Something", "Nice"}, "Jie", new Date(), "Just a demo", "Nowhere", false, true, true));
         samples.add(new Sample("A-Conga Low Slap 1", 3, new String[]{"Slap","Something", "Nice"}, "Ross",new Date(), "Just a demo", "Nowhere", true, true, false));
-*/
+
         // demostration of displaying samples
         displayResult(samples);
    }
@@ -82,7 +81,7 @@ public class ResultPanel extends JPanel {
            // Pass display sample
            sli = new SampleListItem(result.get(i), ssmv.getSS().getCurrentView(), this, ssmv, sscv);
            sli.setBorder(BorderFactory.createMatteBorder(
-                   2, 2, 2, 20, Color.gray));
+                   2, 2, 2, 36, Color.gray));
            // Add to view
            rView.add(sli);
        }

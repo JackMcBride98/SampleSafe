@@ -29,13 +29,6 @@ public class SampleListItem extends JPanel {
 
     // Some variables for the selection of samples
     private boolean     isSelected;
-    private Color       textDefaut      = Color.WHITE;
-    private Color       textActive      = Color.WHITE;
-    private Color       clrDefault      = Color.darkGray;
-    private Color       clrHover        = new Color(128, 167, 255);
-    private Color       clrSelected     = new Color(65,185, 255); //new Color(65, 185, 255);
-    private Color       clrHoverSelect  = new Color(65,185, 255);
-
     public SampleListItem(Sample sample, int currentView, ResultPanel rp, SampleSafeMainView ssmv, SampleSafeCommunityView sscv){
 
         // Drag&Drop Stuff
@@ -89,9 +82,9 @@ public class SampleListItem extends JPanel {
             public void mouseEntered(MouseEvent evt){
                 Color c;
                 if(isSelected)
-                    c = clrHoverSelect;
+                    c = misc.clrHoverSelect;
                 else
-                    c = clrHover;
+                    c = misc.clrHover;
 
                 setBackground(c);
                 topPanel.setBackground(c);
@@ -224,22 +217,21 @@ public class SampleListItem extends JPanel {
     }
 
     public void selected(){
-        Color b = clrSelected;
-        title.setForeground( textActive);
-        starTitle.setForeground( textActive);
-        this.setBackground( b);
-        topPanel.setBackground( b);
-        tagPanel.setBackground( b);
+        title.setForeground( misc.clrTextActive);
+        starTitle.setForeground(misc.clrTextActive);
+        this.setBackground( misc.clrSelected);
+        topPanel.setBackground( misc.clrSelected);
+        tagPanel.setBackground( misc.clrSelected);
     }
 
     public void unselect(){
         // get the default color
         //Color defColor = UIManager.getColor("Panel.background");
-        title.setForeground( textDefaut);
-        starTitle.setForeground( textDefaut);
-        this.setBackground(clrDefault);
-        topPanel.setBackground(clrDefault);
-        tagPanel.setBackground(clrDefault);
+        title.setForeground( misc.clrThemeText);
+        starTitle.setForeground( misc.clrThemeText);
+        this.setBackground(misc.clrMainTheme1);
+        topPanel.setBackground(misc.clrMainTheme1);
+        tagPanel.setBackground(misc.clrMainTheme1);
         retractview();
     }
 

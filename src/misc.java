@@ -1,3 +1,4 @@
+import java.awt.*;
 
 // A place for miscellaneous functions etc
 public class misc {
@@ -8,6 +9,15 @@ public class misc {
     public enum SORT_TYPE{
         RATING, NAME, DATE
     }
+
+    public static Color clrMainTheme    = Color.gray;
+    public static Color clrMainTheme1   = Color.darkGray;
+    public static Color clrThemeText    = Color.white;
+    public static Color clrTextActive   = Color.white;
+    public static Color clrHover        = new Color(128, 167, 255);
+    public static Color clrSelected     = new Color(65,185, 255); //new Color(65, 185, 255);
+    public static Color clrHoverSelect  = new Color(65,185, 255);
+
 
     // drop common setting here
 }
