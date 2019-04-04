@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class SampleSafeCommunityView extends JFrame {
 
-    SampleSafe ss;
+    private SampleSafe ss;
     private SearchBarPanel searchBarPanel;
     private ResultPanel resultPanel;
     private OtherButtonsPanelCommunity communityPanel;
@@ -25,6 +25,7 @@ public class SampleSafeCommunityView extends JFrame {
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        result = new ArrayList<Sample>();
 
         resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
         infoPanel = new InfoPanel(ss);
@@ -45,6 +46,10 @@ public class SampleSafeCommunityView extends JFrame {
         box.add(Box.createHorizontalGlue());
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
+
+        result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Blam!", "Boop"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
+        displayResult(result);
+
         this.setSize(new Dimension(900, 800));
         this.setResizable(false);
         this.setLocationRelativeTo(null);

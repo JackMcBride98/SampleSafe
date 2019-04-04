@@ -1,7 +1,8 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 // A place for miscellaneous functions etc
-public class misc {
+public class Misc {
 
     public static SORT_TYPE t = SORT_TYPE.RATING;
     public static Boolean asc = true;

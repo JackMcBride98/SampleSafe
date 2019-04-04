@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SampleSafeMainView extends JFrame{
 
@@ -13,6 +14,7 @@ public class SampleSafeMainView extends JFrame{
     private OtherButtonsPanelMain otherButtonsPanel;
     private SampleAuditionPanel auditionPanel;
     public ArrayList<Sample> result;
+
     public SampleSafeMainView(SampleSafe ss){
         this.ss = ss;
     }
@@ -22,7 +24,7 @@ public class SampleSafeMainView extends JFrame{
 
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        result = new ArrayList<Sample>();
 
         resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
         infoPanel = new InfoPanel(ss);
@@ -50,9 +52,11 @@ public class SampleSafeMainView extends JFrame{
         box.add(Box.createRigidArea(new Dimension(1,0)));
         box.add(Box.createHorizontalGlue());
         box.add(otherButtonsPanel);
-        add(box, BorderLayout.PAGE_END);
+        add(box);
         bottomPanel.add(box, BorderLayout.LINE_END);
-        this.add(bottomPanel);
+
+        result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Blam!", "Boop"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
+        displayResult(result);
 
         this.setSize(new Dimension(900, 800));
         this.setResizable(false);
@@ -78,3 +82,4 @@ public class SampleSafeMainView extends JFrame{
         return auditionPanel;
     }
 }
+

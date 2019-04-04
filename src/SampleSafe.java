@@ -1,14 +1,12 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.ImageObserver;
 
 public class SampleSafe extends JFrame {
 
     //0 == ssmv, 1 == sscv
     private int currentView;
 
-    protected SampleSafeMainView ssmv;
-    protected SampleSafeCommunityView sscv;
+    private SampleSafeMainView ssmv;
+    private SampleSafeCommunityView sscv;
 
     public SampleSafe(){
         this.ssmv = new SampleSafeMainView(this);

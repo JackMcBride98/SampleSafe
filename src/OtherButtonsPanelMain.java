@@ -39,8 +39,8 @@ public class OtherButtonsPanelMain extends JPanel{
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File[] files = importBtn.getSelectedFiles();
                     for(int i = 0; i < files.length; i++) {
-                        rp.getSamples().add(new Sample(files[i].getName(), 0, new String[]{""}, "", new Date(), "", files[i].toString(), false, true, false));
-                        rp.displayResult(rp.getSamples());
+                        ss.getSSMV().result.add(new Sample(files[i].getName(), 0, new String[]{}, "", new Date(), "", files[i].toString(), false, true, false));
+                        ss.getSSMV().displayResult(ss.getSSMV().result);
                         try {
                             Files.copy(Paths.get(files[i].toString()), Paths.get((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName())), REPLACE_EXISTING);
 

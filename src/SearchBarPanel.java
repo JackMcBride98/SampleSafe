@@ -3,21 +3,20 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
 import java.util.Collections;
 
 public class SearchBarPanel extends JPanel {
 
-    SortOptionFrame     sof;
-    FilterOptionFrame   fof;
+    SortOptionFrame sof;
+    FilterOptionFrame fof;
     SampleSafe ss;
     public SearchBarPanel(SampleSafe ss) {
         JPanel holder = new JPanel();
         holder.setBorder(new EmptyBorder( 0x00,0x19,0x00,0x19));
         holder.setBackground(new Color(100,100,100));
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
-        this.setBackground(misc.clrMainTheme2);
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, misc.clrMainTheme1));
+        this.setBackground(Misc.clrMainTheme2);
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Misc.clrMainTheme1));
         this.ss = ss;
 
         JButton searchButton = new JButton("SEARCH");
@@ -64,11 +63,11 @@ public class SearchBarPanel extends JPanel {
                 sof.close_dialog();
                 String n = ((JButton) e.getSource()).getText();
                 if(n.equals("Rating"))
-                    sort_by(misc.SORT_TYPE.RATING);
+                    sort_by(Misc.SORT_TYPE.RATING);
                 else if(n.equals("Sample Name"))
-                    sort_by(misc.SORT_TYPE.NAME);
+                    sort_by(Misc.SORT_TYPE.NAME);
                 else
-                    sort_by(misc.SORT_TYPE.DATE);
+                    sort_by(Misc.SORT_TYPE.DATE);
             }
         };
         sof = new SortOptionFrame(sortOpListener, sortButton);
@@ -86,22 +85,21 @@ public class SearchBarPanel extends JPanel {
         JOptionPane.showMessageDialog(null, "Apparently its searching...");
     }
 
-    public void sort_by(misc.SORT_TYPE sType){
+    public void sort_by(Misc.SORT_TYPE sType){
         // Set the sorting type
-        misc.t = sType;
-        if(misc.t == sType){ // if its the same type as before.
+        Misc.t = sType;
+        if(Misc.t == sType){ // if its the same type as before.
             // alter the sort order
-            misc.asc = !misc.asc;
-        }else{ misc.asc = true;} // default is true for asc
+            Misc.asc = !Misc.asc;
+        }else{ Misc.asc = true;} // default is true for asc
 
 
-        if (ss.getCurrentView() == 1){
-
-            if(misc.asc){Collections.sort(ss.getSSMV().result);}
+        if (ss.getCurrentView() == 0){
+            if(Misc.asc){Collections.sort(ss.getSSMV().result);}
             else{Collections.sort(ss.getSSMV().result, Collections.reverseOrder());}
             ss.getSSMV().displayResult(ss.getSSMV().result);
         }else{
-            if(misc.asc){Collections.sort(ss.getSSCV().result);}
+            if(Misc.asc){Collections.sort(ss.getSSCV().result);}
             else{Collections.sort(ss.getSSCV().result, Collections.reverseOrder());}
             ss.getSSCV().displayResult(ss.getSSCV().result);
         }
