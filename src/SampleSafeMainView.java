@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SampleSafeMainView extends JFrame{
 
@@ -19,16 +20,15 @@ public class SampleSafeMainView extends JFrame{
     }
 
     public void Setup(){
-        this.setTitle("SampleSafe");
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setTitle("Sample Safe");
+
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        result = new ArrayList<Sample>();
 
         resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
         infoPanel = new InfoPanel(ss);
         searchBarPanel = new SearchBarPanel(ss);
-        searchBarPanel.setBorder(new EmptyBorder(20, 10, 10, 10));
         otherButtonsPanel = new OtherButtonsPanelMain(ss, ss.getSSCV(), resultPanel);
         profilePanel = new ProfilePanel(ss);
         auditionPanel = new SampleAuditionPanel(ss);
@@ -52,10 +52,15 @@ public class SampleSafeMainView extends JFrame{
         box.add(Box.createRigidArea(new Dimension(1,0)));
         box.add(Box.createHorizontalGlue());
         box.add(otherButtonsPanel);
-        box.setBorder(new EmptyBorder(75, 10, 10, 10));
+        add(box);
         bottomPanel.add(box, BorderLayout.LINE_END);
 
+        result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Blam!", "Boop"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
+        displayResult(result);
 
+        this.setSize(new Dimension(900, 800));
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
         revalidate();
     }
 
@@ -77,3 +82,4 @@ public class SampleSafeMainView extends JFrame{
         return auditionPanel;
     }
 }
+

@@ -12,19 +12,17 @@ public class SearchBarPanel extends JPanel {
     SampleSafe ss;
     public SearchBarPanel(SampleSafe ss) {
         JPanel holder = new JPanel();
-        holder.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
+        holder.setBorder(new EmptyBorder( 0x00,0x19,0x00,0x19));
         holder.setBackground(new Color(100,100,100));
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
-        this.setBackground(new Color(100, 100, 100));
-        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.DARK_GRAY));
+        this.setBackground(Misc.clrMainTheme2);
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Misc.clrMainTheme1));
         this.ss = ss;
 
         JButton searchButton = new JButton("SEARCH");
         JButton filterButton = new JButton("FILTER");
         JButton sortButton = new JButton("SORT");
         JTextField searchField = new JTextField(25);
-
-        searchField.setFont(searchField.getFont().deriveFont(18.0f));
 
         holder.add(searchButton);
         holder.add(searchField);
@@ -96,8 +94,7 @@ public class SearchBarPanel extends JPanel {
         }else{ Misc.asc = true;} // default is true for asc
 
 
-        if (ss.getCurrentView() == 1){
-
+        if (ss.getCurrentView() == 0){
             if(Misc.asc){Collections.sort(ss.getSSMV().result);}
             else{Collections.sort(ss.getSSMV().result, Collections.reverseOrder());}
             ss.getSSMV().displayResult(ss.getSSMV().result);

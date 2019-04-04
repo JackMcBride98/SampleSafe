@@ -30,13 +30,6 @@ public class SampleListItem extends JPanel {
 
     // Some variables for the selection of samples
     private boolean     isSelected;
-    private Color       textDefaut      = Color.WHITE;
-    private Color       textActive      = Color.WHITE;
-    private Color       clrDefault      = Color.darkGray;
-    private Color       clrHover        = new Color(128, 167, 255);
-    private Color       clrSelected     = new Color(65,185, 255); //new Color(65, 185, 255);
-    private Color       clrHoverSelect  = new Color(65,185, 255);
-
     public SampleListItem(Sample sample, int currentView, ResultPanel rp, SampleSafeMainView ssmv, SampleSafeCommunityView sscv){
 
         // Drag&Drop Stuff
@@ -90,9 +83,9 @@ public class SampleListItem extends JPanel {
             public void mouseEntered(MouseEvent evt){
                 Color c;
                 if(isSelected)
-                    c = clrHoverSelect;
+                    c = Misc.clrHoverSelect;
                 else
-                    c = clrHover;
+                    c = Misc.clrHover;
 
                 setBackground(c);
                 topPanel.setBackground(c);
@@ -125,9 +118,10 @@ public class SampleListItem extends JPanel {
                     e.printStackTrace();
                 }
 
+
                 ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
                 ssmv.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
-                ssmv.getAuditionPanel().revalidate();
+                //ssmv.getAuditionPanel().revalidate();
 
 
                 String soundName = sample.getUrl();
@@ -153,7 +147,7 @@ public class SampleListItem extends JPanel {
      */
     private void expandview(){
         this.removeAll();
-        this.setPreferredSize(new Dimension(640, 140));
+        this.setPreferredSize(new Dimension(480, 140));
         add(title, BorderLayout.PAGE_START);
         add(topPanel, BorderLayout.LINE_START);
         add(tagPanel, BorderLayout.PAGE_END);
@@ -166,7 +160,7 @@ public class SampleListItem extends JPanel {
      */
     private void retractview(){
         this.removeAll();
-        this.setPreferredSize(new Dimension(640, 50));
+        this.setPreferredSize(new Dimension(480, 50));
         add(title, BorderLayout.LINE_START);
         starTitle.setText(sample.getStars() + "/5");
         add(starTitle, BorderLayout.LINE_END);
@@ -227,22 +221,21 @@ public class SampleListItem extends JPanel {
     }
 
     public void selected(){
-        Color b = clrSelected;
-        title.setForeground( textActive);
-        starTitle.setForeground( textActive);
-        this.setBackground( b);
-        topPanel.setBackground( b);
-        tagPanel.setBackground( b);
+        title.setForeground( Misc.clrTextActive);
+        starTitle.setForeground(Misc.clrTextActive);
+        this.setBackground( Misc.clrSelected);
+        topPanel.setBackground( Misc.clrSelected);
+        tagPanel.setBackground( Misc.clrSelected);
     }
 
     public void unselect(){
         // get the default color
         //Color defColor = UIManager.getColor("Panel.background");
-        title.setForeground( textDefaut);
-        starTitle.setForeground( textDefaut);
-        this.setBackground(clrDefault);
-        topPanel.setBackground(clrDefault);
-        tagPanel.setBackground(clrDefault);
+        title.setForeground( Misc.clrThemeText);
+        starTitle.setForeground( Misc.clrThemeText);
+        this.setBackground(Misc.clrMainTheme1);
+        topPanel.setBackground(Misc.clrMainTheme1);
+        tagPanel.setBackground(Misc.clrMainTheme1);
         retractview();
     }
 

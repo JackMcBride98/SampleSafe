@@ -39,8 +39,6 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
             sampleWaveformPicLabel = new JLabel(new ImageIcon(waveFormPicture));
             add(sampleWaveformPicLabel);
             add(playButton);
-            sampleWaveformPicLabel = new JLabel(new ImageIcon(ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav" + " Pic")))));
-            revalidate();
         } catch (Exception e){
             e.printStackTrace();
         }

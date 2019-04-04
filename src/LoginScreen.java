@@ -7,19 +7,17 @@ public class LoginScreen {
 
     public LoginScreen(SampleSafe ss, SampleSafeMainView ssmv, SampleSafeCommunityView sscv){
         JFrame jF = new JFrame();
-        jF.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //jF.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jF.setLayout(new BorderLayout());
         jF.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //String t = "<html><body width='%5s'><h1>Label Width</h1>";
-        JLabel title = new JLabel("Sample Safe");
-        title.setFont(new Font("Arial", Font.PLAIN, 150));
-        title.setHorizontalAlignment(JLabel.CENTER);
-        jF.add(title, BorderLayout.PAGE_START);
-
         LoginPanel loginPanel = new LoginPanel(ssmv, jF);
         jF.add(loginPanel, BorderLayout.CENTER);
 
+        jF.setSize(new Dimension( 360, 300));
+        jF.setLocationRelativeTo(null);
+        jF.setResizable(false);
         jF.setVisible(true);
     }
 }

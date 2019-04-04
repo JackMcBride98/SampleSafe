@@ -13,7 +13,7 @@ public class FilterOptionFrame extends CustomPopUp {
     JTextField authorField;
 
     public FilterOptionFrame(ActionListener al, JButton parent){
-        super(200, 100, parent);
+        super(200, 120, parent);
         /** Waiting for Implementation **/
         this.getContentPane().setLayout(new BoxLayout( getContentPane(), BoxLayout.Y_AXIS));
         this.getContentPane().add(new JLabel("Filter by:"));
