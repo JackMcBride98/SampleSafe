@@ -19,7 +19,7 @@ public class LoginPanel extends JPanel {
     private JLabel title;
     Random rand = new Random();
 
-    public LoginPanel(SampleSafeMainView ssmv, JFrame frame){
+    public LoginPanel(SampleSafe ss, JFrame frame){
         this.setForeground(Misc.clrThemeText);
         this.setBackground(Misc.clrMainTheme1);
 
@@ -64,7 +64,7 @@ public class LoginPanel extends JPanel {
                 dir.mkdirs();
                 System.out.println(System.getProperty("user.home"));
                 frame.setVisible(false);
-                ssmv.setVisible(true);
+                ss.getSSMV().setVisible(true);
             }
         });
         this.signUpButton = new JButton("Sign Up");

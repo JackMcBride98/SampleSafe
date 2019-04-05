@@ -52,6 +52,6 @@ public class SampleSafe extends JFrame {
 
         ss.setLookAndFeel();
 
-        new LoginScreen(ss, ss.ssmv, ss.sscv);
+        new LoginScreen(ss);
     }
 }

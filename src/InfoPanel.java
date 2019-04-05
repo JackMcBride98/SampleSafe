@@ -5,7 +5,7 @@ public class InfoPanel extends JPanel{
 
     private SampleSafe ss;
 
-    private JLabel titleLabel, authorLabel, dateLabel, etcLabel, descLabel, tagLabel;
+    private JLabel titleLabel, authorLabel, dateLabel, descLabel, tagLabel;
     private JTextField titleField, authorField, dateField;
     private JTextArea descTextArea;
     private JButton addButton, saveButton, cancelButton, deletButton, editButton;
@@ -13,7 +13,7 @@ public class InfoPanel extends JPanel{
     private JPanel dataPanel, tagPanel, commPanel, buttPanel;
     private TagPanel tagListPanel, edDelPanel;
     private Checkbox sharePublic, shareFriend, shareGroup;
-    private String tags[] = {"", "kick", "whip", "epic", "dank", "sexy ass ping sound", "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"};
+    private String tags[] = {"Kick", "Whip", "Epic", "Dank"};
     private Sample tempSample;
 
     public InfoPanel(SampleSafe ss){
@@ -25,14 +25,13 @@ public class InfoPanel extends JPanel{
         buttPanel = new JPanel();
 
         setBackground(new Color(65,185, 255));
-        setPreferredSize(new Dimension((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth()*1/3, 100));
+        setPreferredSize(new Dimension(370, 100));
 
 
         //names that appear next to fields etc
         titleLabel = new JLabel("Name:");
         authorLabel = new JLabel("Author:");
         dateLabel = new JLabel("Date:");
-        etcLabel = new JLabel("etc ....");
         descLabel = new JLabel("Description:");
         tagLabel= new JLabel("Tags:");
         //text fields
@@ -124,7 +123,6 @@ public class InfoPanel extends JPanel{
         setPosition(1, 1, authorField, gc, dataPanel);
         setPosition(0, 2, dateLabel, gc, dataPanel);
         setPosition(1, 2, dateField, gc, dataPanel);
-        setPosition(0, 3, etcLabel, gc, dataPanel);
         //description box
         setPosition(0, 4, descLabel, gc, dataPanel);
         gc.gridwidth = 2;

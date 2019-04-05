@@ -8,8 +8,6 @@ import java.util.Date;
 
 public class ResultPanel extends JPanel {
 
-    private SampleSafeMainView ssmv;
-    private SampleSafeCommunityView sscv;
     private SampleListItem preItem;
     private ArrayList<Sample> samples = new ArrayList();
 
@@ -19,10 +17,10 @@ public class ResultPanel extends JPanel {
     private SampleListItem sli;
     private JPanel resultView;
     private JScrollPane scrollResultView;
+    private SampleSafe ss;
 
-    public ResultPanel(SampleSafeMainView mv, SampleSafeCommunityView cv){
-        this.ssmv = mv;
-        this.sscv = cv;
+    public ResultPanel(SampleSafe ss){
+        this.ss = ss;
         this.setLayout(new BorderLayout());
         this.setBackground(Misc.clrMainTheme);
         this.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
@@ -80,9 +78,8 @@ public class ResultPanel extends JPanel {
        // Instantiate new sample list item components
        for(int i = 0; i < result.size(); i++){
            // Pass display sample
-           sli = new SampleListItem(result.get(i), ssmv.getSS().getCurrentView(), this, ssmv, sscv);
-           sli.setBorder(BorderFactory.createMatteBorder(
-                   2, 2, 2, 20, Color.gray));
+           sli = new SampleListItem(result.get(i), this, ss);
+           sli.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 20, Color.gray));
            // Add to view
            rView.add(sli);
        }

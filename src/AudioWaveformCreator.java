@@ -94,7 +94,7 @@ public class AudioWaveformCreator {
                 }
             }
             int w = 500;
-            int h = 200;
+            int h = 80;
             int[] audioData = null;
             if (format.getSampleSizeInBits() == 16) {
                 int nlengthInSamples = audioBytes.length / 2;
@@ -151,7 +151,7 @@ public class AudioWaveformCreator {
 
         public void saveToFile(String filename) {
             int w = 500;
-            int h = 200;
+            int h = 80;
             int INFOPAD = 15;
 
             BufferedImage bufferedImage = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);

@@ -26,10 +26,10 @@ public class SampleSafeMainView extends JFrame{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         result = new ArrayList<Sample>();
 
-        resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
+        resultPanel = new ResultPanel(ss);
         infoPanel = new InfoPanel(ss);
         searchBarPanel = new SearchBarPanel(ss);
-        otherButtonsPanel = new OtherButtonsPanelMain(ss, ss.getSSCV(), resultPanel);
+        otherButtonsPanel = new OtherButtonsPanelMain(ss, resultPanel);
         profilePanel = new ProfilePanel(ss);
         auditionPanel = new SampleAuditionPanel(ss);
         add(resultPanel, BorderLayout.LINE_START);

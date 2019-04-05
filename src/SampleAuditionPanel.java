@@ -37,6 +37,7 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
             awc.createAudioInputStream();
             BufferedImage waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav" + " Pic")));
             sampleWaveformPicLabel = new JLabel(new ImageIcon(waveFormPicture));
+            sampleWaveformPicLabel.setSize(new Dimension(680, 80));
             add(sampleWaveformPicLabel);
             add(playButton);
         } catch (Exception e){

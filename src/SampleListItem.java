@@ -28,9 +28,12 @@ public class SampleListItem extends JPanel {
     private TagPanel tagPanel;
     private JButton     btnStars[];
 
+    private SampleSafe ss;
+
     // Some variables for the selection of samples
     private boolean     isSelected;
-    public SampleListItem(Sample sample, int currentView, ResultPanel rp, SampleSafeMainView ssmv, SampleSafeCommunityView sscv){
+    public SampleListItem(Sample sample, ResultPanel rp, SampleSafe ss){
+        this.ss = ss;
 
         // Drag&Drop Stuff
         this.addMouseListener(new DraggableMouseListener());
@@ -97,10 +100,10 @@ public class SampleListItem extends JPanel {
             }
 
             public void mousePressed(MouseEvent evt) {
-                if(currentView == 0){
-                    ssmv.displaySample(sample);
+                if(ss.getCurrentView() == 0){
+                    ss.getSSMV().displaySample(sample);
                 }else{
-                    sscv.displaySample(sample);
+                    ss.getSSCV().displaySample(sample);
                 }
                 isSelected = true;
                 changeSelectionStatus(true);
@@ -110,7 +113,6 @@ public class SampleListItem extends JPanel {
                 BufferedImage waveFormPicture = null;
 
                 try {
-                    System.out.println(sample.getTitle());
                     AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()) + " Pic");
                     awc.createAudioInputStream();
                     waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle() + " Pic")));
@@ -120,8 +122,7 @@ public class SampleListItem extends JPanel {
 
 
                 ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
-                ssmv.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
-                //ssmv.getAuditionPanel().revalidate();
+                ss.getSSMV().getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
 
 
                 String soundName = sample.getUrl();
