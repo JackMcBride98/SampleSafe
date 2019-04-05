@@ -5,8 +5,10 @@ import java.awt.*;
 public class TagPanel extends JPanel {
     private String      tags[];
     private boolean     shouldDelete = false;
+    private Sample sample;
 
-    public TagPanel(){
+    public TagPanel(Sample s){
+        this.sample = s;
         this.setLayout( new FlowLayout(FlowLayout.LEFT));
     }
 
@@ -78,6 +80,7 @@ public class TagPanel extends JPanel {
             new_tags[i] = t[i];
         }
         new_tags[new_tags.length - 1] = a;
+        //sample.setTags(new_tags);
         return new_tags;
     }
 
@@ -98,4 +101,7 @@ public class TagPanel extends JPanel {
     return t;
     }
 
+    public String[] getTags() {
+        return tags;
+    }
 }

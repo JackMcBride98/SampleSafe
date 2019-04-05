@@ -12,9 +12,10 @@ public class InfoPanel extends JPanel{
     private JComboBox tagComBox;
     private JPanel dataPanel, tagPanel, commPanel, buttPanel;
     private TagPanel tagListPanel, edDelPanel;
-    private Checkbox sharePublic, shareFriend, shareGroup;
-    private String tags[] = {"Kick", "Whip", "Epic", "Dank"};
-    private Sample tempSample;
+    private Checkbox sharePublic, shareGroup;
+    private String tagOptions[] = {"Snare", "Clap", "Heavy", "Funky"};
+    private String tags[] = {};
+    private Sample sample;
 
     public InfoPanel(SampleSafe ss){
         this.ss = ss;
@@ -46,20 +47,19 @@ public class InfoPanel extends JPanel{
         scrollPane.setPreferredSize(new Dimension(275, 75));
 
         //combo box
-        tagComBox = new JComboBox(tags);
+        tagComBox = new JComboBox(tagOptions);
         tagComBox.setEditable(true);
         tagComBox.setSize(80, 10);
 
-        tagListPanel = new TagPanel();
+        tagListPanel = new TagPanel(sample);
         tagListPanel.setPreferredSize(new Dimension(100, 300));
         tagListPanel.setBackground(new Color(60,160, 255));
         JScrollPane tagScrollPane = new JScrollPane(tagListPanel);
         tagScrollPane.setPreferredSize(new Dimension(90, 90));
 
         //check boxes
-        sharePublic = new Checkbox("Make public");
-        shareFriend = new Checkbox("Share with friends");
-        shareGroup = new Checkbox("Share with groups");
+        sharePublic = new Checkbox("Make Public");
+        shareGroup = new Checkbox("Share with Group");
 
         //buttons
         addButton = new JButton("Add");
@@ -70,22 +70,22 @@ public class InfoPanel extends JPanel{
 
         addButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
-                if(tempSample != null && tagComBox.getEditor().getItem() != "")
+                if(sample != null && tagComBox.getEditor().getItem() != "")
                     addTags("" + tagComBox.getEditor().getItem());
             }
         });
 
         saveButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
-                if(tempSample != null)
+                if(sample != null)
                     saveData();
             }
         });
 
         cancelButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
-                if(tempSample != null)
-                    displaySample(tempSample);
+                if(sample != null)
+                    displaySample(sample);
             }
         });
 
@@ -142,7 +142,6 @@ public class InfoPanel extends JPanel{
 
         //checkbox
         setPosition(0, 0, sharePublic, gc, commPanel);
-        setPosition(0, 1, shareFriend, gc, commPanel);
         setPosition(0, 2, shareGroup, gc, commPanel);
 
         //buttons
@@ -160,25 +159,31 @@ public class InfoPanel extends JPanel{
     //display sample data in text fields
     public void displaySample(Sample sample){
         setSample(sample);
-        titleField.setText(sample.getTitle());
+        tags = sample.getTags();
+        titleField.setText(sample.getTempTitle());
         authorField.setText(sample.getAuthor());
         dateField.setText((sample.getCreationDate().toString()));
         descTextArea.setText(sample.getDescription());
         tagListPanel.loadTags(sample.getTags());
         sharePublic.setState(sample.getSharePublic());
-        shareFriend.setState(sample.getShareFriends());
         shareGroup.setState(sample.getShareGroup());
         repaint();
         //url...
     }
 
-    public void setSample(Sample sample){
-        tempSample = sample;
+    public void setSample(Sample s){
+        sample = s;
     }
 
     public void saveData(){
-        descTextArea.setText("saved");
-        //ss.save(titleField.getText(), authorField.getText(), dateField.getText(), descTextArea.getText(), Sample.getTags(), sharePublic.getState(), shareFriend.getState(), shareGroup.getState());
+        sample.setTitle(titleField.getText());
+        sample.setAuthor(authorField.getText());
+        //sample.setDate(dateField.getText());
+        sample.setDescription(descTextArea.getText());
+        sample.setTags(tagListPanel.getTags());
+        sample.setSharePublic(sharePublic.getState());
+        sample.setShareGroup(shareGroup.getState());
+        ss.getSSMV().displayResult(ss.getSSMV().result);
     }
 
     private void addTags(String tags){

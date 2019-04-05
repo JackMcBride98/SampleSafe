@@ -20,8 +20,8 @@ public class OtherButtonsPanelMain extends JPanel{
         JButton importButton = new JButton("IMPORT");
         importButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        //JButton communityButton = new JButton("COMMUNITY");
-        //communityButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        JButton communityButton = new JButton("COMMUNITY");
+        communityButton.setFont(new Font("Arial", Font.PLAIN, 20));
         JFileChooser importBtn = new JFileChooser();
         importBtn.setMultiSelectionEnabled(true);
         /*communityButton.addActionListener(new ActionListener() {
@@ -71,6 +71,6 @@ public class OtherButtonsPanelMain extends JPanel{
         FlowLayout flowLayout = new FlowLayout();
         setLayout(flowLayout);
         this.add(importButton);
-        //add(communityButton);
+        add(communityButton);
     }
 }

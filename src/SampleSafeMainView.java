@@ -39,7 +39,7 @@ public class SampleSafeMainView extends JFrame{
         topPanel.setLayout(new BorderLayout());
         this.add(topPanel, BorderLayout.PAGE_START);
         topPanel.add(searchBarPanel, BorderLayout.CENTER);
-        topPanel.add(profilePanel, BorderLayout.LINE_END);
+        //topPanel.add(profilePanel, BorderLayout.LINE_END);
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BorderLayout());
@@ -55,7 +55,7 @@ public class SampleSafeMainView extends JFrame{
         add(box);
         bottomPanel.add(box, BorderLayout.LINE_END);
 
-        result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Blam!", "Boop"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
+        result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Heavy", "Funky"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
         displayResult(result);
 
         this.setSize(new Dimension(900, 800));

@@ -53,7 +53,7 @@ public class SampleListItem extends JPanel {
         //topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
 
         /* Assigning sample name to the text of title label */
-        title = new JLabel(sample.getTitle());
+        title = new JLabel(sample.getTempTitle());
         title.setFont(new Font("Arial", Font.BOLD, 18));
         title.setBorder(new EmptyBorder(0x0F, 0x0F, 0x0F, 0x00)); // T, L, B, R
 
@@ -74,7 +74,7 @@ public class SampleListItem extends JPanel {
         }
         highlightStars(sample.getStars());
 
-        /** Create tags & add to belPanel **/
+        /** Create tags & add to tagPanel **/
         tagPanel = new TagPanel(sample.getTags());
 
         /* Add panels to this **/
@@ -113,9 +113,9 @@ public class SampleListItem extends JPanel {
                 BufferedImage waveFormPicture = null;
 
                 try {
-                    AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()) + " Pic");
+                    AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle()) + " Pic");
                     awc.createAudioInputStream();
-                    waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle() + " Pic")));
+                    waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle() + " Pic")));
                  } catch (Exception e) {
                     e.printStackTrace();
                 }
