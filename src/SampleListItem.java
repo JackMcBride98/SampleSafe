@@ -28,9 +28,12 @@ public class SampleListItem extends JPanel {
     private TagPanel tagPanel;
     private JButton     btnStars[];
 
+    private SampleSafe ss;
+
     // Some variables for the selection of samples
     private boolean     isSelected;
-    public SampleListItem(Sample sample, int currentView, ResultPanel rp, SampleSafeMainView ssmv, SampleSafeCommunityView sscv){
+    public SampleListItem(Sample sample, ResultPanel rp, SampleSafe ss){
+        this.ss = ss;
 
         // Drag&Drop Stuff
         this.addMouseListener(new DraggableMouseListener());
@@ -50,7 +53,7 @@ public class SampleListItem extends JPanel {
         //topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
 
         /* Assigning sample name to the text of title label */
-        title = new JLabel(sample.getTitle());
+        title = new JLabel(sample.getTempTitle());
         title.setFont(new Font("Arial", Font.BOLD, 18));
         title.setBorder(new EmptyBorder(0x0F, 0x0F, 0x0F, 0x00)); // T, L, B, R
 
@@ -71,7 +74,7 @@ public class SampleListItem extends JPanel {
         }
         highlightStars(sample.getStars());
 
-        /** Create tags & add to belPanel **/
+        /** Create tags & add to tagPanel **/
         tagPanel = new TagPanel(sample.getTags());
 
         /* Add panels to this **/
@@ -97,10 +100,10 @@ public class SampleListItem extends JPanel {
             }
 
             public void mousePressed(MouseEvent evt) {
-                if(currentView == 0){
-                    ssmv.displaySample(sample);
+                if(ss.getCurrentView() == 0){
+                    ss.getSSMV().displaySample(sample);
                 }else{
-                    sscv.displaySample(sample);
+                    ss.getSSCV().displaySample(sample);
                 }
                 isSelected = true;
                 changeSelectionStatus(true);
@@ -110,18 +113,16 @@ public class SampleListItem extends JPanel {
                 BufferedImage waveFormPicture = null;
 
                 try {
-                    System.out.println(sample.getTitle());
-                    AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle()) + " Pic");
+                    AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle()) + " Pic");
                     awc.createAudioInputStream();
-                    waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getTitle() + " Pic")));
+                    waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle() + " Pic")));
                  } catch (Exception e) {
                     e.printStackTrace();
                 }
 
 
                 ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
-                ssmv.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
-                //ssmv.getAuditionPanel().revalidate();
+                ss.getSSMV().getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
 
 
                 String soundName = sample.getUrl();

@@ -27,11 +27,11 @@ public class SampleSafeCommunityView extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         result = new ArrayList<Sample>();
 
-        resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
+        resultPanel = new ResultPanel(ss);
         infoPanel = new InfoPanel(ss);
         searchBarPanel = new SearchBarPanel(ss);
         profilePanel = new ProfilePanel(ss);
-        communityPanel = new OtherButtonsPanelCommunity(ss, ss.getSSCV());
+        communityPanel = new OtherButtonsPanelCommunity(ss);
         add(resultPanel, BorderLayout.LINE_START);
         add(infoPanel, BorderLayout.LINE_END);
 

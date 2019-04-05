@@ -5,7 +5,8 @@ import java.util.Date;
  */
 public class Sample implements Comparable{
     /* Basic info to display*/
-    private String      title;
+    private String      fileTitle;
+    private String      tempTitle;
     private int         stars;
     private String[]    tags;
     private String      author;
@@ -19,7 +20,7 @@ public class Sample implements Comparable{
      * sets all variables to null!
      */
     public Sample(){
-        title  = "Unknown";
+        tempTitle  = "Unknown";
         stars  = 0;
         tags   = null;
         author = "Unknown";
@@ -38,7 +39,8 @@ public class Sample implements Comparable{
                   String description, String url,
                   Boolean sharePublic, Boolean shareFriends,
                   Boolean shareGroup){
-        this.title  = title;
+        this.fileTitle = title;
+        this.tempTitle  = title;
         this.stars  = stars;
         this.tags   = tags;
         this.author = author;
@@ -51,7 +53,7 @@ public class Sample implements Comparable{
     }
 
     /** Setters **/
-    public void setTitle(String title) { this.title = title;}
+    public void setTitle(String title) { this.tempTitle = title;}
     public void setStars(int    stars) {
         if(stars > 5 || stars < 0) stars = 0;
         else this.stars = stars;
@@ -68,7 +70,8 @@ public class Sample implements Comparable{
 
 
     /** Getters **/
-    public String   getTitle()          { return title;}
+    public String getFileTitle()          { return fileTitle;}
+    public String getTempTitle()          { return tempTitle;}
     public int      getStars()          { return stars;}
     public String[] getTags()           { return tags;}
     public String   getUrl()            { return url;}
@@ -84,7 +87,7 @@ public class Sample implements Comparable{
     public int compareTo(Object o) {
         Sample b = (Sample) o;
         if(Misc.t.equals(Misc.SORT_TYPE.NAME))
-            return (title.compareTo(b.getTitle()));
+            return (tempTitle.compareTo(b.getTempTitle()));
         if(Misc.t.equals(Misc.SORT_TYPE.RATING)){
             if(getStars() == b.getStars()) return 0;
             if(getStars() >  b.getStars()) return 1;

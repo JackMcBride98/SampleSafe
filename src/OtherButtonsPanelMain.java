@@ -15,22 +15,21 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class OtherButtonsPanelMain extends JPanel{
 
-    public OtherButtonsPanelMain(SampleSafe ss, SampleSafeCommunityView communityView, ResultPanel rp){
+    public OtherButtonsPanelMain(SampleSafe ss, ResultPanel rp){
 
         JButton importButton = new JButton("IMPORT");
-        //importButton.setFont(new Font("Arial", Font.PLAIN, 35));
-        JButton exportButton = new JButton("EXPORT");
-        //exportButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        importButton.setFont(new Font("Arial", Font.PLAIN, 20));
+
         JButton communityButton = new JButton("COMMUNITY");
-        //communityButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        communityButton.setFont(new Font("Arial", Font.PLAIN, 20));
         JFileChooser importBtn = new JFileChooser();
         importBtn.setMultiSelectionEnabled(true);
-        communityButton.addActionListener(new ActionListener() {
+        /*communityButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                communityView.setVisible(true);
+                ss.getSSCV().setVisible(true);
                 ss.getSSMV().setVisible(false);
             }
-        });
+        });*/
         importButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -71,8 +70,7 @@ public class OtherButtonsPanelMain extends JPanel{
 
         FlowLayout flowLayout = new FlowLayout();
         setLayout(flowLayout);
-        add(importButton);
-        add(exportButton);
+        this.add(importButton);
         add(communityButton);
     }
 }
