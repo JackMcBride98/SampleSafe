@@ -27,11 +27,11 @@ public class SampleSafeCommunityView extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         result = new ArrayList<Sample>();
 
-        resultPanel = new ResultPanel(ss.getSSMV(), ss.getSSCV());
+        resultPanel = new ResultPanel(ss);
         infoPanel = new InfoPanel(ss);
         searchBarPanel = new SearchBarPanel(ss);
         profilePanel = new ProfilePanel(ss);
-        communityPanel = new OtherButtonsPanelCommunity(ss, ss.getSSCV());
+        communityPanel = new OtherButtonsPanelCommunity(ss);
         add(resultPanel, BorderLayout.LINE_START);
         add(infoPanel, BorderLayout.LINE_END);
 
@@ -46,6 +46,7 @@ public class SampleSafeCommunityView extends JFrame {
         box.add(Box.createHorizontalGlue());
         box.add(communityPanel);
         add(box, BorderLayout.PAGE_END);
+        this.setSize(new Dimension(850, 725));
 
         result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Blam!", "Boop"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
         displayResult(result);

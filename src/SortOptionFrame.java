@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 public class SortOptionFrame extends CustomPopUp {
 
     public SortOptionFrame(ActionListener al, JButton parent){
-      super(100, 100, parent);
+      super(125, 100, parent);
 
       // add sort optionsW
         this.getContentPane().setLayout(new BoxLayout( getContentPane(), BoxLayout.Y_AXIS));
