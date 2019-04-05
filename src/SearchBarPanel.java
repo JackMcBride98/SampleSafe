@@ -12,7 +12,7 @@ public class SearchBarPanel extends JPanel {
     SampleSafe ss;
     public SearchBarPanel(SampleSafe ss) {
         JPanel holder = new JPanel();
-        holder.setBorder(new EmptyBorder( 0x00,0x19,0x00,0x19));
+        holder.setBorder(new EmptyBorder( 0x00,0x0c,0x00,0x0c));
         holder.setBackground(new Color(100,100,100));
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         this.setBackground(Misc.clrMainTheme2);

@@ -25,7 +25,7 @@ public class ResultPanel extends JPanel {
         this.sscv = cv;
         this.setLayout(new BorderLayout());
         this.setBackground(Misc.clrMainTheme);
-        this.setBorder(new EmptyBorder( 0x19,0x19,0x19,0x19));
+        this.setBorder(new EmptyBorder( 0x0c,0x0c,0x0c,0x0c));
 
         // This is the panel containing the list items
         resultView = new JPanel();

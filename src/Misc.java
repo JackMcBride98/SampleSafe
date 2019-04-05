@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 
 // A place for miscellaneous functions etc
 public class Misc {
