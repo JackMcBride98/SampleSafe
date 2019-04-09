@@ -10,6 +10,8 @@ public class SearchBarPanel extends JPanel {
     private SortOptionFrame sof;
     private FilterOptionFrame fof;
     private TheSS ss;
+
+    JTextField searchField;
     public SearchBarPanel(TheSS ss) {
         JPanel holder = new JPanel();
         holder.setBorder(new EmptyBorder( 0x00,0x0c,0x00,0x0c));
@@ -22,7 +24,7 @@ public class SearchBarPanel extends JPanel {
         JButton searchButton = new JButton("SEARCH");
         JButton filterButton = new JButton("FILTER");
         JButton sortButton = new JButton("SORT");
-        JTextField searchField = new JTextField(25);
+        searchField = new JTextField(25);
 
         holder.add(searchButton);
         holder.add(searchField);
@@ -100,6 +102,6 @@ public class SearchBarPanel extends JPanel {
     }
 
     public void addToSearch(String c){
-
+        searchField.setText(searchField.getText() + "," + c);
     }
 }

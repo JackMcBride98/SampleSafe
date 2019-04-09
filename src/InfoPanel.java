@@ -176,7 +176,6 @@ public class InfoPanel extends JPanel{
         sharePublic.setState(sample.getSharePublic());
         shareGroup.setState(sample.getShareGroup());
         repaint();
-        //url...
     }
 
     public void setSample(Sample s){
