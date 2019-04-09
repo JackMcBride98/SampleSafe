@@ -11,20 +11,20 @@ import java.io.File;
 
 public class SampleAuditionPanel extends JPanel implements ActionListener {
 
-    private SampleSafe ss;
+    private TheSS ss;
     private AudioWaveformCreator awc;
     private JLabel sampleWaveformPicLabel;
     private JButton playButton;
     private AudioInputStream audioInputStream;
     private Clip clip;
 
-    public SampleAuditionPanel(SampleSafe ss){
+    public SampleAuditionPanel(TheSS ss){
         this.ss = ss;
         setLayout(new FlowLayout());
         playButton = new JButton("►");
         playButton.addActionListener(this);
         try{
-            audioInputStream = AudioSystem.getAudioInputStream(new File(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav")) ;
+            audioInputStream = AudioSystem.getAudioInputStream(new File(Misc.systemPath + "\\Demo.wav")) ;
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             // If you want the sound to loop infinitely, then put: clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -33,9 +33,9 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
             ex.printStackTrace();
         }
         try {
-            awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav"),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav") + " Pic");
+            awc = new AudioWaveformCreator((Misc.systemPath + "\\Demo.wav"),(Misc.systemPath + "\\Demo.wav") + " Pic");
             awc.createAudioInputStream();
-            BufferedImage waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + "Demo.wav" + " Pic")));
+            BufferedImage waveFormPicture = ImageIO.read(new File((Misc.systemPath + "\\Demo.wav" + " Pic")));
             sampleWaveformPicLabel = new JLabel(new ImageIcon(waveFormPicture));
             sampleWaveformPicLabel.setSize(new Dimension(680, 80));
             add(sampleWaveformPicLabel);

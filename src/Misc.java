@@ -44,8 +44,10 @@ public class Misc {
             ois.close();
             System.out.println("Samples Loaded!");
         }catch (IOException e){
+            System.out.println("IO EXCEPT HERE!");
             System.out.println(e.getMessage());
         }catch (ClassNotFoundException e){
+            System.out.println("CLASS NOT FOUND HERE!");
             System.out.println(e.getMessage());
         }
 
@@ -61,6 +63,7 @@ public class Misc {
             oos.close();
             System.out.println("Samples Saved!");
         }catch (IOException e){
+            System.out.println("That Flopped!");
             System.out.println(e.getMessage());
         }
     }

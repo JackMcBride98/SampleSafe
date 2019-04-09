@@ -19,7 +19,7 @@ public class LoginPanel extends JPanel {
     private FileWriter writer;
     Random rand = new Random();
 
-    public LoginPanel(SampleSafe ss, JFrame frame){
+    public LoginPanel(TheSS ss, JFrame frame){
         this.setForeground(Misc.clrThemeText);
         this.setBackground(Misc.clrMainTheme1);
 
@@ -70,7 +70,7 @@ public class LoginPanel extends JPanel {
                         dir.mkdirs();
                         System.out.println(System.getProperty("user.home"));
                         frame.setVisible(false);
-                        ss.getSSMV().setVisible(true);
+                        ss.setVisible(true);
                     }else{
                         JOptionPane.showMessageDialog(null, "Incorrect login details!");
                     }

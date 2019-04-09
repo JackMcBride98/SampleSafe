@@ -5,7 +5,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class LoginScreen {
 
-    public LoginScreen(SampleSafe ss){
+    public LoginScreen(TheSS ss){
         JFrame jF = new JFrame();
         //jF.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jF.setLayout(new BorderLayout());

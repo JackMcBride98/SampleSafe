@@ -9,13 +9,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class OtherButtonsPanelMain extends JPanel{
 
-    public OtherButtonsPanelMain(SampleSafe ss, ResultPanel rp){
+    public OtherButtonsPanelMain(TheSS ss, ResultPanel rp, ActionListener act){
 
         JButton importButton = new JButton("IMPORT");
         importButton.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -24,12 +25,7 @@ public class OtherButtonsPanelMain extends JPanel{
         communityButton.setFont(new Font("Arial", Font.PLAIN, 20));
         JFileChooser importBtn = new JFileChooser();
         importBtn.setMultiSelectionEnabled(true);
-        /*communityButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                ss.getSSCV().setVisible(true);
-                ss.getSSMV().setVisible(false);
-            }
-        });*/
+        communityButton.addActionListener(act);
         importButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,8 +34,9 @@ public class OtherButtonsPanelMain extends JPanel{
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File[] files = importBtn.getSelectedFiles();
                     for(int i = 0; i < files.length; i++) {
-                        ss.getSSMV().result.add(new Sample(files[i].getName(), 0, new String[]{}, "", new Date(), "", files[i].toString(), false, true, false));
-                        ss.getSSMV().displayResult(ss.getSSMV().result);
+                        Misc.local_samples.add(new Sample(files[i].getName(), 0, new ArrayList<String>(), "", new Date(), "", files[i].toString(), false, true, false));
+                        Misc.save_local();
+                        ss.displayResult(Misc.local_samples);
                         try {
                             Files.copy(Paths.get(files[i].toString()), Paths.get((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName())), REPLACE_EXISTING);
 
@@ -49,7 +46,7 @@ public class OtherButtonsPanelMain extends JPanel{
                             BufferedImage waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName() + " Pic")));
                             ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
 
-                            ss.getSSMV().getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
+                            ss.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
 
 
 

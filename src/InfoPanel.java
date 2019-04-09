@@ -1,9 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class InfoPanel extends JPanel{
 
-    private SampleSafe ss;
+    private TheSS ss;
 
     private JLabel titleLabel, authorLabel, dateLabel, descLabel, tagLabel;
     private JTextField titleField, authorField, dateField;
@@ -14,10 +17,10 @@ public class InfoPanel extends JPanel{
     private TagPanel tagListPanel, edDelPanel;
     private Checkbox sharePublic, shareGroup;
     private String tagOptions[] = {"Snare", "Clap", "Heavy", "Funky"};
-    private String tags[] = {};
+    private ArrayList<String> tags;
     private Sample sample;
 
-    public InfoPanel(SampleSafe ss){
+    public InfoPanel(TheSS ss){
         this.ss = ss;
 
         dataPanel = new JPanel();
@@ -51,7 +54,12 @@ public class InfoPanel extends JPanel{
         tagComBox.setEditable(true);
         tagComBox.setSize(80, 10);
 
-        tagListPanel = new TagPanel(sample);
+        tagListPanel = new TagPanel(new ArrayList<String>(), new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // do nothing
+            }
+        });
         tagListPanel.setPreferredSize(new Dimension(100, 300));
         tagListPanel.setBackground(new Color(60,160, 255));
         JScrollPane tagScrollPane = new JScrollPane(tagListPanel);
@@ -180,10 +188,11 @@ public class InfoPanel extends JPanel{
         sample.setAuthor(authorField.getText());
         //sample.setDate(dateField.getText());
         sample.setDescription(descTextArea.getText());
-        sample.setTags(tagListPanel.getTags());
+        sample.setTags(tagListPanel.get_tags());
         sample.setSharePublic(sharePublic.getState());
         sample.setShareGroup(shareGroup.getState());
-        ss.getSSMV().displayResult(ss.getSSMV().result);
+        ss.displayResult(Misc.local_samples);
+        Misc.save_local();
     }
 
     private void addTags(String tags){

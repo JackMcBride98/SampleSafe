@@ -28,11 +28,11 @@ public class SampleListItem extends JPanel {
     private TagPanel tagPanel;
     private JButton     btnStars[];
 
-    private SampleSafe ss;
+    private TheSS ss;
 
     // Some variables for the selection of samples
     private boolean     isSelected;
-    public SampleListItem(Sample sample, ResultPanel rp, SampleSafe ss){
+    public SampleListItem(Sample sample, ResultPanel rp, TheSS ss, ActionListener act){
         this.ss = ss;
 
         // Drag&Drop Stuff
@@ -75,7 +75,7 @@ public class SampleListItem extends JPanel {
         highlightStars(sample.getStars());
 
         /** Create tags & add to tagPanel **/
-        tagPanel = new TagPanel(sample.getTags());
+        tagPanel = new TagPanel(sample.getTags(), act);
 
         /* Add panels to this **/
         retractview();
@@ -100,11 +100,7 @@ public class SampleListItem extends JPanel {
             }
 
             public void mousePressed(MouseEvent evt) {
-                if(ss.getCurrentView() == 0){
-                    ss.getSSMV().displaySample(sample);
-                }else{
-                    ss.getSSCV().displaySample(sample);
-                }
+                ss.displaySample(sample);
                 isSelected = true;
                 changeSelectionStatus(true);
                 expandview();
@@ -113,16 +109,16 @@ public class SampleListItem extends JPanel {
                 BufferedImage waveFormPicture = null;
 
                 try {
-                    AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle()) + " Pic");
+                    AudioWaveformCreator awc = new AudioWaveformCreator((Misc.systemPath + "\\" + sample.getFileTitle()),(Misc.systemPath + "\\" + sample.getFileTitle()) + " Pic");
                     awc.createAudioInputStream();
-                    waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + sample.getFileTitle() + " Pic")));
+                    waveFormPicture = ImageIO.read(new File((Misc.systemPath +  "\\" + sample.getFileTitle() + " Pic")));
                  } catch (Exception e) {
                     e.printStackTrace();
                 }
 
 
                 ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
-                ss.getSSMV().getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
+                ss.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
 
 
                 String soundName = sample.getUrl();

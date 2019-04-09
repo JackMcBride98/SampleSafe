@@ -7,10 +7,10 @@ import java.util.Collections;
 
 public class SearchBarPanel extends JPanel {
 
-    SortOptionFrame sof;
-    FilterOptionFrame fof;
-    SampleSafe ss;
-    public SearchBarPanel(SampleSafe ss) {
+    private SortOptionFrame sof;
+    private FilterOptionFrame fof;
+    private TheSS ss;
+    public SearchBarPanel(TheSS ss) {
         JPanel holder = new JPanel();
         holder.setBorder(new EmptyBorder( 0x00,0x0c,0x00,0x0c));
         holder.setBackground(new Color(100,100,100));
@@ -94,14 +94,12 @@ public class SearchBarPanel extends JPanel {
         }else{ Misc.asc = true;} // default is true for asc
 
 
-        if (ss.getCurrentView() == 0){
-            if(Misc.asc){Collections.sort(ss.getSSMV().result);}
-            else{Collections.sort(ss.getSSMV().result, Collections.reverseOrder());}
-            ss.getSSMV().displayResult(ss.getSSMV().result);
-        }else{
-            if(Misc.asc){Collections.sort(ss.getSSCV().result);}
-            else{Collections.sort(ss.getSSCV().result, Collections.reverseOrder());}
-            ss.getSSCV().displayResult(ss.getSSCV().result);
-        }
+        if(Misc.asc){Collections.sort(Misc.local_samples);}
+        else{Collections.sort(Misc.local_samples, Collections.reverseOrder());}
+        ss.displayResult(Misc.local_samples);
+    }
+
+    public void addToSearch(String c){
+
     }
 }
