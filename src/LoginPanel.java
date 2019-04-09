@@ -59,7 +59,7 @@ public class LoginPanel extends JPanel {
                 String username = usernameField.getText();
                 String password = new String (passwordField.getPassword());
 
-                String documentsLocation = System.getProperty("user.home") + "\\Documents" + "\\SampleSafe";
+                String documentsLocation = Misc.systemPath;
                 File dir = new File(documentsLocation);
                 dir.mkdirs();
                 System.out.println(System.getProperty("user.home"));
