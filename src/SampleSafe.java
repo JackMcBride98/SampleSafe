@@ -11,8 +11,6 @@ public class SampleSafe extends JFrame {
     private SampleSafeCommunityView sscv;
 
     public SampleSafe(){
-        Misc.load_comty();
-        Misc.load_local();
 
         ActionListener forCommunity = new ActionListener() {
             @Override
@@ -30,13 +28,10 @@ public class SampleSafe extends JFrame {
             }
         };
 
-        ssmv = new SampleSafeMainView(forMain);
-        sscv = new SampleSafeCommunityView(forCommunity);
-
-
+        ssmv = new SampleSafeMainView(forMain, "local");
+        sscv = new SampleSafeCommunityView(forCommunity, "community");
 
         new LoginScreen(ssmv);
-
     }
 
     public static void main(String[] args) {

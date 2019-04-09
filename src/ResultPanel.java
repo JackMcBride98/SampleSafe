@@ -38,8 +38,6 @@ public class ResultPanel extends JPanel {
         // Add scroll pane
         scrollResultView.setPreferredSize(new Dimension(480, 100));
         add(scrollResultView, BorderLayout.CENTER);
-
-
    }
 
     /**

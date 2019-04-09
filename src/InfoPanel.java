@@ -190,8 +190,8 @@ public class InfoPanel extends JPanel{
         sample.setTags(tagListPanel.get_tags());
         sample.setSharePublic(sharePublic.getState());
         sample.setShareGroup(shareGroup.getState());
-        ss.displayResult(Misc.local_samples);
-        Misc.save_local();
+        ss.displayResult(ss.main_sample);
+        Misc.save_serial(ss.id, ss.main_sample);
     }
 
     private void addTags(String tags){

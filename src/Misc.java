@@ -9,11 +9,6 @@ public class Misc {
     /**
      * array of samples
      */
-    public static ArrayList<Sample> local_samples = new ArrayList<Sample>();
-    public static ArrayList<Sample> local_results = new ArrayList<Sample>();
-
-    public static ArrayList<Sample> comty_samples = new ArrayList<Sample>();
-    public static ArrayList<Sample> comty_results = new ArrayList<Sample>();
 
     public static SORT_TYPE t = SORT_TYPE.RATING;
     public static Boolean asc = true;
@@ -35,14 +30,15 @@ public class Misc {
     /**
      * Read and write serialized objects
      */
-    public static void load_local(){
+    public static ArrayList<Sample> load_serial(String ver){
         try{
-            FileInputStream fin   = new FileInputStream(systemPath + "\\local_sample.ser");
+            FileInputStream fin   = new FileInputStream(systemPath + "\\" + ver + ".ser");
             ObjectInputStream ois = new ObjectInputStream(fin);
-            local_samples = (ArrayList<Sample>) ois.readObject();
+            ArrayList<Sample> read = (ArrayList<Sample>) ois.readObject();
             fin.close();
             ois.close();
             System.out.println("Samples Loaded!");
+            return read;
         }catch (IOException e){
             System.out.println("IO EXCEPT HERE!");
             System.out.println(e.getMessage());
@@ -51,14 +47,14 @@ public class Misc {
             System.out.println(e.getMessage());
         }
 
+        return new ArrayList<Sample>();
+    };
 
-    }
-
-    public static void save_local(){
+    public static void save_serial(String ver, ArrayList<Sample> toWrite){
         try{
-            FileOutputStream fout = new FileOutputStream(systemPath + "\\local_sample.ser");
+            FileOutputStream fout = new FileOutputStream(systemPath + "\\" + ver + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(fout);
-            oos.writeObject(local_samples);
+            oos.writeObject(toWrite);
             fout.close();
             oos.close();
             System.out.println("Samples Saved!");
@@ -67,35 +63,6 @@ public class Misc {
             System.out.println(e.getMessage());
         }
     }
-
-    public static void load_comty(){
-        try{
-            FileInputStream fin   = new FileInputStream(systemPath + "\\comty_sample.ser");
-            ObjectInputStream ois = new ObjectInputStream(fin);
-            comty_samples = (ArrayList<Sample>) ois.readObject();
-            fin.close();
-            ois.close();
-            System.out.println("Samples Loaded!");
-        }catch (IOException e){
-            System.out.println(e.getMessage());
-        }catch (ClassNotFoundException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static void save_comty(){
-        try{
-            FileOutputStream fout = new FileOutputStream(systemPath + "\\comty_sample.ser");
-            ObjectOutputStream oos = new ObjectOutputStream(fout);
-            oos.writeObject(comty_samples);
-            fout.close();
-            oos.close();
-            System.out.println("Samples Saved!");
-        }catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
 
     // drop common setting here
 }

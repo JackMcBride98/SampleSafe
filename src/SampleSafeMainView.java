@@ -8,9 +8,9 @@ import java.util.Date;
 public class SampleSafeMainView extends TheSS{
 
     protected OtherButtonsPanelMain otherButtonsPanel;
-    public SampleSafeMainView(ActionListener act){
+    public SampleSafeMainView(ActionListener act, String id){
 
-        super("Sample Safe");
+        super("Sample Safe", id);
 
         otherButtonsPanel = new OtherButtonsPanelMain(this, resultPanel, act);
         Box box = Box.createHorizontalBox();

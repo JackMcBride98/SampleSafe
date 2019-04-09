@@ -96,9 +96,9 @@ public class SearchBarPanel extends JPanel {
         }else{ Misc.asc = true;} // default is true for asc
 
 
-        if(Misc.asc){Collections.sort(Misc.local_samples);}
-        else{Collections.sort(Misc.local_samples, Collections.reverseOrder());}
-        ss.displayResult(Misc.local_samples);
+        if(Misc.asc){Collections.sort(ss.main_result);}
+        else{Collections.sort(ss.main_result, Collections.reverseOrder());}
+        ss.displayResult(ss.main_result);
     }
 
     public void addToSearch(String c){

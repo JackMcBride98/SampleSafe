@@ -11,8 +11,8 @@ public class SampleSafeCommunityView extends TheSS{
     private ProfilePanel profilePanel;
 
 
-    public SampleSafeCommunityView(ActionListener act){
-        super("Community");
+    public SampleSafeCommunityView(ActionListener act, String id){
+        super("Community", id);
 
         profilePanel = new ProfilePanel(this);
         topPanel.add(profilePanel, BorderLayout.LINE_END);

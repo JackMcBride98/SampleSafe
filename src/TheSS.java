@@ -15,11 +15,13 @@ public class TheSS extends JFrame {
     protected JPanel topPanel;
     protected JPanel bottomPanel;
 
+    protected String id;
     protected ArrayList<Sample> main_sample;
     protected ArrayList<Sample> main_result;
 
-    public TheSS(String title){
+    public TheSS(String title, String id){
         setLookAndFeel();
+        this.id = id;
         setup(title);
     }
 
@@ -28,6 +30,9 @@ public class TheSS extends JFrame {
 
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        this.main_result = new ArrayList<Sample>();
+        this.main_sample = Misc.load_serial(this.id);
 
         resultPanel = new ResultPanel(this);
         infoPanel = new InfoPanel(this);
@@ -52,7 +57,7 @@ public class TheSS extends JFrame {
         bottomPanel.add(auditionPanel, BorderLayout.LINE_START);
 
         //result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Heavy", "Funky"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
-        displayResult(Misc.local_samples);
+        displayResult(main_sample);
 
         this.setSize(new Dimension(900, 800));
         this.setResizable(false);
