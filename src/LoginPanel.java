@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 import java.util.Random;
 
 
@@ -16,7 +16,7 @@ public class LoginPanel extends JPanel {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton signUpButton;
-    private JLabel title;
+    private FileWriter writer;
     Random rand = new Random();
 
     public LoginPanel(SampleSafe ss, JFrame frame){
@@ -59,17 +59,47 @@ public class LoginPanel extends JPanel {
                 String username = usernameField.getText();
                 String password = new String (passwordField.getPassword());
 
-                String documentsLocation = Misc.systemPath;
-                File dir = new File(documentsLocation);
-                dir.mkdirs();
-                System.out.println(System.getProperty("user.home"));
-                frame.setVisible(false);
-                ss.getSSMV().setVisible(true);
+                try {
+                    FileReader reader = new FileReader(new File(System.getProperty("user.home") + "\\Documents\\SampleSafe\\User"));
+                    BufferedReader br = new BufferedReader(reader);
+                    String un = br.readLine();
+                    String pw = br.readLine();
+                    if(username.equals(un) && password.equals(pw)){
+                        String documentsLocation = System.getProperty("user.home") + "\\Documents" + "\\SampleSafe";
+                        File dir = new File(documentsLocation);
+                        dir.mkdirs();
+                        System.out.println(System.getProperty("user.home"));
+                        frame.setVisible(false);
+                        ss.getSSMV().setVisible(true);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Incorrect login details!");
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         this.signUpButton = new JButton("Sign Up");
         this.signUpButton.setFont(new Font("Arial", Font.PLAIN, 16));
         this.signUpButton.setForeground(Misc.clrMainTheme1);
+        this.signUpButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                File file = new File(System.getProperty("user.home") + "\\Documents\\SampleSafe\\User");
+                try {
+                    file.createNewFile();
+                    writer = new FileWriter(file);
+                    writer.write(usernameField.getText() + System.getProperty("line.separator"));
+                    writer.write(passwordField.getPassword());
+                    writer.close();
+                    usernameField.setText("");
+                    passwordField.setText("");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         JPanel usernamePanel = new JPanel();
         usernamePanel.setBackground(Misc.clrMainTheme1);
