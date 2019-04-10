@@ -29,7 +29,7 @@ public class InfoPanel extends JPanel{
         buttPanel = new JPanel();
 
         setBackground(new Color(65,185, 255));
-        setPreferredSize(new Dimension(370, 100));
+        setPreferredSize(new Dimension(390, 100));
 
 
         //names that appear next to fields etc
