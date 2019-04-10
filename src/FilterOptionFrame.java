@@ -22,6 +22,10 @@ public class FilterOptionFrame extends CustomPopUp {
         String ratings[] = {"1", "2", "3", "4", "5"};
         lowerRating = new JComboBox(ratings);
         upperRating = new JComboBox(ratings);
+
+        lowerRating.setSelectedIndex(Misc.rating_lower_bound - 1);
+        upperRating.setSelectedIndex(Misc.rating_upper_bound - 1);
+
         ratingFilter.add(lowerRating);
         ratingFilter.add(new JLabel(" <= Rating <= "));
         ratingFilter.add(upperRating);

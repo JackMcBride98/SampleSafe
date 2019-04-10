@@ -77,7 +77,9 @@ public class SearchBarPanel extends JPanel {
         ActionListener filerOptionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Filter clicked!");
+
+
+
                 fof.close_dialog();
             }
         };

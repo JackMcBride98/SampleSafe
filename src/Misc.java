@@ -65,4 +65,8 @@ public class Misc {
     }
 
     // drop common setting here
+
+    public static int rating_lower_bound = 0;
+    public static int rating_upper_bound = 5;
+
 }
