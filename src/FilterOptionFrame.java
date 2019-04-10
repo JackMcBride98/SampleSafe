@@ -14,7 +14,7 @@ public class FilterOptionFrame extends CustomPopUp {
     JTextField authorField;
 
     public FilterOptionFrame(ActionListener al, JButton parent){
-        super(200, 120, parent);
+        super(200, 80, parent);
         /** Waiting for Implementation **/
         this.getContentPane().setLayout(new BoxLayout( getContentPane(), BoxLayout.Y_AXIS));
         this.getContentPane().add(new JLabel("Filter by:"));
@@ -64,9 +64,9 @@ public class FilterOptionFrame extends CustomPopUp {
         authorFilter.add(new JLabel("Author: "));
         authorField = new JTextField(12);
         authorFilter.add(authorField);
-        this.add(authorFilter);
+       // this.add(authorFilter);
 
-        JButton btnSubmit = new JButton("Submit");
+        JButton btnSubmit = new JButton("Filter");
         btnSubmit.addActionListener(al);
         this.getContentPane().add(btnSubmit);
     }

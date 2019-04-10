@@ -16,9 +16,20 @@ public class ProfilePanel extends JPanel {
     private JButton profileButton;
     private JFrame profileFrame;
 
+    private ProfileOptionFrame pof;
+
     public ProfilePanel(TheSS ss){
         this.ss = ss;
+        setup("Profile");
 
+    }
+
+    public ProfilePanel(TheSS ss, String usr){
+        this.ss = ss;
+        setup(usr);
+    }
+
+    private void setup(String user_text){
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder( 0x00,0x0c,0x00,0x0c));
         panel.setBackground(new Color(100,100,100));
@@ -27,69 +38,50 @@ public class ProfilePanel extends JPanel {
         this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Misc.clrMainTheme1));
         this.ss = ss;
 
-        profileButton = new JButton("Profile");
+        profileButton = new JButton(user_text);
 
         panel.add(profileButton);
         this.add(panel);
-        
-        
+
+
+        ActionListener act = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String btnName = ((JButton) e.getSource()).getText();
+
+                switch (btnName){
+                    case "Edit Profile":
+                        ProfileFrame pf = new ProfileFrame(profileButton.getText());
+                        pf.setVisible(true);
+                        pf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        break;
+                    case "Change Password":
+                        System.out.println("Changing Password??");
+                        break;
+                    case "Delete Account":
+                        System.out.println("Changing Password??");
+                        break;
+                    case "Log Out":
+                        System.exit(0);
+                        break;
+                }
+
+                pof.close_dialog();
+
+            }
+        };
+
+        pof = new ProfileOptionFrame(act, profileButton);
+
         profileButton.setFocusPainted(false);
         profileButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                if (profileFrame == null) {
-                    profileFrame = addProfFrame();
-                } else if (!profileFrame.isShowing()) {
-                    profileFrame = addProfFrame();
+                if(pof.isVisible()){
+                    pof.close_dialog();
+                }else{
+                    pof.show_dialog();
                 }
             }
-
         });
-    }
-    
-    public ProfilePanel(TheSS ss, String user){
-        this.ss = ss;
-
-        profileButton = new JButton(user);
-        profileButton.setFocusPainted(false);
-        profileButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                if (profileFrame == null) {
-                    profileFrame = addProfFrame();
-                } else if (!profileFrame.isShowing()) {
-                    profileFrame = addProfFrame();
-                }
-            }
-
-        });
-    }
-
-    private JFrame addProfFrame() {
-        JFrame newFrame = new JFrame();
-        JButton editProfileButton = new JButton("Edit Profile");
-        
-        editProfileButton.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent event) {
-            newFrame.dispose();
-            ProfileFrame pf = new ProfileFrame(profileButton.getText());
-            pf.setVisible(true);
-            pf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        }
-        });
-        JButton logOutButton = new JButton("Log Out");
-        logOutButton.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent event) {
-            newFrame.dispose();
-            ss.dispose();
-            //ss.loginScreen();
-        } 
-        });
-        newFrame.setVisible(true);
-        newFrame.setBounds(800, 80, 200, 200);
-        newFrame.setLayout(new GridLayout(0, 1));
-        newFrame.add(editProfileButton);
-        newFrame.add(new JButton("Change Password"));
-        newFrame.add(new JButton("Delete Account"));
-        newFrame.add(logOutButton);
-        return newFrame;
     }
 }

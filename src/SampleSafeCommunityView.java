@@ -12,10 +12,6 @@ public class SampleSafeCommunityView extends TheSS{
     public SampleSafeCommunityView(ActionListener act, String id){
         super("Community", id);
 
-        profilePanel = new ProfilePanel(this);
-        topPanel.add(profilePanel, BorderLayout.LINE_END);
-
-
         communityPanel = new OtherButtonsPanel(this, act, "LOCAL");
         Box box = Box.createHorizontalBox();
         box.add(Box.createRigidArea(new Dimension(1,0)));

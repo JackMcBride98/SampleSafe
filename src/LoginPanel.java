@@ -64,6 +64,7 @@ public class LoginPanel extends JPanel {
                     String un = br.readLine();
                     String pw = br.readLine();
                     if(username.equals(un) && password.equals(pw)){
+                        Misc.user = un;
                         String documentsLocation = System.getProperty("user.home") + "\\Documents" + "\\SampleSafe";
                         File dir = new File(documentsLocation);
                         dir.mkdirs();
