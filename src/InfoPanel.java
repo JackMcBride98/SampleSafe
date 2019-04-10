@@ -113,6 +113,14 @@ public class InfoPanel extends JPanel{
             }
         });
 
+        deleteTagButton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mousePressed(java.awt.event.MouseEvent evt){
+                tagListPanel.triggerDelete();
+                updateDeleteTagButton();
+            }
+        });
+
+
         //creates grid layout
         setLayout(new GridBagLayout());
         dataPanel.setLayout(new GridBagLayout());
@@ -181,6 +189,17 @@ public class InfoPanel extends JPanel{
         panel.add((Component) o, gc);
     }
 
+    public void updateDeleteTagButton(){
+        if(tagListPanel.getShouldDelete()){
+            deleteTagButton.setBackground(Color.RED);
+            deleteTagButton.setContentAreaFilled(false);
+            deleteTagButton.setOpaque(true);
+
+        }else{
+            deleteTagButton.setBackground(new Color(60,160, 255));
+        }
+    }
+
     //display sample data in text fields
     public void displaySample(Sample sample){
         setSample(sample);
@@ -192,6 +211,7 @@ public class InfoPanel extends JPanel{
         tagListPanel.loadTags(sample.getTags());
         //sharePublic.setState(sample.getSharePublic());
         shareGroup.setState(sample.getShareGroup());
+        updateDeleteTagButton();
         repaint();
     }
 
