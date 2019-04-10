@@ -24,7 +24,6 @@ public class LoginPanel extends JPanel {
         this.setBackground(Misc.clrMainTheme1);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //this.title.setHorizontalAlignment(JLabel.CENTER);
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new FlowLayout());
         titlePanel.setBackground(Misc.clrMainTheme1);
