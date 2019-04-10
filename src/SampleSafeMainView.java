@@ -12,7 +12,7 @@ public class SampleSafeMainView extends TheSS{
 
         super("Sample Safe", id);
 
-        otherButtonsPanel = new OtherButtonsPanelMain(this, resultPanel, act);
+        otherButtonsPanel = new OtherButtonsPanelMain(this, act);
         Box box = Box.createHorizontalBox();
         box.add(Box.createRigidArea(new Dimension(1,0)));
         box.add(Box.createHorizontalGlue());
@@ -23,4 +23,3 @@ public class SampleSafeMainView extends TheSS{
         revalidate();
     }
 }
-
