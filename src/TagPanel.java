@@ -68,6 +68,7 @@ public class TagPanel extends JPanel {
         if(shouldDelete){
             Boolean before = shouldDelete;
             tags.remove(tag);
+
             loadTags(tags);
             shouldDelete = before;
         }
