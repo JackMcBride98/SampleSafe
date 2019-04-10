@@ -16,7 +16,7 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class OtherButtonsPanelMain extends JPanel{
 
-    public OtherButtonsPanelMain(TheSS ss, ResultPanel rp, ActionListener act){
+    public OtherButtonsPanelMain(TheSS ss, ActionListener act){
 
         JButton importButton = new JButton("IMPORT");
         importButton.setFont(new Font("Arial", Font.PLAIN, 20));

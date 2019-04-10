@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class SampleSafeCommunityView extends TheSS{
 
-    private OtherButtonsPanelCommunity communityPanel;
+    private OtherButtonsPanelMain communityPanel;
     private GroupsPanel groupsPanel;
     private ProfilePanel profilePanel;
 
@@ -18,7 +18,7 @@ public class SampleSafeCommunityView extends TheSS{
         topPanel.add(profilePanel, BorderLayout.LINE_END);
 
 
-        communityPanel = new OtherButtonsPanelCommunity(this, act);
+        communityPanel = new OtherButtonsPanelMain(this, act);
         Box box = Box.createHorizontalBox();
         box.add(Box.createRigidArea(new Dimension(1,0)));
         box.add(Box.createHorizontalGlue());
