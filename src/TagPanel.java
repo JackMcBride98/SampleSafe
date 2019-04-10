@@ -66,6 +66,7 @@ public class TagPanel extends JPanel {
     private void deleteTag(String tag){
         if(shouldDelete){
             tags.remove(tag);
+
             loadTags(tags);
         }
     }

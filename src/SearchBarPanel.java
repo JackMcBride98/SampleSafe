@@ -77,10 +77,20 @@ public class SearchBarPanel extends JPanel {
         ActionListener filerOptionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
-
                 fof.close_dialog();
+                if(ss.main_result.size() == 0){
+                    ss.main_result = ss.main_sample;
+                }
+                ArrayList<Sample> temp = new ArrayList<Sample>();
+                for( Sample sp : ss.main_result){
+                    if (within_Rating(sp)){
+                        temp.add(sp);
+                    }
+                }
+                ss.main_result = temp;
+                ss.displayResult(ss.main_result);
+
+
             }
         };
         fof = new FilterOptionFrame(filerOptionListener, filterButton);
@@ -122,6 +132,16 @@ public class SearchBarPanel extends JPanel {
                 return true;
             }
         }
+        return false;
+    }
+
+    private boolean within_Rating(Sample sp){
+
+        if(sp.getStars() >= Misc.rating_lower_bound && sp.getStars() <= Misc.rating_upper_bound)
+        {
+            return true;
+        }
+
         return false;
     }
 
