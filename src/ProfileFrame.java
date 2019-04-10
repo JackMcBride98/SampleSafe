@@ -19,10 +19,13 @@ public class ProfileFrame extends javax.swing.JFrame {
     
     public ProfileFrame(String user) {
         initComponents();
-        
         profilePicFrame = new CreateRoundButton(user);
-        profilePicFrame.setBounds(10, 10, 100, 100);
+        profilePicFrame.setSize(100, 100);
         profilePicFrame.setVisible(true);
+        profilePicFrame.setBackground(Misc.clrMainTheme);
+
+
+
         add(profilePicFrame);
         profilePicFrame.setFocusPainted(false);
         NameText.setText(user);

@@ -205,6 +205,7 @@ public class SampleListItem extends JPanel {
         }
         public void actionPerformed(ActionEvent e){
             changeRating(c);
+            Misc.save_serial(ss.id, ss.main_sample);
         }
     }
 
