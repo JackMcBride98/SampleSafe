@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.ImageIcon;
+import javax.swing.border.EmptyBorder;
 
 public class ProfilePanel extends JPanel {
 
@@ -18,7 +19,18 @@ public class ProfilePanel extends JPanel {
     public ProfilePanel(TheSS ss){
         this.ss = ss;
 
+        JPanel panel = new JPanel();
+        panel.setBorder(new EmptyBorder( 0x00,0x0c,0x00,0x0c));
+        panel.setBackground(new Color(100,100,100));
+        this.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.setBackground(Misc.clrMainTheme2);
+        this.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Misc.clrMainTheme1));
+        this.ss = ss;
+
         profileButton = new JButton("Profile");
+
+        panel.add(profileButton);
+        this.add(panel);
         
         
         profileButton.setFocusPainted(false);
@@ -32,9 +44,6 @@ public class ProfilePanel extends JPanel {
             }
 
         });
-
-        setLayout(new FlowLayout());
-        add(profileButton);
     }
     
     public ProfilePanel(TheSS ss, String user){
@@ -52,9 +61,6 @@ public class ProfilePanel extends JPanel {
             }
 
         });
-
-        setLayout(new FlowLayout());
-        add(profileButton);
     }
 
     private JFrame addProfFrame() {
