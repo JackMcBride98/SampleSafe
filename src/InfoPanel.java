@@ -11,10 +11,10 @@ public class InfoPanel extends JPanel{
     private JLabel titleLabel, authorLabel, dateLabel, descLabel, tagLabel;
     private JTextField titleField, authorField, dateField;
     private JTextArea descTextArea;
-    private JButton addButton, saveButton, cancelButton, deletButton, editButton;
+    private JButton addButton, saveButton, cancelButton, deleteTagButton, editButton, deleteSampleButton;
     private JComboBox tagComBox;
     private JPanel dataPanel, tagPanel, commPanel, buttPanel;
-    private TagPanel tagListPanel, edDelPanel;
+    private TagPanel tagListPanel;
     private Checkbox sharePublic, shareGroup;
     private String tagOptions[] = {"Snare", "Clap", "Heavy", "Funky"};
     private ArrayList<String> tags;
@@ -66,15 +66,16 @@ public class InfoPanel extends JPanel{
         tagScrollPane.setPreferredSize(new Dimension(90, 90));
 
         //check boxes
-        sharePublic = new Checkbox("Make Public");
+        //sharePublic = new Checkbox("Make Public");
         shareGroup = new Checkbox("Share with Group");
 
         //buttons
         addButton = new JButton("Add");
         saveButton = new JButton("Save");
         cancelButton = new JButton("Cancel");
-        deletButton = new JButton("Delete");
+        deleteTagButton = new JButton("Delete Tag");
         editButton = new JButton("Edit");
+        deleteSampleButton = new JButton("Delete Sample");
 
         addButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
@@ -94,6 +95,21 @@ public class InfoPanel extends JPanel{
             public void mousePressed(java.awt.event.MouseEvent evt){
                 if(sample != null)
                     displaySample(sample);
+            }
+        });
+
+        deleteSampleButton.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mousePressed(java.awt.event.MouseEvent evt){
+                if(sample != null){
+                    ss.main_sample.remove(sample);
+                    ss.main_result.remove(sample);
+                    if(ss.main_result.size() > 0) {
+                        ss.displayResult(ss.main_result);
+                    }else{
+                        ss.displayResult(ss.main_sample);
+                    }
+                    Misc.save_serial(ss.id, ss.main_sample);
+                }
             }
         });
 
@@ -146,15 +162,16 @@ public class InfoPanel extends JPanel{
         setPosition(0, 1, tagScrollPane, gc,tagPanel);
         gc.gridwidth = 1;
         setPosition(1, 2, editButton, gc, tagPanel);
-        setPosition(0, 2, deletButton, gc, tagPanel);
+        setPosition(0, 2, deleteTagButton, gc, tagPanel);
 
         //checkbox
-        setPosition(0, 0, sharePublic, gc, commPanel);
+        //setPosition(0, 0, sharePublic, gc, commPanel);
         setPosition(0, 2, shareGroup, gc, commPanel);
 
         //buttons
         setPosition(0, 0, saveButton, gc, buttPanel);
         setPosition(1, 0, cancelButton, gc, buttPanel);
+        setPosition(2, 0, deleteSampleButton, gc, buttPanel);
     }
 
     //adds component to certain position to panel
@@ -173,7 +190,7 @@ public class InfoPanel extends JPanel{
         dateField.setText((sample.getCreationDate().toString()));
         descTextArea.setText(sample.getDescription());
         tagListPanel.loadTags(sample.getTags());
-        sharePublic.setState(sample.getSharePublic());
+        //sharePublic.setState(sample.getSharePublic());
         shareGroup.setState(sample.getShareGroup());
         repaint();
     }
@@ -188,7 +205,7 @@ public class InfoPanel extends JPanel{
         //sample.setDate(dateField.getText());
         sample.setDescription(descTextArea.getText());
         sample.setTags(tagListPanel.get_tags());
-        sample.setSharePublic(sharePublic.getState());
+        //sample.setSharePublic(sharePublic.getState());
         sample.setShareGroup(shareGroup.getState());
         Misc.save_serial(ss.id, ss.main_sample);
         ss.displayResult(ss.main_sample);
