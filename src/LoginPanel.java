@@ -16,11 +16,10 @@ public class LoginPanel extends JPanel {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton signUpButton;
-    private JLabel title;
     private FileWriter writer;
     Random rand = new Random();
 
-    public LoginPanel(SampleSafe ss, JFrame frame){
+    public LoginPanel(TheSS ss, JFrame frame){
         this.setForeground(Misc.clrThemeText);
         this.setBackground(Misc.clrMainTheme1);
 
@@ -65,13 +64,15 @@ public class LoginPanel extends JPanel {
                     BufferedReader br = new BufferedReader(reader);
                     String un = br.readLine();
                     String pw = br.readLine();
-                    if(username == un && password == pw){
+                    if(username.equals(un) && password.equals(pw)){
                         String documentsLocation = System.getProperty("user.home") + "\\Documents" + "\\SampleSafe";
                         File dir = new File(documentsLocation);
                         dir.mkdirs();
                         System.out.println(System.getProperty("user.home"));
                         frame.setVisible(false);
-                        ss.getSSMV().setVisible(true);
+                        ss.setVisible(true);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Incorrect login details!");
                     }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

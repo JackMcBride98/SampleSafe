@@ -5,16 +5,11 @@ import java.awt.event.ActionListener;
 
 public class OtherButtonsPanelCommunity extends JPanel{
 
-    public OtherButtonsPanelCommunity(SampleSafe ss){
+    public OtherButtonsPanelCommunity(TheSS ss, ActionListener act){
         JButton uploadButton = new JButton("UPLOAD");
         JButton backToMMButton = new JButton("BACK TO LOCAL");
 
-        backToMMButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                ss.getSSMV().setVisible(true);
-                ss.getSSCV().setVisible(false);
-            }
-        });
+        backToMMButton.addActionListener(act);
 
         FlowLayout flowLayout = new FlowLayout();
         setLayout(flowLayout);

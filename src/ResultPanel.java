@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,9 +19,9 @@ public class ResultPanel extends JPanel {
     private SampleListItem sli;
     private JPanel resultView;
     private JScrollPane scrollResultView;
-    private SampleSafe ss;
+    private TheSS ss;
 
-    public ResultPanel(SampleSafe ss){
+    public ResultPanel (TheSS ss){
         this.ss = ss;
         this.setLayout(new BorderLayout());
         this.setBackground(Misc.clrMainTheme);
@@ -36,8 +38,6 @@ public class ResultPanel extends JPanel {
         // Add scroll pane
         scrollResultView.setPreferredSize(new Dimension(480, 100));
         add(scrollResultView, BorderLayout.CENTER);
-
-
    }
 
     /**
@@ -49,6 +49,16 @@ public class ResultPanel extends JPanel {
        changeSelectionStatus(null);
        repaint();
 
+       /** Tag action listener **/
+       ActionListener tagClicked = new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               String tag = ((JButton) e.getSource()).getText();
+               ss.addToSearch(tag);
+           }
+       };
+
+
        this.samples = result;
        // Remove all components
        JPanel rView = new JPanel();
@@ -58,7 +68,7 @@ public class ResultPanel extends JPanel {
        // Instantiate new sample list item components
        for(int i = 0; i < result.size(); i++){
            // Pass display sample
-           sli = new SampleListItem(result.get(i), this, ss);
+           sli = new SampleListItem(result.get(i), this, ss, tagClicked);
            sli.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 20, Color.gray));
            // Add to view
            rView.add(sli);

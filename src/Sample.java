@@ -1,14 +1,17 @@
+import java.util.ArrayList;
 import java.util.Date;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * ResultItem, class for the items displayed in the result panel
  */
-public class Sample implements Comparable{
+public class Sample implements Serializable, Comparable{
     /* Basic info to display*/
     private String      fileTitle;
     private String      tempTitle;
     private int         stars;
-    private String[]    tags;
+    private ArrayList<String> tags;
     private String      author;
     private Date        creationDate;
     private String      description;
@@ -22,7 +25,7 @@ public class Sample implements Comparable{
     public Sample(){
         tempTitle  = "Unknown";
         stars  = 0;
-        tags   = null;
+        tags   = new ArrayList<String>();
         author = "Unknown";
         creationDate = null;
         description  = "None";
@@ -34,7 +37,7 @@ public class Sample implements Comparable{
     }
 
     /** Another Constructor **/
-    public Sample(String title, int stars, String[] tags,
+    public Sample(String title, int stars, ArrayList<String> tags,
                   String author, Date creationDate,
                   String description, String url,
                   Boolean sharePublic, Boolean shareFriends,
@@ -58,7 +61,7 @@ public class Sample implements Comparable{
         if(stars > 5 || stars < 0) stars = 0;
         else this.stars = stars;
     }
-    public void setTags        (String[] tags)        { this.tags = tags;}
+    public void setTags        (ArrayList<String> tags)        { this.tags = tags;}
     public void setAuthor      (String author)        { this.author = author; }
     public void setUrl         (String url)           { this.url = url;}
     public void setDate        (Date creationDate)    { this.creationDate = creationDate;}
@@ -73,7 +76,7 @@ public class Sample implements Comparable{
     public String getFileTitle()          { return fileTitle;}
     public String getTempTitle()          { return tempTitle;}
     public int      getStars()          { return stars;}
-    public String[] getTags()           { return tags;}
+    public ArrayList<String> getTags()  { return tags;}
     public String   getUrl()            { return url;}
     public String   getAuthor()         { return author;}
     public String   getDescription()    { return  description;}

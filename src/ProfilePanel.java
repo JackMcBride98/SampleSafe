@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 
 public class ProfilePanel extends JPanel {
 
-    private SampleSafe ss;
+    private TheSS ss;
     private JLabel nameLabel;
     private JLabel passwordLabel;
     private JTextField nameField;
@@ -15,7 +15,7 @@ public class ProfilePanel extends JPanel {
     private JButton profileButton;
     private JFrame profileFrame;
 
-    public ProfilePanel(SampleSafe ss){
+    public ProfilePanel(TheSS ss){
         this.ss = ss;
 
         profileButton = new JButton("Profile");
@@ -37,7 +37,7 @@ public class ProfilePanel extends JPanel {
         add(profileButton);
     }
     
-    public ProfilePanel(SampleSafe ss, String user){
+    public ProfilePanel(TheSS ss, String user){
         this.ss = ss;
 
         profileButton = new JButton(user);

@@ -1,7 +1,14 @@
 import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
 
 // A place for miscellaneous functions etc
 public class Misc {
+    public static String systemPath = System.getProperty("user.home") + "\\Documents" + "\\SampleSafe";
+
+    /**
+     * array of samples
+     */
 
     public static SORT_TYPE t = SORT_TYPE.RATING;
     public static Boolean asc = true;
@@ -19,6 +26,43 @@ public class Misc {
     public static Color clrSelected     = new Color(65,185, 255); //new Color(65, 185, 255);
     public static Color clrHoverSelect  = new Color(65,185, 255);
 
+
+    /**
+     * Read and write serialized objects
+     */
+    public static ArrayList<Sample> load_serial(String ver){
+        try{
+            FileInputStream fin   = new FileInputStream(systemPath + "\\" + ver + ".ser");
+            ObjectInputStream ois = new ObjectInputStream(fin);
+            ArrayList<Sample> read = (ArrayList<Sample>) ois.readObject();
+            fin.close();
+            ois.close();
+            System.out.println("Samples Loaded!");
+            return read;
+        }catch (IOException e){
+            System.out.println("IO EXCEPT HERE!");
+            System.out.println(e.getMessage());
+        }catch (ClassNotFoundException e){
+            System.out.println("CLASS NOT FOUND HERE!");
+            System.out.println(e.getMessage());
+        }
+
+        return new ArrayList<Sample>();
+    };
+
+    public static void save_serial(String ver, ArrayList<Sample> toWrite){
+        try{
+            FileOutputStream fout = new FileOutputStream(systemPath + "\\" + ver + ".ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(toWrite);
+            fout.close();
+            oos.close();
+            System.out.println("Samples Saved!");
+        }catch (IOException e){
+            System.out.println("That Flopped!");
+            System.out.println(e.getMessage());
+        }
+    }
 
     // drop common setting here
 }

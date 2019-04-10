@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SampleSafe extends JFrame {
 
@@ -9,49 +11,31 @@ public class SampleSafe extends JFrame {
     private SampleSafeCommunityView sscv;
 
     public SampleSafe(){
-        this.ssmv = new SampleSafeMainView(this);
-        this.sscv = new SampleSafeCommunityView(this);
 
-        this.ssmv.Setup();
-        this.sscv.Setup();
-    }
+        ActionListener forCommunity = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sscv.setVisible(false);
+                ssmv.setVisible(true);
+            }
+        };
 
-    public void setLookAndFeel(){
-        try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-    }
+        ActionListener forMain = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sscv.setVisible(true);
+                ssmv.setVisible(false);
+            }
+        };
 
-    public int getCurrentView() {
-        return currentView;
-    }
+        ssmv = new SampleSafeMainView(forMain, "local");
+        sscv = new SampleSafeCommunityView(forCommunity, "community");
 
-    public void setCurrentView(int currentView) {
-        this.currentView = currentView;
-    }
-
-    public SampleSafeMainView getSSMV() {
-        return ssmv;
-    }
-
-    public SampleSafeCommunityView getSSCV() {
-        return sscv;
+        new LoginScreen(ssmv);
     }
 
     public static void main(String[] args) {
-
         SampleSafe ss = new SampleSafe();
 
-        ss.setLookAndFeel();
-
-        new LoginScreen(ss);
     }
 }
