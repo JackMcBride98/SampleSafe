@@ -14,14 +14,14 @@ import java.util.Date;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
-public class OtherButtonsPanelMain extends JPanel{
+public class OtherButtonsPanel extends JPanel{
 
-    public OtherButtonsPanelMain(TheSS ss, ActionListener act){
+    public OtherButtonsPanel(TheSS ss, ActionListener act, String s){
 
         JButton importButton = new JButton("IMPORT");
         importButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        JButton communityButton = new JButton("COMMUNITY");
+        JButton communityButton = new JButton(s);
         communityButton.setFont(new Font("Arial", Font.PLAIN, 20));
         JFileChooser importBtn = new JFileChooser();
         importBtn.setMultiSelectionEnabled(true);
