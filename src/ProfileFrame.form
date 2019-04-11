@@ -100,12 +100,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Apply"/>
+        <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="SaveExitButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Save And Exit"/>
+        <Property name="text" type="java.lang.String" value="Exit"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SaveExitButtonActionPerformed"/>
