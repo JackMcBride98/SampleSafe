@@ -1,4 +1,4 @@
-import javax.swing.JButton;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +10,7 @@ import javax.swing.JButton;
  *
  * @author Matthew
  */
-public class ProfileFrame extends javax.swing.JFrame {
+public class ProfileFrame extends JFrame {
 
     /**
      * Creates new form ProfileFrame
