@@ -39,12 +39,12 @@ public class OtherButtonsPanel extends JPanel{
                         newLib.add(new Sample(files[i].getName(), 1, new ArrayList<String>(), "", new Date(), "", files[i].toString(), false, true, false));
 
                         try {
-                            Files.copy(Paths.get(files[i].toString()), Paths.get((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName())), REPLACE_EXISTING);
+                            Files.copy(Paths.get(files[i].toString()), Paths.get((Misc.systemPath + "\\" + files[i].getName())), REPLACE_EXISTING);
 
-                            AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName()) + " Pic");
+                            AudioWaveformCreator awc = new AudioWaveformCreator((Misc.systemPath + "\\" + files[i].getName()),(Misc.systemPath + "\\" + files[i].getName()) + " Pic");
                             awc.createAudioInputStream();
 
-                            BufferedImage waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName() + " Pic")));
+                            BufferedImage waveFormPicture = ImageIO.read(new File((Misc.systemPath + "\\" + files[i].getName() + " Pic")));
                             ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
 
                             ss.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);

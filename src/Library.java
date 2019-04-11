@@ -48,6 +48,10 @@ public class Library implements Serializable, Comparable {
         this.samples.add(s);
     }
 
+    public void remove(Sample s){
+        this.samples.remove(s);
+    }
+
     @Override
     public int compareTo(Object o) {
         Library b = (Library) o;

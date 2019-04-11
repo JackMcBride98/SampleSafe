@@ -59,16 +59,15 @@ public class LoginPanel extends JPanel {
                 String password = new String (passwordField.getPassword());
 
                 try {
-                    FileReader reader = new FileReader(new File(System.getProperty("user.home") + "\\Documents\\SampleSafe\\User"));
+                    FileReader reader = new FileReader(new File(Misc.systemPath + "\\" + "User"));
                     BufferedReader br = new BufferedReader(reader);
                     String un = br.readLine();
                     String pw = br.readLine();
                     if(username.equals(un) && password.equals(pw)){
                         Misc.user = un;
-                        String documentsLocation = System.getProperty("user.home") + "\\Documents" + "\\SampleSafe";
+                        String documentsLocation = Misc.systemPath;
                         File dir = new File(documentsLocation);
                         dir.mkdirs();
-                        System.out.println(System.getProperty("user.home"));
                         frame.setVisible(false);
                         ss.setVisible(true);
                     }else{
@@ -86,7 +85,7 @@ public class LoginPanel extends JPanel {
         this.signUpButton.setForeground(Misc.clrMainTheme1);
         this.signUpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                File file = new File(System.getProperty("user.home") + "\\Documents\\SampleSafe\\User");
+                File file = new File(Misc.systemPath + "\\" + "User");
                 try {
                     file.createNewFile();
                     writer = new FileWriter(file);

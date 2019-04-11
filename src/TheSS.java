@@ -11,6 +11,7 @@ public class TheSS extends JFrame {
     protected  LibraryDisplay libraryPanel;
 
     protected InfoPanel infoPanel;
+    protected TextChat textChat;
     protected SampleAuditionPanel auditionPanel;
 
     // For better layout

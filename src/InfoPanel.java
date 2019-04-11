@@ -16,7 +16,7 @@ public class InfoPanel extends JPanel{
     private JPanel dataPanel, tagPanel, commPanel, buttPanel, comboPanel, edDelPanel;
     private TagPanel tagListPanel;
     private Checkbox sharePublic, shareGroup;
-    private String tagOptions[] = {"Snare", "Clap", "Heavy", "Funky"};
+    private String tagOptions[] = {"", "Snare", "Clap", "Heavy", "Funky"};
     private ArrayList<String> tags;
     private Sample sample;
 
@@ -51,10 +51,12 @@ public class InfoPanel extends JPanel{
         dateField = new JTextField(15);
 
         //area that displays text
-        descTextArea = new JTextArea();
+        descTextArea = new JTextArea(5, 20);
         descTextArea.setVisible(true);
+        descTextArea.setLineWrap(true);
         JScrollPane scrollPane = new JScrollPane(descTextArea);
-        scrollPane.setPreferredSize(new Dimension(275, 75));
+        //scrollPane.setPreferredSize(new Dimension(275, 75));
+
 
         //combo box
         tagComBox = new JComboBox(tagOptions);
@@ -87,8 +89,10 @@ public class InfoPanel extends JPanel{
 
         addButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
-                if(sample != null && tagComBox.getEditor().getItem() != "")
+                if(sample != null && tagComBox.getEditor().getItem().toString().length() != 0) {
                     addTags("" + tagComBox.getEditor().getItem());
+                    tagComBox.getEditor().setItem("");
+                }
             }
         });
 
@@ -109,7 +113,9 @@ public class InfoPanel extends JPanel{
         deleteSampleButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
                 if(sample != null){
-                    ss.main_sample.remove(sample);
+                    for(Library lib : ss.main_sample){
+                        lib.remove(sample);
+                    }
                     ss.main_result.remove(sample);
                     if(ss.main_result.size() > 0) {
                         ArrayList<Library> k = new ArrayList<Library>();
@@ -154,9 +160,15 @@ public class InfoPanel extends JPanel{
         edDelPanel.setLayout(new GridBagLayout());
         edDelPanel.setBackground(sexy);
 
+        comboPanel.setLayout(new GridBagLayout());
+        comboPanel.setBackground(sexy);
+
+        edDelPanel.setLayout(new GridBagLayout());
+        edDelPanel.setBackground(sexy);
+
         GridBagConstraints gc = new GridBagConstraints();
-        gc.anchor = GridBagConstraints.CENTER;
-        gc.insets = new Insets(15, 15, 5, 5);
+        gc.anchor = GridBagConstraints.LINE_START;
+        gc.insets = new Insets(5, 15, 5, 15);
         gc.fill = GridBagConstraints.HORIZONTAL;
 
         //panel positions
@@ -178,11 +190,12 @@ public class InfoPanel extends JPanel{
         setPosition(0, 5, scrollPane, gc, dataPanel);
         gc.gridwidth = 1;
 
-        //tag combo box
+        //tag panel
         setPosition(0, 0, comboPanel, gc, tagPanel);
         setPosition(0, 1, tagScrollPane, gc, tagPanel);
         setPosition(0, 2, edDelPanel, gc, tagPanel);
 
+        ////tag combo box
         setPosition(0, 0, tagLabel, gc, comboPanel);
         setPosition(1, 0, tagComBox, gc, comboPanel);
         setPosition(2, 0, addButton, gc, comboPanel);
