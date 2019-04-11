@@ -33,10 +33,11 @@ public class OtherButtonsPanel extends JPanel{
 
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File[] files = importBtn.getSelectedFiles();
+                    Library newLib = new Library();
                     for(int i = 0; i < files.length; i++) {
-                        ss.main_sample.add(new Sample(files[i].getName(), 1, new ArrayList<String>(), "", new Date(), "", files[i].toString(), false, true, false));
-                        Misc.save_serial(ss.id, ss.main_sample);
-                        ss.displayResult(ss.main_sample);
+
+                        newLib.add(new Sample(files[i].getName(), 1, new ArrayList<String>(), "", new Date(), "", files[i].toString(), false, true, false));
+
                         try {
                             Files.copy(Paths.get(files[i].toString()), Paths.get((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName())), REPLACE_EXISTING);
 
@@ -58,6 +59,11 @@ public class OtherButtonsPanel extends JPanel{
 
 
                     }
+
+                    newLib.setTitle("New Import");
+                    ss.main_sample.add(newLib);
+                    Misc.save_serial(ss.id, ss.main_sample);
+                    ss.displayResult(ss.main_sample);
                 }
 
             }

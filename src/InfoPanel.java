@@ -28,16 +28,21 @@ public class InfoPanel extends JPanel{
         commPanel = new JPanel();
         buttPanel = new JPanel();
 
-        setBackground(new Color(65,185, 255));
+        setBackground(Misc.clrHighlight);
         setPreferredSize(new Dimension(390, 100));
 
 
         //names that appear next to fields etc
         titleLabel = new JLabel("Name:");
+        titleLabel.setForeground(Misc.clrHighText);
         authorLabel = new JLabel("Author:");
+        authorLabel.setForeground(Misc.clrHighText);
         dateLabel = new JLabel("Date:");
+        dateLabel.setForeground(Misc.clrHighText);
         descLabel = new JLabel("Description:");
+        descLabel.setForeground(Misc.clrHighText);
         tagLabel= new JLabel("Tags:");
+        tagLabel.setForeground(Misc.clrHighText);
         //text fields
         titleField = new JTextField(15);
         authorField = new JTextField(15);
@@ -61,13 +66,14 @@ public class InfoPanel extends JPanel{
             }
         });
         tagListPanel.setPreferredSize(new Dimension(100, 300));
-        tagListPanel.setBackground(new Color(60,160, 255));
+        tagListPanel.setBackground(Misc.clrHighlight);
         JScrollPane tagScrollPane = new JScrollPane(tagListPanel);
         tagScrollPane.setPreferredSize(new Dimension(90, 90));
 
         //check boxes
         //sharePublic = new Checkbox("Make Public");
         shareGroup = new Checkbox("Share with Group");
+        shareGroup.setForeground(Misc.clrHighText);
 
         //buttons
         addButton = new JButton("Add");
@@ -104,7 +110,9 @@ public class InfoPanel extends JPanel{
                     ss.main_sample.remove(sample);
                     ss.main_result.remove(sample);
                     if(ss.main_result.size() > 0) {
-                        ss.displayResult(ss.main_result);
+                        ArrayList<Library> k = new ArrayList<Library>();
+                        k.add(new Library("Result", ss.main_result));
+                        ss.displayResult(k);
                     }else{
                         ss.displayResult(ss.main_sample);
                     }
@@ -124,16 +132,19 @@ public class InfoPanel extends JPanel{
         //creates grid layout
         setLayout(new GridBagLayout());
         dataPanel.setLayout(new GridBagLayout());
-        dataPanel.setBackground(new Color(65,185, 255));
+
+        Color sexy = Misc.clrHighlight;
+
+        dataPanel.setBackground(sexy);
 
         tagPanel.setLayout(new GridBagLayout());
-        tagPanel.setBackground(new Color(65,185, 255));
+        tagPanel.setBackground(sexy);
 
         commPanel.setLayout(new GridBagLayout());
-        commPanel.setBackground(new Color(65,185, 255));
+        commPanel.setBackground(sexy);
 
         buttPanel.setLayout(new GridBagLayout());
-        buttPanel.setBackground(new Color(65,185, 255));
+        buttPanel.setBackground(sexy);
 
         GridBagConstraints gc = new GridBagConstraints();
         gc.anchor = GridBagConstraints.LINE_START;

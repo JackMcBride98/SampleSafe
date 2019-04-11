@@ -90,7 +90,7 @@ public class Sample implements Serializable, Comparable{
     public int compareTo(Object o) {
         Sample b = (Sample) o;
         if(Misc.t.equals(Misc.SORT_TYPE.NAME))
-            return (tempTitle.compareTo(b.getTempTitle()));
+            return (tempTitle.compareToIgnoreCase(b.getTempTitle()));
         if(Misc.t.equals(Misc.SORT_TYPE.RATING)){
             if(getStars() == b.getStars()) return 0;
             if(getStars() >  b.getStars()) return 1;

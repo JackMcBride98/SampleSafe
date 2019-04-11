@@ -7,7 +7,9 @@ public class TheSS extends JFrame {
 
     protected SearchBarPanel searchBarPanel;
     protected ProfilePanel profilePanel;
-    protected ResultPanel resultPanel;
+   // protected ResultPanel resultPanel;
+    protected  LibraryDisplay libraryPanel;
+
     protected InfoPanel infoPanel;
     protected SampleAuditionPanel auditionPanel;
 
@@ -16,7 +18,7 @@ public class TheSS extends JFrame {
     protected JPanel bottomPanel;
 
     protected String id;
-    protected ArrayList<Sample> main_sample;
+    protected ArrayList<Library> main_sample;
     protected ArrayList<Sample> main_result;
 
     public TheSS(String title, String id){
@@ -34,13 +36,13 @@ public class TheSS extends JFrame {
         this.main_result = new ArrayList<Sample>();
         this.main_sample = Misc.load_serial(this.id);
 
-        resultPanel = new ResultPanel(this);
+        libraryPanel = new LibraryDisplay(this);
         infoPanel = new InfoPanel(this);
         searchBarPanel = new SearchBarPanel(this);
 
         profilePanel = new ProfilePanel(this, Misc.user);
         auditionPanel = new SampleAuditionPanel(this);
-        add(resultPanel, BorderLayout.LINE_START);
+        add(libraryPanel, BorderLayout.LINE_START);
         add(infoPanel, BorderLayout.LINE_END);
 
         topPanel = new JPanel();
@@ -59,7 +61,7 @@ public class TheSS extends JFrame {
         //result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Heavy", "Funky"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
         displayResult(main_sample);
 
-        this.setSize(new Dimension(900, 800));
+        this.setSize(new Dimension(940, 800));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         revalidate();
@@ -82,8 +84,8 @@ public class TheSS extends JFrame {
     public void displaySample(Sample sample){
         infoPanel.displaySample(sample);
     }
-    public void displayResult(ArrayList<Sample> samples){
-        resultPanel.displayResult(samples);
+    public void displayResult(ArrayList<Library> samples){
+        libraryPanel.displayResult(samples);
     }
 
     public SampleAuditionPanel getAuditionPanel() {

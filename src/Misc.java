@@ -25,16 +25,17 @@ public class Misc {
     public static Color clrHover        = new Color(128, 167, 255);
     public static Color clrSelected     = new Color(65,185, 255); //new Color(65, 185, 255);
     public static Color clrHoverSelect  = new Color(65,185, 255);
-
+    public static Color clrHighlight    = new Color(51, 77, 119);
+    public static Color clrHighText    = Color.white;
 
     /**
      * Read and write serialized objects
      */
-    public static ArrayList<Sample> load_serial(String ver){
+    public static ArrayList<Library> load_serial(String ver){
         try{
             FileInputStream fin   = new FileInputStream(systemPath + "\\" + ver + ".ser");
             ObjectInputStream ois = new ObjectInputStream(fin);
-            ArrayList<Sample> read = (ArrayList<Sample>) ois.readObject();
+            ArrayList<Library> read = (ArrayList<Library>) ois.readObject();
             fin.close();
             ois.close();
             System.out.println("Samples Loaded!");
@@ -47,10 +48,10 @@ public class Misc {
             System.out.println(e.getMessage());
         }
 
-        return new ArrayList<Sample>();
+        return new ArrayList<Library>();
     };
 
-    public static void save_serial(String ver, ArrayList<Sample> toWrite){
+    public static void save_serial(String ver, ArrayList<Library> toWrite){
         try{
             FileOutputStream fout = new FileOutputStream(systemPath + "\\" + ver + ".ser");
             ObjectOutputStream oos = new ObjectOutputStream(fout);
