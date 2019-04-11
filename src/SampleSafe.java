@@ -37,6 +37,5 @@ public class SampleSafe extends JFrame {
 
     public static void main(String[] args) {
         SampleSafe ss = new SampleSafe();
-
     }
 }

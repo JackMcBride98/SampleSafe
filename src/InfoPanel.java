@@ -196,7 +196,7 @@ public class InfoPanel extends JPanel{
             deleteTagButton.setOpaque(true);
 
         }else{
-            deleteTagButton.setBackground(new Color(60,160, 255));
+            deleteTagButton.setBackground(UIManager.getColor("Panel.background"));
         }
     }
 

@@ -6,6 +6,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class LoginScreen {
 
     public LoginScreen(TheSS ss){
+        System.out.println(System.getProperty("os.name"));
         JFrame jF = new JFrame();
         //jF.setExtendedState(JFrame.MAXIMIZED_BOTH);
         jF.setLayout(new BorderLayout());

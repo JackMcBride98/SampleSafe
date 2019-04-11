@@ -22,16 +22,6 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
         this.ss = ss;
         setLayout(new FlowLayout());
         playButton = new JButton("►");
-        playButton.addActionListener(this);
-        try{
-            audioInputStream = AudioSystem.getAudioInputStream(new File(Misc.systemPath + "\\Demo.wav")) ;
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            // If you want the sound to loop infinitely, then put: clip.loop(Clip.LOOP_CONTINUOUSLY);
-            // If you want to stop the sound, then use clip.stop();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
         try {
             awc = new AudioWaveformCreator((Misc.systemPath + "\\Demo.wav"),(Misc.systemPath + "\\Demo.wav") + " Pic");
             awc.createAudioInputStream();
