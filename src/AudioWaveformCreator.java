@@ -25,6 +25,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+//source: https://stackoverflow.com/questions/11017283/java-program-to-create-a-png-waveform-for-an-audio-file
+
 
 public class AudioWaveformCreator {
     AudioInputStream audioInputStream;

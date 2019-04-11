@@ -41,7 +41,7 @@ public class SearchBarPanel extends JPanel {
         };
         searchButton.addActionListener( searchListener);
         searchField.addActionListener(  searchListener);
-        sortButton.addActionListener(   new ActionListener() {
+        sortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(sof.isVisible())
@@ -50,7 +50,7 @@ public class SearchBarPanel extends JPanel {
                     sof.show_dialog();
             }
         });
-        filterButton.addActionListener( new ActionListener() {
+        filterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(fof.isVisible())

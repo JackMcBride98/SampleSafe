@@ -69,6 +69,6 @@ public class Misc {
     public static int rating_lower_bound = 1;
     public static int rating_upper_bound = 5;
 
-    public static String user = "Holy Jesus";
+    public static String user = "Profile";
 
 }
