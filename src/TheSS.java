@@ -62,7 +62,7 @@ public class TheSS extends JFrame {
         //result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Heavy", "Funky"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
         displayResult(main_sample);
 
-        this.setSize(new Dimension(940, 800));
+        this.setSize(new Dimension(850, 675));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         revalidate();

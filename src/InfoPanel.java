@@ -31,7 +31,7 @@ public class InfoPanel extends JPanel{
         edDelPanel = new JPanel();
 
         setBackground(Misc.clrHighlight);
-        setPreferredSize(new Dimension(390, 100));
+        setPreferredSize(new Dimension(300, 100));
 
 
         //names that appear next to fields etc
