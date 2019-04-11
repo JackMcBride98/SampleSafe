@@ -13,7 +13,7 @@ public class InfoPanel extends JPanel{
     private JTextArea descTextArea;
     private JButton addButton, saveButton, cancelButton, deleteTagButton, editButton, deleteSampleButton;
     private JComboBox tagComBox;
-    private JPanel dataPanel, tagPanel, commPanel, buttPanel;
+    private JPanel dataPanel, tagPanel, commPanel, buttPanel, comboPanel, edDelPanel;
     private TagPanel tagListPanel;
     private Checkbox sharePublic, shareGroup;
     private String tagOptions[] = {"Snare", "Clap", "Heavy", "Funky"};
@@ -27,6 +27,8 @@ public class InfoPanel extends JPanel{
         tagPanel = new JPanel();
         commPanel = new JPanel();
         buttPanel = new JPanel();
+        comboPanel = new JPanel();
+        edDelPanel = new JPanel();
 
         setBackground(new Color(65,185, 255));
         setPreferredSize(new Dimension(390, 100));
@@ -135,6 +137,12 @@ public class InfoPanel extends JPanel{
         buttPanel.setLayout(new GridBagLayout());
         buttPanel.setBackground(new Color(65,185, 255));
 
+        comboPanel.setLayout(new GridBagLayout());
+        comboPanel.setBackground(new Color(65,185, 255));
+
+        edDelPanel.setLayout(new GridBagLayout());
+        edDelPanel.setBackground(new Color(65,185, 255));
+
         GridBagConstraints gc = new GridBagConstraints();
         gc.anchor = GridBagConstraints.LINE_START;
         gc.weightx = 0;
@@ -161,16 +169,18 @@ public class InfoPanel extends JPanel{
         setPosition(0, 5, scrollPane, gc, dataPanel);
         gc.gridwidth = 1;
 
-        //tag combo box
-        setPosition(0, 0, tagLabel, gc, tagPanel);
-        setPosition(1, 0, tagComBox, gc, tagPanel);
-        setPosition(2, 0, addButton, gc, tagPanel);
         //tag panel
-        gc.gridwidth = 3;
-        setPosition(0, 1, tagScrollPane, gc,tagPanel);
-        gc.gridwidth = 1;
-        setPosition(1, 2, editButton, gc, tagPanel);
-        setPosition(0, 2, deleteTagButton, gc, tagPanel);
+        setPosition(0, 0, comboPanel, gc, tagPanel);
+        setPosition(0, 1, tagScrollPane, gc, tagPanel);
+        setPosition(0, 2, edDelPanel, gc, tagPanel);
+     
+        ////tag combo box
+        setPosition(0, 0, tagLabel, gc, comboPanel);
+        setPosition(1, 0, tagComBox, gc, comboPanel);
+        setPosition(2, 0, addButton, gc, comboPanel);
+
+        setPosition(0, 0, editButton, gc, edDelPanel);
+        setPosition(1, 0, deleteTagButton, gc, edDelPanel);
 
         //checkbox
         //setPosition(0, 0, sharePublic, gc, commPanel);
