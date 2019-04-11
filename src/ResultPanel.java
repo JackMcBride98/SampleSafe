@@ -61,14 +61,22 @@ public class ResultPanel extends JPanel {
    public void triggerExpand(){
         // cant not retract if in local
        if(shouldExpand){
-           resultView.setPreferredSize(new Dimension(480, 50 * samples.size() + 15));
-            shouldExpand = !shouldExpand;
+           adjustSize(480, 50 * samples.size() + 15);
+           shouldExpand = !shouldExpand;
        }else {
-           resultView.setPreferredSize(new Dimension(480, 0));
+           adjustSize(480, 0);
            shouldExpand = !shouldExpand;
        }
+   }
+
+   public void adjustSize(int width, int height){
+       resultView.setPreferredSize(new Dimension(width, height));
        revalidate();
    }
+   public void adjustSize(int dy){
+        resultView.setPreferredSize(new Dimension(resultView.getWidth(), resultView.getHeight() + dy));
+        revalidate();
+    }
 
    public void displayResult(Library lib)
    {
@@ -109,6 +117,8 @@ public class ResultPanel extends JPanel {
    public void changeSelectionStatus(SampleListItem sli){
         if(preItem!= null && !preItem.equals(sli)){
             preItem.changeSelectionStatus(false);
+        }else if (preItem == null){
+            adjustSize(90);
         }
         preItem = sli;
    }
