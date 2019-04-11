@@ -31,8 +31,8 @@ public class SampleSafe extends JFrame {
         ssmv = new SampleSafeMainView(forMain, "local");
         sscv = new SampleSafeCommunityView(forCommunity, "community");
 
-       //new LoginScreen(ssmv);
-        ssmv.setVisible(true);
+       new LoginScreen(ssmv);
+       //ssmv.setVisible(true);
     }
 
     public static void main(String[] args) {
