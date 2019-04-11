@@ -9,6 +9,7 @@ public class TheSS extends JFrame {
     protected ProfilePanel profilePanel;
     protected ResultPanel resultPanel;
     protected InfoPanel infoPanel;
+    protected TextChat textChat;
     protected SampleAuditionPanel auditionPanel;
 
     // For better layout
