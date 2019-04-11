@@ -38,7 +38,7 @@ public class AudioWaveformCreator {
     String fileName;
     SamplingGraph samplingGraph;
     String waveformFilename;
-    Color imageBackgroundColor = new Color(20,20,20);
+    Color imageBackgroundColor = Color.BLACK;
 
     public AudioWaveformCreator(String fileName, String waveformFilename) throws UnsupportedAudioFileException, IOException {
         file = new File(fileName);
@@ -71,8 +71,8 @@ public class AudioWaveformCreator {
         private Thread thread;
         private Font font10 = new Font("serif", Font.PLAIN, 10);
         private Font font12 = new Font("serif", Font.PLAIN, 12);
-        Color jfcBlue = new Color(000, 000, 255);
-        Color pink = new Color(255, 175, 175);
+        Color jfcBlue = Color.BLUE;
+        Color pink = Color.BLACK;
 
 
         public SamplingGraph() {

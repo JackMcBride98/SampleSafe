@@ -29,6 +29,8 @@ public class TheSS extends JFrame {
     public void setup(String title){
         this.setTitle(title);
 
+        this.setBackground(new Color(100,100,100));
+
         this.setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 

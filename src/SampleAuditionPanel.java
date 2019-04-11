@@ -3,6 +3,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,8 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
 
     public SampleAuditionPanel(TheSS ss){
         this.ss = ss;
-        setLayout(new FlowLayout());
+        this.setBackground(new Color(100,100,100));
+        this.setBorder(new EmptyBorder( 0x00,0x0c,0x00,0x0c));
         playButton = new JButton("►");
         try {
             awc = new AudioWaveformCreator((Misc.systemPath + "\\Demo.wav"),(Misc.systemPath + "\\Demo.wav") + " Pic");
@@ -28,8 +30,8 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
             BufferedImage waveFormPicture = ImageIO.read(new File((Misc.systemPath + "\\Demo.wav" + " Pic")));
             sampleWaveformPicLabel = new JLabel(new ImageIcon(waveFormPicture));
             sampleWaveformPicLabel.setSize(new Dimension(680, 80));
-            add(sampleWaveformPicLabel);
-            add(playButton);
+            this.add(sampleWaveformPicLabel);
+            this.add(playButton);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,10 @@ public class OtherButtonsPanel extends JPanel{
 
         JButton importButton = new JButton("IMPORT");
         importButton.setFont(new Font("Arial", Font.PLAIN, 20));
+
+
+        this.setBackground(new Color(100,100,100));
+        this.setBorder(new EmptyBorder( 0x00,0x0c,0x00,0x0c));
 
         JButton communityButton = new JButton(s);
         communityButton.setFont(new Font("Arial", Font.PLAIN, 20));
