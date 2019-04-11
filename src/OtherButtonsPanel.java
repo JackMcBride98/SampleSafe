@@ -14,14 +14,14 @@ import java.util.Date;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
-public class OtherButtonsPanelMain extends JPanel{
+public class OtherButtonsPanel extends JPanel{
 
-    public OtherButtonsPanelMain(TheSS ss, ResultPanel rp, ActionListener act){
+    public OtherButtonsPanel(TheSS ss, ActionListener act, String s){
 
         JButton importButton = new JButton("IMPORT");
         importButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
-        JButton communityButton = new JButton("COMMUNITY");
+        JButton communityButton = new JButton(s);
         communityButton.setFont(new Font("Arial", Font.PLAIN, 20));
         JFileChooser importBtn = new JFileChooser();
         importBtn.setMultiSelectionEnabled(true);
@@ -34,9 +34,9 @@ public class OtherButtonsPanelMain extends JPanel{
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File[] files = importBtn.getSelectedFiles();
                     for(int i = 0; i < files.length; i++) {
-                        ss.main_result.add(new Sample(files[i].getName(), 0, new ArrayList<String>(), "", new Date(), "", files[i].toString(), false, true, false));
-                        Misc.save_serial(ss.id, ss.main_result);
-                        ss.displayResult(ss.main_result);
+                        ss.main_sample.add(new Sample(files[i].getName(), 1, new ArrayList<String>(), "", new Date(), "", files[i].toString(), false, true, false));
+                        Misc.save_serial(ss.id, ss.main_sample);
+                        ss.displayResult(ss.main_sample);
                         try {
                             Files.copy(Paths.get(files[i].toString()), Paths.get((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName())), REPLACE_EXISTING);
 
@@ -47,8 +47,6 @@ public class OtherButtonsPanelMain extends JPanel{
                             ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
 
                             ss.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
-
-
 
                         } catch (IOException e1) {
                             e1.printStackTrace();

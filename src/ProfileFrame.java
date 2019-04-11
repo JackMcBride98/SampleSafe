@@ -1,4 +1,4 @@
-import javax.swing.JButton;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -10,7 +10,7 @@ import javax.swing.JButton;
  *
  * @author Matthew
  */
-public class ProfileFrame extends javax.swing.JFrame {
+public class ProfileFrame extends JFrame {
 
     /**
      * Creates new form ProfileFrame
@@ -19,10 +19,13 @@ public class ProfileFrame extends javax.swing.JFrame {
     
     public ProfileFrame(String user) {
         initComponents();
-        
         profilePicFrame = new CreateRoundButton(user);
-        profilePicFrame.setBounds(10, 10, 100, 100);
+        profilePicFrame.setSize(100, 100);
         profilePicFrame.setVisible(true);
+        profilePicFrame.setBackground(Misc.clrMainTheme);
+
+
+
         add(profilePicFrame);
         profilePicFrame.setFocusPainted(false);
         NameText.setText(user);

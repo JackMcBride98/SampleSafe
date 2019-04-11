@@ -38,7 +38,7 @@ public class TheSS extends JFrame {
         infoPanel = new InfoPanel(this);
         searchBarPanel = new SearchBarPanel(this);
 
-        profilePanel = new ProfilePanel(this);
+        profilePanel = new ProfilePanel(this, Misc.user);
         auditionPanel = new SampleAuditionPanel(this);
         add(resultPanel, BorderLayout.LINE_START);
         add(infoPanel, BorderLayout.LINE_END);
@@ -47,7 +47,7 @@ public class TheSS extends JFrame {
         topPanel.setLayout(new BorderLayout());
         this.add(topPanel, BorderLayout.PAGE_START);
         topPanel.add(searchBarPanel, BorderLayout.CENTER);
-        //topPanel.add(profilePanel, BorderLayout.LINE_END);
+        topPanel.add(profilePanel, BorderLayout.LINE_END);
 
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new BorderLayout());

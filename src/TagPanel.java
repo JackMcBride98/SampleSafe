@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class TagPanel extends JPanel {
     private ArrayList<String> tags;
-    private boolean     shouldDelete = false;
+    private boolean shouldDelete = false;
     private Sample sample;
     private ActionListener act = null;
 
@@ -31,6 +31,7 @@ public class TagPanel extends JPanel {
      * @param tags: the array of tag names
      */
     public void loadTags(ArrayList<String> tags){
+        shouldDelete = false;
         this.removeAll();
         this.tags = tags;
         for (String tag : tags) {
@@ -52,11 +53,11 @@ public class TagPanel extends JPanel {
     }
 
     /**
-     * To rigger if should delete tags when clicking them
-     * @param t: true || false
+     * To trigger if should delete tags when clicking them
+     * @param : true || false
      */
-    public void triggerDelete(boolean t){
-        shouldDelete = t;
+    public void triggerDelete(){
+        shouldDelete = !shouldDelete;
     }
 
     /**
@@ -65,8 +66,11 @@ public class TagPanel extends JPanel {
      */
     private void deleteTag(String tag){
         if(shouldDelete){
+            Boolean before = shouldDelete;
             tags.remove(tag);
+
             loadTags(tags);
+            shouldDelete = before;
         }
     }
 
@@ -83,4 +87,9 @@ public class TagPanel extends JPanel {
     public ArrayList<String> get_tags(){
         return tags;
     }
+
+    public boolean getShouldDelete() {
+        return shouldDelete;
+    }
 }
+

@@ -24,7 +24,6 @@ public class LoginPanel extends JPanel {
         this.setBackground(Misc.clrMainTheme1);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //this.title.setHorizontalAlignment(JLabel.CENTER);
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new FlowLayout());
         titlePanel.setBackground(Misc.clrMainTheme1);
@@ -65,6 +64,7 @@ public class LoginPanel extends JPanel {
                     String un = br.readLine();
                     String pw = br.readLine();
                     if(username.equals(un) && password.equals(pw)){
+                        Misc.user = un;
                         String documentsLocation = System.getProperty("user.home") + "\\Documents" + "\\SampleSafe";
                         File dir = new File(documentsLocation);
                         dir.mkdirs();
