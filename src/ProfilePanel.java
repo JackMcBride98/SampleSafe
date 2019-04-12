@@ -65,9 +65,7 @@ public class ProfilePanel extends JPanel {
                         System.exit(0);
                         break;
                 }
-
                 pof.close_dialog();
-
             }
         };
 
@@ -76,6 +74,7 @@ public class ProfilePanel extends JPanel {
         profileButton.setFocusPainted(false);
         profileButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
+                profileButton.setText(Misc.user);
                 if(pof.isVisible()){
                     pof.close_dialog();
                 }else{

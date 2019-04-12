@@ -49,6 +49,8 @@ public class ProfileFrameTMP extends CustomPopUp {
         bio.setForeground(Misc.clrThemeText);
         bio.setAlignmentX(Component.CENTER_ALIGNMENT);
         bioField = new JTextArea(8, 10);
+        //bioField.setText("はじめまして！ キズナアイです\n(o・v・o)♪ \n\n\"Kizuna AI 1st アルバム: \n「hello, world」\" 予約開始！ ");
+        bioField.setText("The quick brown fox jumps over the lazy dog");
         bioField.setLineWrap(true);
         bioField.setBackground(Misc.clrMainTheme2);
         bioField.setForeground(Misc.clrThemeText);

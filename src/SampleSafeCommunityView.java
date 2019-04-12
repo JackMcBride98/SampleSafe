@@ -13,12 +13,8 @@ public class SampleSafeCommunityView extends TheSS{
         super("Community", id);
 
         communityPanel = new OtherButtonsPanel(this, act, "LOCAL");
-        Box box = Box.createHorizontalBox();
-        box.add(Box.createRigidArea(new Dimension(1,0)));
-        box.add(Box.createHorizontalGlue());
-        box.add(communityPanel);
-        bottomPanel.add(box, BorderLayout.LINE_END);
 
+        bottomPanel.add(communityPanel, BorderLayout.LINE_END);
         revalidate();
     }
 }

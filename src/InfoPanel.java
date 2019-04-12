@@ -115,6 +115,9 @@ public class InfoPanel extends JPanel{
                 if(sample != null){
                     for(Library lib : ss.main_sample){
                         lib.remove(sample);
+                        if(lib.getSamples().size() == 0){
+                            ss.deleteLibrary(lib);
+                        }
                     }
                     ss.main_result.remove(sample);
                     if(ss.main_result.size() > 0) {

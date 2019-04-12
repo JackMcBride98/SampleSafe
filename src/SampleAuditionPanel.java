@@ -14,14 +14,12 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
     private TheSS ss;
     private AudioWaveformCreator awc;
     private JLabel sampleWaveformPicLabel;
-    private JButton playButton;
     private AudioInputStream audioInputStream;
     private Clip clip;
 
     public SampleAuditionPanel(TheSS ss){
         this.ss = ss;
         setLayout(new FlowLayout());
-        playButton = new JButton("►");
         try {
             awc = new AudioWaveformCreator((Misc.systemPath + "\\Demo.wav"),(Misc.systemPath + "\\Demo.wav") + " Pic");
             awc.createAudioInputStream();
@@ -29,7 +27,6 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
             sampleWaveformPicLabel = new JLabel(new ImageIcon(waveFormPicture));
             sampleWaveformPicLabel.setSize(new Dimension(680, 80));
             add(sampleWaveformPicLabel);
-            add(playButton);
         } catch (Exception e){
             e.printStackTrace();
         }

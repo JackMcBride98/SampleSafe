@@ -18,13 +18,15 @@ public class OtherButtonsPanel extends JPanel{
     String lib_name = "";
     public OtherButtonsPanel(TheSS ss, ActionListener act, String s){
         JButton importButton = new JButton("IMPORT");
-        importButton.setFont(new Font("Arial", Font.PLAIN, 20));
-
+        importButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        this.setPreferredSize(new Dimension(300, 100));
         JButton communityButton = new JButton(s);
-        communityButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        communityButton.setFont(new Font("Arial", Font.PLAIN, 16));
         JFileChooser importBtn = new JFileChooser();
         importBtn.setMultiSelectionEnabled(true);
         communityButton.addActionListener(act);
+
+        this.setBackground(Misc.clrMainTheme);
         importButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
