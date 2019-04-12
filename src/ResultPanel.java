@@ -113,15 +113,6 @@ public class ResultPanel extends JPanel {
        btnRemove.setForeground(Misc.clrHighText);
        btnRemove.setContentAreaFilled(false); btnRemove.setOpaque(true);
 
-
-       btnRemove.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               ss.deleteLibrary(library);
-           }
-       });
-
-
        removePanel.add(btnRemove);
        removePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
        resultView.add(removePanel);
@@ -129,6 +120,24 @@ public class ResultPanel extends JPanel {
 
        preItem = null;
        ArrayList<Sample> samples = library.getSamples();
+
+       if (samples.size() == 0){
+           btnRemove.setText("Nothing here...");
+           btnRemove.addActionListener(new ActionListener() {
+               @Override
+               public void actionPerformed(ActionEvent e) {
+                   ss.displayResult(ss.main_sample);
+               }
+           });
+       }else{
+           btnRemove.addActionListener(new ActionListener() {
+               @Override
+               public void actionPerformed(ActionEvent e) {
+                   ss.deleteLibrary(library);
+               }
+           });
+       }
+
        // Instantiate new sample list item components
        for(int i = 0; i < samples.size(); i++){
            // Pass display sample
