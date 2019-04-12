@@ -20,16 +20,9 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
     public SampleAuditionPanel(TheSS ss){
         this.ss = ss;
         setLayout(new FlowLayout());
-        try {
-            awc = new AudioWaveformCreator((Misc.systemPath + "\\Demo.wav"),(Misc.systemPath + "\\Demo.wav") + " Pic");
-            awc.createAudioInputStream();
-            BufferedImage waveFormPicture = ImageIO.read(new File((Misc.systemPath + "\\Demo.wav" + " Pic")));
-            sampleWaveformPicLabel = new JLabel(new ImageIcon(waveFormPicture));
-            sampleWaveformPicLabel.setSize(new Dimension(680, 80));
-            add(sampleWaveformPicLabel);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+        sampleWaveformPicLabel = new JLabel();
+        sampleWaveformPicLabel.setSize(new Dimension(680, 80));
+        add(sampleWaveformPicLabel);
     }
 
 
