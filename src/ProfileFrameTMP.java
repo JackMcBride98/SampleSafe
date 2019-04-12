@@ -21,18 +21,24 @@ public class ProfileFrameTMP extends CustomPopUp {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.getContentPane().setLayout(new BoxLayout( getContentPane(), BoxLayout.Y_AXIS));
 
+        this.getContentPane().setBackground(Misc.clrMainTheme1);
+
         JPanel picPanel = new JPanel();
         profilePicture = new JLabel(new ImageIcon(getpic()));
         //profilePicture.setAlignmentX(Component.CENTER_ALIGNMENT);
         profilePicture.setBorder(new EmptyBorder(10, 10, 10, 10));
+        picPanel.setBackground(Misc.clrHighlight1);
         picPanel.add(profilePicture);
         this.getContentPane().add(picPanel);
 
 
         name = new JLabel("Name: ");
+        name.setForeground(Misc.clrThemeText);
         name.setAlignmentX(Component.CENTER_ALIGNMENT);
         nameField = new JTextField(10);
         nameField.setText(Misc.user);
+        nameField.setBackground(Misc.clrMainTheme2);
+        nameField.setForeground(Misc.clrThemeText);
         nameField.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         this.getContentPane().add(name, BorderLayout.PAGE_START);
@@ -40,9 +46,12 @@ public class ProfileFrameTMP extends CustomPopUp {
 
 
         bio = new JLabel("Bio: ");
+        bio.setForeground(Misc.clrThemeText);
         bio.setAlignmentX(Component.CENTER_ALIGNMENT);
         bioField = new JTextArea(8, 10);
         bioField.setLineWrap(true);
+        bioField.setBackground(Misc.clrMainTheme2);
+        bioField.setForeground(Misc.clrThemeText);
         JScrollPane spBF = new JScrollPane(bioField);
 
         this.getContentPane().add(bio);
@@ -58,7 +67,11 @@ public class ProfileFrameTMP extends CustomPopUp {
             }
         };
         saveAndExitButton.addActionListener(listener);
-        this.getContentPane().add(saveAndExitButton, BorderLayout.PAGE_END);
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(Misc.clrMainTheme1);
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(saveAndExitButton);
+        this.getContentPane().add(buttonPanel, BorderLayout.PAGE_END);
 
     }
 
