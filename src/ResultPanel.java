@@ -64,8 +64,11 @@ public class ResultPanel extends JPanel {
            adjustSize(480, 50 * library.getSamples().size() + 35);
            shouldExpand = !shouldExpand;
        }else {
+
+           changeSelectionStatus(null);
            adjustSize(480, 0);
            shouldExpand = !shouldExpand;
+           // when minimized. reset
        }
    }
 
