@@ -7,8 +7,11 @@ public class TheSS extends JFrame {
 
     protected SearchBarPanel searchBarPanel;
     protected ProfilePanel profilePanel;
-    protected ResultPanel resultPanel;
+   // protected ResultPanel resultPanel;
+    protected  LibraryDisplay libraryPanel;
+
     protected InfoPanel infoPanel;
+    protected TextChat textChat;
     protected SampleAuditionPanel auditionPanel;
 
     // For better layout
@@ -16,7 +19,7 @@ public class TheSS extends JFrame {
     protected JPanel bottomPanel;
 
     protected String id;
-    protected ArrayList<Sample> main_sample;
+    protected ArrayList<Library> main_sample;
     protected ArrayList<Sample> main_result;
 
     public TheSS(String title, String id){
@@ -34,13 +37,13 @@ public class TheSS extends JFrame {
         this.main_result = new ArrayList<Sample>();
         this.main_sample = Misc.load_serial(this.id);
 
-        resultPanel = new ResultPanel(this);
+        libraryPanel = new LibraryDisplay(this);
         infoPanel = new InfoPanel(this);
         searchBarPanel = new SearchBarPanel(this);
 
         profilePanel = new ProfilePanel(this, Misc.user);
         auditionPanel = new SampleAuditionPanel(this);
-        add(resultPanel, BorderLayout.LINE_START);
+        add(libraryPanel, BorderLayout.LINE_START);
         add(infoPanel, BorderLayout.LINE_END);
 
         topPanel = new JPanel();
@@ -59,7 +62,7 @@ public class TheSS extends JFrame {
         //result.add(new Sample("Demo.wav",3, new String[]{"Snare", "Clap", "Heavy", "Funky"}, "Jack", new Date(), "Demo", System.getProperty("user.home") + "\\Documents\\SampleSafe\\Demo.wav", false, false, true));
         displayResult(main_sample);
 
-        this.setSize(new Dimension(900, 800));
+        this.setSize(new Dimension(850, 675));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         revalidate();
@@ -82,8 +85,8 @@ public class TheSS extends JFrame {
     public void displaySample(Sample sample){
         infoPanel.displaySample(sample);
     }
-    public void displayResult(ArrayList<Sample> samples){
-        resultPanel.displayResult(samples);
+    public void displayResult(ArrayList<Library> samples){
+        libraryPanel.displayResult(samples);
     }
 
     public SampleAuditionPanel getAuditionPanel() {
@@ -94,4 +97,35 @@ public class TheSS extends JFrame {
         searchBarPanel.addToSearch(c);
     }
 
+    public void addSampleToLib(String libraryName, ArrayList<Sample> samples){
+        // scan each library check for name
+        boolean added = false;
+        for (Library lib : main_sample){
+            if(lib.getTitle().toLowerCase().equals(libraryName.toLowerCase())){
+                lib.add(samples);
+                added = true;
+                break;
+            }
+        }
+        if(!added){ // if not found. this is a new library
+            Library newlib = new Library(libraryName, samples);
+            this.main_sample.add(newlib);
+        }
+        // save
+        Misc.save_serial(this.id, this.main_sample);
+    }
+
+    public void deleteLibrary(Library lib){
+        if(shouldDelete(lib.getTitle()) == 0){
+
+            this.main_sample.remove(lib);
+            Misc.save_serial(this.id, this.main_sample);
+            displayResult(this.main_sample);
+        }
+    }
+
+    public int shouldDelete(String title){
+        int result = JOptionPane.showConfirmDialog((Component) null, "Are you sure you want to delete the Library: " + title + "?", "Alert", JOptionPane.OK_CANCEL_OPTION );
+        return result;
+    }
 }

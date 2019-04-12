@@ -16,6 +16,8 @@ public class ProfilePanel extends JPanel {
     private JButton profileButton;
     private JFrame profileFrame;
 
+    private ProfileFrameTMP sof;
+
     private ProfileOptionFrame pof;
 
     public ProfilePanel(TheSS ss){
@@ -43,7 +45,6 @@ public class ProfilePanel extends JPanel {
         panel.add(profileButton);
         this.add(panel);
 
-
         ActionListener act = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,15 +52,14 @@ public class ProfilePanel extends JPanel {
 
                 switch (btnName){
                     case "Edit Profile":
-                        ProfileFrame pf = new ProfileFrame(profileButton.getText());
-                        pf.setVisible(true);
-                        pf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        //ProfileFrame pf = new ProfileFrame(profileButton.getText());
+                        ProfileFrameTMP pf= new ProfileFrameTMP(profileButton);
+
+                        pf.show_dialog();
                         break;
                     case "Change Password":
-                        System.out.println("Changing Password??");
                         break;
                     case "Delete Account":
-                        System.out.println("Changing Password??");
                         break;
                     case "Log Out":
                         System.exit(0);

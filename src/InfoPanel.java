@@ -13,10 +13,10 @@ public class InfoPanel extends JPanel{
     private JTextArea descTextArea;
     private JButton addButton, saveButton, cancelButton, deleteTagButton, editButton, deleteSampleButton;
     private JComboBox tagComBox;
-    private JPanel dataPanel, tagPanel, commPanel, buttPanel;
+    private JPanel dataPanel, tagPanel, commPanel, buttPanel, comboPanel, edDelPanel;
     private TagPanel tagListPanel;
     private Checkbox sharePublic, shareGroup;
-    private String tagOptions[] = {"Snare", "Clap", "Heavy", "Funky"};
+    private String tagOptions[] = {"", "Snare", "Clap", "Heavy", "Funky"};
     private ArrayList<String> tags;
     private Sample sample;
 
@@ -27,27 +27,36 @@ public class InfoPanel extends JPanel{
         tagPanel = new JPanel();
         commPanel = new JPanel();
         buttPanel = new JPanel();
+        comboPanel = new JPanel();
+        edDelPanel = new JPanel();
 
-        setBackground(new Color(65,185, 255));
-        setPreferredSize(new Dimension(390, 100));
+        setBackground(Misc.clrHighlight);
+        setPreferredSize(new Dimension(300, 100));
 
 
         //names that appear next to fields etc
         titleLabel = new JLabel("Name:");
+        titleLabel.setForeground(Misc.clrHighText);
         authorLabel = new JLabel("Author:");
+        authorLabel.setForeground(Misc.clrHighText);
         dateLabel = new JLabel("Date:");
+        dateLabel.setForeground(Misc.clrHighText);
         descLabel = new JLabel("Description:");
+        descLabel.setForeground(Misc.clrHighText);
         tagLabel= new JLabel("Tags:");
+        tagLabel.setForeground(Misc.clrHighText);
         //text fields
         titleField = new JTextField(15);
         authorField = new JTextField(15);
         dateField = new JTextField(15);
 
         //area that displays text
-        descTextArea = new JTextArea();
+        descTextArea = new JTextArea(5, 20);
         descTextArea.setVisible(true);
+        descTextArea.setLineWrap(true);
         JScrollPane scrollPane = new JScrollPane(descTextArea);
-        scrollPane.setPreferredSize(new Dimension(275, 75));
+        //scrollPane.setPreferredSize(new Dimension(275, 75));
+
 
         //combo box
         tagComBox = new JComboBox(tagOptions);
@@ -61,13 +70,14 @@ public class InfoPanel extends JPanel{
             }
         });
         tagListPanel.setPreferredSize(new Dimension(100, 300));
-        tagListPanel.setBackground(new Color(60,160, 255));
+        tagListPanel.setBackground(Misc.clrHighlight);
         JScrollPane tagScrollPane = new JScrollPane(tagListPanel);
         tagScrollPane.setPreferredSize(new Dimension(90, 90));
 
         //check boxes
         //sharePublic = new Checkbox("Make Public");
         shareGroup = new Checkbox("Share with Group");
+        shareGroup.setForeground(Misc.clrHighText);
 
         //buttons
         addButton = new JButton("Add");
@@ -79,8 +89,10 @@ public class InfoPanel extends JPanel{
 
         addButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
-                if(sample != null && tagComBox.getEditor().getItem() != "")
+                if(sample != null && tagComBox.getEditor().getItem().toString().length() != 0) {
                     addTags("" + tagComBox.getEditor().getItem());
+                    tagComBox.getEditor().setItem("");
+                }
             }
         });
 
@@ -101,10 +113,14 @@ public class InfoPanel extends JPanel{
         deleteSampleButton.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mousePressed(java.awt.event.MouseEvent evt){
                 if(sample != null){
-                    ss.main_sample.remove(sample);
+                    for(Library lib : ss.main_sample){
+                        lib.remove(sample);
+                    }
                     ss.main_result.remove(sample);
                     if(ss.main_result.size() > 0) {
-                        ss.displayResult(ss.main_result);
+                        ArrayList<Library> k = new ArrayList<Library>();
+                        k.add(new Library("Result", ss.main_result));
+                        ss.displayResult(k);
                     }else{
                         ss.displayResult(ss.main_sample);
                     }
@@ -122,24 +138,37 @@ public class InfoPanel extends JPanel{
 
 
         //creates grid layout
-        setLayout(new GridBagLayout());
+        //setLayout(new GridBagLayout());
         dataPanel.setLayout(new GridBagLayout());
-        dataPanel.setBackground(new Color(65,185, 255));
+
+        Color sexy = Misc.clrHighlight;
+
+        dataPanel.setBackground(sexy);
 
         tagPanel.setLayout(new GridBagLayout());
-        tagPanel.setBackground(new Color(65,185, 255));
+        tagPanel.setBackground(sexy);
 
         commPanel.setLayout(new GridBagLayout());
-        commPanel.setBackground(new Color(65,185, 255));
+        commPanel.setBackground(sexy);
 
         buttPanel.setLayout(new GridBagLayout());
-        buttPanel.setBackground(new Color(65,185, 255));
+        buttPanel.setBackground(sexy);
+
+        comboPanel.setLayout(new GridBagLayout());
+        comboPanel.setBackground(sexy);
+
+        edDelPanel.setLayout(new GridBagLayout());
+        edDelPanel.setBackground(sexy);
+
+        comboPanel.setLayout(new GridBagLayout());
+        comboPanel.setBackground(sexy);
+
+        edDelPanel.setLayout(new GridBagLayout());
+        edDelPanel.setBackground(sexy);
 
         GridBagConstraints gc = new GridBagConstraints();
         gc.anchor = GridBagConstraints.LINE_START;
-        gc.weightx = 0;
-        gc.weighty = 0;
-        gc.insets = new Insets(5, 5, 5, 5);
+        gc.insets = new Insets(5, 15, 5, 15);
         gc.fill = GridBagConstraints.HORIZONTAL;
 
         //panel positions
@@ -161,16 +190,18 @@ public class InfoPanel extends JPanel{
         setPosition(0, 5, scrollPane, gc, dataPanel);
         gc.gridwidth = 1;
 
-        //tag combo box
-        setPosition(0, 0, tagLabel, gc, tagPanel);
-        setPosition(1, 0, tagComBox, gc, tagPanel);
-        setPosition(2, 0, addButton, gc, tagPanel);
         //tag panel
-        gc.gridwidth = 3;
-        setPosition(0, 1, tagScrollPane, gc,tagPanel);
-        gc.gridwidth = 1;
-        setPosition(1, 2, editButton, gc, tagPanel);
-        setPosition(0, 2, deleteTagButton, gc, tagPanel);
+        setPosition(0, 0, comboPanel, gc, tagPanel);
+        setPosition(0, 1, tagScrollPane, gc, tagPanel);
+        setPosition(0, 2, edDelPanel, gc, tagPanel);
+
+        ////tag combo box
+        setPosition(0, 0, tagLabel, gc, comboPanel);
+        setPosition(1, 0, tagComBox, gc, comboPanel);
+        setPosition(2, 0, addButton, gc, comboPanel);
+
+        setPosition(0, 0, editButton, gc, edDelPanel);
+        setPosition(1, 0, deleteTagButton, gc, edDelPanel);
 
         //checkbox
         //setPosition(0, 0, sharePublic, gc, commPanel);
@@ -191,7 +222,7 @@ public class InfoPanel extends JPanel{
 
     public void updateDeleteTagButton(){
         if(tagListPanel.getShouldDelete()){
-            deleteTagButton.setBackground(Color.RED);
+            deleteTagButton.setBackground(Misc.clrHighlight1);
             deleteTagButton.setContentAreaFilled(false);
             deleteTagButton.setOpaque(true);
 

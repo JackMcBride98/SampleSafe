@@ -15,9 +15,8 @@ import java.util.Date;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class OtherButtonsPanel extends JPanel{
-
+    String lib_name = "";
     public OtherButtonsPanel(TheSS ss, ActionListener act, String s){
-
         JButton importButton = new JButton("IMPORT");
         importButton.setFont(new Font("Arial", Font.PLAIN, 20));
 
@@ -29,37 +28,53 @@ public class OtherButtonsPanel extends JPanel{
         importButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int returnVal = importBtn.showOpenDialog(importButton);
 
-                if (returnVal == JFileChooser.APPROVE_OPTION) {
-                    File[] files = importBtn.getSelectedFiles();
-                    for(int i = 0; i < files.length; i++) {
-                        ss.main_sample.add(new Sample(files[i].getName(), 1, new ArrayList<String>(), "", new Date(), "", files[i].toString(), false, true, false));
-                        Misc.save_serial(ss.id, ss.main_sample);
-                        ss.displayResult(ss.main_sample);
-                        try {
-                            Files.copy(Paths.get(files[i].toString()), Paths.get((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName())), REPLACE_EXISTING);
 
-                            AudioWaveformCreator awc = new AudioWaveformCreator((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName()),(System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName()) + " Pic");
-                            awc.createAudioInputStream();
+                ActionListener act_given_name = new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        lib_name = ((JButton) e.getSource()).getText();
+                        int returnVal = importBtn.showOpenDialog(importButton);
+                        if (returnVal == JFileChooser.APPROVE_OPTION) {
+                            File[] files = importBtn.getSelectedFiles();
 
-                            BufferedImage waveFormPicture = ImageIO.read(new File((System.getProperty("user.home") + "\\Documents\\SampleSafe\\" + files[i].getName() + " Pic")));
-                            ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
+                            ArrayList<Sample> new_samples = new ArrayList<>();
+                            for(int i = 0; i < files.length; i++) {
 
-                            ss.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
+                                new_samples.add(new Sample(files[i].getName(), 1, new ArrayList<String>(), "", new Date(), "", files[i].toString(), false, true, false));
 
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                        } catch (UnsupportedAudioFileException e1) {
-                            e1.printStackTrace();
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
+                                try {
+                                    Files.copy(Paths.get(files[i].toString()), Paths.get((Misc.systemPath + "\\" + files[i].getName())), REPLACE_EXISTING);
+
+                                    AudioWaveformCreator awc = new AudioWaveformCreator((Misc.systemPath + "\\" + files[i].getName()),(Misc.systemPath + "\\" + files[i].getName()) + " Pic");
+                                    awc.createAudioInputStream();
+
+                                    BufferedImage waveFormPicture = ImageIO.read(new File((Misc.systemPath + "\\" + files[i].getName() + " Pic")));
+                                    ImageIcon sampleWaveformPicLabel = new ImageIcon(waveFormPicture);
+
+                                    ss.getAuditionPanel().getSampleWaveformPicLabel().setIcon(sampleWaveformPicLabel);
+
+                                } catch (IOException e1) {
+                                    e1.printStackTrace();
+                                } catch (UnsupportedAudioFileException e1) {
+                                    e1.printStackTrace();
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
+                                }
+
+
+                            }
+
+                            ss.addSampleToLib(lib_name, new_samples);
+                            ss.displayResult(ss.main_sample);
                         }
 
 
                     }
-                }
+                };
 
+                ImportOptionFrame iof = new ImportOptionFrame(ss.main_sample, importButton, act_given_name);
+                iof.show_dialog();
             }
         });
 
@@ -68,4 +83,5 @@ public class OtherButtonsPanel extends JPanel{
         this.add(importButton);
         add(communityButton);
     }
+
 }

@@ -41,7 +41,7 @@ public class SearchBarPanel extends JPanel {
         };
         searchButton.addActionListener( searchListener);
         searchField.addActionListener(  searchListener);
-        sortButton.addActionListener(   new ActionListener() {
+        sortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(sof.isVisible())
@@ -50,7 +50,7 @@ public class SearchBarPanel extends JPanel {
                     sof.show_dialog();
             }
         });
-        filterButton.addActionListener( new ActionListener() {
+        filterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(fof.isVisible())
@@ -59,6 +59,8 @@ public class SearchBarPanel extends JPanel {
                     fof.show_dialog();
             }
         });
+
+
         ActionListener sortOpListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,13 +75,16 @@ public class SearchBarPanel extends JPanel {
                     sort_by(Misc.SORT_TYPE.DATE);
             }
         };
+
         sof = new SortOptionFrame(sortOpListener, sortButton);
         ActionListener filerOptionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 fof.close_dialog();
                 if(ss.main_result.size() == 0){
-                    ss.main_result = ss.main_sample;
+                    for(Library lib : ss.main_sample){
+                        ss.main_result.addAll(lib.getSamples());
+                    }
                 }
                 ArrayList<Sample> temp = new ArrayList<Sample>();
                 for( Sample sp : ss.main_result){
@@ -88,7 +93,7 @@ public class SearchBarPanel extends JPanel {
                     }
                 }
                 ss.main_result = temp;
-                ss.displayResult(ss.main_result);
+                ss.displayResult(librariesFromList(ss.main_result));
 
 
             }
@@ -104,12 +109,15 @@ public class SearchBarPanel extends JPanel {
         }else{
             String[] criteria = searchField.getText().split(" ");
             ss.main_result.clear();
-            for (Sample sp : ss.main_sample){
-                if(contain_title(sp, criteria) || contain_criteria(sp, criteria)){
-                    ss.main_result.add(sp);
+            for (Library lib: ss.main_sample){
+                for (Sample sp : lib.getSamples()){
+                    if(contain_title(sp, criteria) || contain_criteria(sp, criteria)){
+                        ss.main_result.add(sp);
+                    }
                 }
             }
-            ss.displayResult(ss.main_result);
+
+            ss.displayResult(librariesFromList(ss.main_result));
         }
 
     }
@@ -117,7 +125,7 @@ public class SearchBarPanel extends JPanel {
     private boolean contain_criteria(Sample sp, String[] cr){
         for (String tag : sp.getTags()){
             for (String c : cr){
-                if(tag.equals(c.toLowerCase())){
+                if(tag.toLowerCase().equals(c.toLowerCase())){
                     return true;
                 }
             }
@@ -155,15 +163,27 @@ public class SearchBarPanel extends JPanel {
         }else{ Misc.asc = true;} // default is true for asc
 
         if(ss.main_result.size() == 0){
-            ss.main_result = ss.main_sample;
+
+            for (Library lib : ss.main_sample){
+                ss.main_result.addAll(lib.getSamples());
+            }
+
         }
 
         if(Misc.asc){Collections.sort(ss.main_result);}
         else{Collections.sort(ss.main_result, Collections.reverseOrder());}
-        ss.displayResult(ss.main_result);
+
+        ss.displayResult(librariesFromList(ss.main_result));
     }
 
     public void addToSearch(String c){
         searchField.setText(searchField.getText() + " " + c);
     }
+
+    private ArrayList<Library> librariesFromList(ArrayList<Sample> s){
+        ArrayList<Library> k = new ArrayList<Library>();
+        k.add(new Library("Result", s));
+        return k;
+    }
+
 }
