@@ -125,7 +125,7 @@ public class SearchBarPanel extends JPanel {
     private boolean contain_criteria(Sample sp, String[] cr){
         for (String tag : sp.getTags()){
             for (String c : cr){
-                if(tag.equals(c.toLowerCase())){
+                if(tag.toLowerCase().equals(c.toLowerCase())){
                     return true;
                 }
             }
