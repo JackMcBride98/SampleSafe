@@ -10,12 +10,8 @@ public class SampleSafeMainView extends TheSS{
         super("Sample Safe", id);
 
         otherButtonsPanel = new OtherButtonsPanel(this, act, "COMMUNITY");
-        Box box = Box.createHorizontalBox();
-        box.add(Box.createRigidArea(new Dimension(1,0)));
-        box.add(Box.createHorizontalGlue());
-        box.add(otherButtonsPanel);
-        add(box);
-        bottomPanel.add(box, BorderLayout.LINE_END);
+
+        bottomPanel.add(otherButtonsPanel, BorderLayout.LINE_END);
 
         revalidate();
     }
