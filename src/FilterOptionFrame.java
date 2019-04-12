@@ -17,7 +17,11 @@ public class FilterOptionFrame extends CustomPopUp {
         super(200, 80, parent);
         /** Waiting for Implementation **/
         this.getContentPane().setLayout(new BoxLayout( getContentPane(), BoxLayout.Y_AXIS));
-        this.getContentPane().add(new JLabel("Filter by:"));
+
+        JPanel title = new JPanel();
+        title.setLayout(new FlowLayout());
+        title.add(new JLabel("Filter By:"));
+        this.add(title, BorderLayout.PAGE_START);
 
         /** Filter panel**/
         String ratings[] = {"1", "2", "3", "4", "5"};

@@ -47,6 +47,9 @@ public class Library implements Serializable, Comparable {
     public void add(Sample s){
         this.samples.add(s);
     }
+    public void add(ArrayList<Sample> s){
+        this.samples.addAll(s);
+    }
 
     public void remove(Sample s){
         this.samples.remove(s);

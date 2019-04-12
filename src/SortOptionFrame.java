@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 public class SortOptionFrame extends CustomPopUp {
 
     public SortOptionFrame(ActionListener al, JButton parent){
-      super(125, 100, parent);
+      super(125, 80, parent);
 
       // add sort optionsW
         this.getContentPane().setLayout(new BoxLayout( getContentPane(), BoxLayout.Y_AXIS));
-        this.getContentPane().add(new JLabel("Sort by:"));
+
         String names[] = {"Rating", "Sample Name", "Creation Date"};
         for (String n : names){
             JButton nb = new JButton(n);

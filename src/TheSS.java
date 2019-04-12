@@ -97,4 +97,22 @@ public class TheSS extends JFrame {
         searchBarPanel.addToSearch(c);
     }
 
+    public void addSampleToLib(String libraryName, ArrayList<Sample> samples){
+        // scan each library check for name
+        boolean added = false;
+        for (Library lib : main_sample){
+            if(lib.getTitle().toLowerCase().equals(libraryName.toLowerCase())){
+                lib.add(samples);
+                added = true;
+                break;
+            }
+        }
+        if(!added){ // if not found. this is a new library
+            Library newlib = new Library(libraryName, samples);
+            this.main_sample.add(newlib);
+        }
+        // save
+        Misc.save_serial(this.id, this.main_sample);
+    }
+
 }
