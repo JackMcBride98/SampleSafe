@@ -11,7 +11,7 @@ import java.util.Date;
 public class ResultPanel extends JPanel {
 
     private SampleListItem preItem;
-    private ArrayList<Sample> samples = new ArrayList();
+    private Library library = null;
 
     //DnD stuff
     private static DataFlavor dragAndDropPanelDataFlavor = null;
@@ -53,7 +53,7 @@ public class ResultPanel extends JPanel {
             }
         });
         add(titleButton, BorderLayout.PAGE_START);
-        //add(scrollResultView, BorderLayout.CENTER);
+
         add(resultView, BorderLayout.CENTER);
         triggerExpand();
    }
@@ -61,7 +61,7 @@ public class ResultPanel extends JPanel {
    public void triggerExpand(){
         // cant not retract if in local
        if(shouldExpand){
-           adjustSize(480, 50 * samples.size() + 15);
+           adjustSize(480, 50 * library.getSamples().size() + 35);
            shouldExpand = !shouldExpand;
        }else {
            adjustSize(480, 0);
@@ -83,6 +83,7 @@ public class ResultPanel extends JPanel {
        shouldExpand = true;
        changeSelectionStatus(null);
        titleButton.setText(lib.getTitle());
+
        repaint();
 
        /** Tag action listener **/
@@ -95,16 +96,40 @@ public class ResultPanel extends JPanel {
        };
 
 
-       this.samples = lib.getSamples();
+       this.library = lib;
        // Remove all components
        //JPanel rView = new JPanel();
        //rView.setLayout(new BoxLayout(rView, BoxLayout.Y_AXIS));
        resultView.removeAll();
+
+       // add the remove button
+       JPanel removePanel = new JPanel();
+       removePanel.setLayout(new BorderLayout());
+       JButton btnRemove = new JButton("Remove Library");
+       btnRemove.setBackground(Misc.clrHighlight1);
+       btnRemove.setForeground(Misc.clrHighText);
+       btnRemove.setContentAreaFilled(false); btnRemove.setOpaque(true);
+
+
+       btnRemove.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               ss.deleteLibrary(library);
+           }
+       });
+
+
+       removePanel.add(btnRemove);
+       removePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+       resultView.add(removePanel);
+
+
        preItem = null;
+       ArrayList<Sample> samples = library.getSamples();
        // Instantiate new sample list item components
-       for(int i = 0; i < lib.getSamples().size(); i++){
+       for(int i = 0; i < samples.size(); i++){
            // Pass display sample
-           sli = new SampleListItem(this.samples.get(i), this, ss, tagClicked);
+           sli = new SampleListItem(samples.get(i), this, ss, tagClicked);
            sli.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.gray));
            sli.setAlignmentX(Component.CENTER_ALIGNMENT);
            // Add to view
@@ -123,8 +148,8 @@ public class ResultPanel extends JPanel {
         preItem = sli;
    }
 
-    public ArrayList<Sample> getSamples() {
-        return samples;
+    public Library getLibrary() {
+        return library;
     }
 
     // DnD stuff

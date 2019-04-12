@@ -222,7 +222,7 @@ public class InfoPanel extends JPanel{
 
     public void updateDeleteTagButton(){
         if(tagListPanel.getShouldDelete()){
-            deleteTagButton.setBackground(Color.RED);
+            deleteTagButton.setBackground(Misc.clrHighlight1);
             deleteTagButton.setContentAreaFilled(false);
             deleteTagButton.setOpaque(true);
 

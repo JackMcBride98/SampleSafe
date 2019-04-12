@@ -115,4 +115,17 @@ public class TheSS extends JFrame {
         Misc.save_serial(this.id, this.main_sample);
     }
 
+    public void deleteLibrary(Library lib){
+        if(shouldDelete(lib.getTitle()) == 0){
+
+            this.main_sample.remove(lib);
+            Misc.save_serial(this.id, this.main_sample);
+            displayResult(this.main_sample);
+        }
+    }
+
+    public int shouldDelete(String title){
+        int result = JOptionPane.showConfirmDialog((Component) null, "Are you sure you want to delete the Library: " + title + "?", "Alert", JOptionPane.OK_CANCEL_OPTION );
+        return result;
+    }
 }

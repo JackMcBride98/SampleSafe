@@ -26,6 +26,7 @@ public class Misc {
     public static Color clrSelected     = new Color(65,185, 255); //new Color(65, 185, 255);
     public static Color clrHoverSelect  = new Color(65,185, 255);
     public static Color clrHighlight    = new Color(51, 77, 119);
+    public static Color clrHighlight1   = new Color(255, 96, 124);
     public static Color clrHighText    = Color.white;
 
     /**
