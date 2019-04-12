@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class SampleSafe extends JFrame {
 
@@ -36,6 +37,7 @@ public class SampleSafe extends JFrame {
     }
 
     public static void main(String[] args) {
+        new File(Misc.systemPath).mkdirs();
         SampleSafe ss = new SampleSafe();
     }
 }
