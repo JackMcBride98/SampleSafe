@@ -33,16 +33,7 @@ public class SampleAuditionPanel extends JPanel implements ActionListener {
         clip.start();
     }
 
-    public void loadSample(Sample s){
-
-    }
-
     public JLabel getSampleWaveformPicLabel() {
         return sampleWaveformPicLabel;
-    }
-
-    public void setSampleWaveformPicLabel(JLabel sampleWaveformPicLabel) {
-        this.sampleWaveformPicLabel = sampleWaveformPicLabel;
-        revalidate();
     }
 }
